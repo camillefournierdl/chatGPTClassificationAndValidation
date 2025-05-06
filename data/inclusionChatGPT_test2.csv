@@ -1,0 +1,222 @@
+custom_id,message_content,inclusionChatGPTClean,response.body.model
+6,"This paper primarily assesses perceptions of air quality and associated symptoms in relation to relative humidity rather than focusing on air pollution, thus it does not meet the criteria for inclusion.
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+15,"This paper presents recommendations for air quality limits and discusses air pollution from a policy perspective, but it does not employ survey data as a primary research method, thus it should be excluded from our study.
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+38,"This paper should be classified as excluded because it does not utilize survey data as a primary research method, focusing instead on measured concentrations of NO2 in the air and meteorological conditions.
+
+output_json  
+{  ""inclusion"": [""excluded""]}",excluded,gpt-4o-mini-2024-07-18
+49,"This paper uses survey data to explore the relationship between education level and willingness to pay for air quality improvements, focusing on air pollution as a primary outcome, hence it meets all the inclusion criteria.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+73,"The paper should be included because it uses survey data to investigate health behavior modifications in response to air pollution notifications, focusing specifically on outdoor air pollution and the perceptions and knowledge related to it.  
+
+output_json  
+{  ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+112,"This paper is excluded because it does not use survey data as a primary research method but relies on qualitative interviews and analyses instead.  
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+117,"The paper evaluates users' perceptions of air quality in the context of their thermal comfort, but it does not center on air pollution as a primary variable and primarily focuses on environmental variables affecting indoor comfort rather than direct pollution aspects.  
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+121,"This paper should be included in our study because it utilizes survey data to assess public willingness to pay for smog mitigation, directly related to outdoor air pollution.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+122,"This paper should be excluded because it does not utilize survey data as a primary research method, focusing instead on quantitative analysis of air quality indicators and public opinion analysis without primary survey data collection.
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+129,"This paper employs survey data to examine air pollution exposure dynamics, making use of travel behavior and land use regression, thus fitting all inclusion criteria.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+131,"The paper examines the effects of PM2.5 exposure on mental stress among pregnant women, incorporating both perceived exposure and survey data related to air quality, thus meeting all inclusion criteria. 
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+143,"This paper analyzes daily exposure to traffic-related air pollution using travel survey data, focusing on air pollution as a primary outcome, thus meeting all the criteria for inclusion in the study.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+158,"This paper should be included in our study as it consists of survey data focused on public perceptions of air quality and its relationship with air pollution during the COVID-19 lockdown in India.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+167,"This paper uses survey data to assess public perceptions and willingness to pay for reducing air pollution in China, aligning with the research focus on air pollution as a primary outcome.  
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+171,"This paper uses survey data to examine how air quality affects urban park visitation and considers air pollution as a significant factor influencing behavior, thereby meeting all the inclusion criteria.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+174,"This paper utilizes survey data to explore the relationships between socio-physical environments and knowledge, attitude, and intention towards air quality policies, focusing on air pollution as a significant aspect which aligns with our criteria for inclusion.
+
+output_json
+{  ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+190,"This paper uses survey data alongside qualitative interviews to explore personal travel behavior and attitudes related to air pollution, thereby meeting the inclusion criteria for our study. 
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+224,"This paper should be included in the study as it uses survey data to analyze perceptions of air quality related to air pollution in the context of a traffic-reduction measure.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+226,"This paper uses survey data to explore behavioral responses to air pollution in China, focusing on inverted quarantine and includes perceptions of air quality, fulfilling all the inclusion criteria.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+240,"The paper meets all the criteria for inclusion, as it employs survey data related to air pollution and examines public perceptions of smog in relation to quality of life in an urban context in China. 
+
+output_json  
+{ ""inclusion"": ""included"" }",included,gpt-4o-mini-2024-07-18
+242,"The paper is focused on knowledge gaps regarding air pollution impacts on forests and does not utilize survey data as a primary research method, thus it should be excluded.  
+output_json  
+{ ""inclusion"": ""excluded"" }",excluded,gpt-4o-mini-2024-07-18
+251,"The paper is a reply to expert opinions and does not present original survey data or research, thereby excluding it from our study.  
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+255,"The paper meets all the criteria as it uses survey data to examine how perceived risk and perceived news credibility affect public trust in regulators regarding air pollution in China, thus it should be included in our study.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+269,"This paper meets all the criteria as it uses survey data related to protective behaviors against outdoor air pollution (smog) in Beijing and examines behavioral intentions, which focus on air pollution as the primary outcome.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+289,"This paper investigates hikers' perceptions and coping behaviors related to air pollution, using survey data, which aligns with our study's criteria.
+
+output_json  
+{  ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+290,"The paper examines perceived health risks associated with traffic-related air pollution and utilizes both survey and interview data, making it appropriate for inclusion in our study.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+302,"This paper does not use survey data specifically related to air pollution as a primary research method, hence it does not meet the required criteria. 
+
+output_json  
+{ ""inclusion"": [""excluded""]}",excluded,gpt-4o-mini-2024-07-18
+305,"This paper meets all the criteria as it uses survey data (contingent valuation) to assess Singaporeans' willingness to pay for mitigation of haze caused by transboundary forest-fire pollution, focusing explicitly on air pollution as an economic concern.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+309,"The paper utilizes survey data to explore public perceptions of air pollution and its health impacts in Greater Kuala Lumpur, meeting all the specified inclusion criteria. 
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+319,"This paper should be included as it uses survey data to explore behavioral intentions related to particulate matter emissions from restaurants, focusing on air pollution as a primary outcome. 
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+325,"The paper investigates protective behaviours in response to city smog using survey data from residents in Hefei, China, directly addressing air pollution and its health implications, thus meeting all inclusion criteria.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+347,"This paper uses survey data to explore public perceptions of air pollution and carbon dioxide, directly addressing the understanding of air pollution's atmospheric residence time, making it a suitable fit for inclusion.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+356,"This paper should be excluded because it does not involve survey data, as it primarily focuses on qualitative research methods such as interviews and observations.
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+369,"This paper is excluded because it has been retracted, which questions the validity of its research findings and implications.  
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+379,"The paper focuses on perceptions of indoor air quality and health outcomes related to ventilation types, making it relevant to air quality perceptions related to air pollution aspects, thus it should be included.  
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+409,"This paper meets all the criteria as it investigates associations between traffic-related air pollution and noise exposure in schools using data from surveys to assess behavioral problems in children, focusing on air pollution as an explanatory variable.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+414,"This paper meets the criteria as it uses survey data to investigate associations between perceived air quality in homes and allergic diseases in children, focusing on indoor air pollution as a relevant factor. 
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+443,"This paper should be included in our study as it employs survey data to assess policymakers' awareness of air pollution, which directly aligns with the criteria regarding air pollution as an explanatory variable.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+453,"This paper should be excluded because, while it discusses leadership skills and behavior change among fieldworkers in the context of a household air pollution study, it does not primarily focus on survey data related to air pollution as specified in the criteria. 
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+500,"The paper investigates risk perception concerning air pollution and climate change among residents, using survey data and focusing on air quality perceptions, thus it meets all criteria for inclusion.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+508,"The paper investigates occupant behavior related to natural ventilation and its impact on indoor air quality, which includes perceptions of air quality linked to air pollution, thus meeting all criteria.  
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+518,"This paper should be included in our study as it investigates parents' perceptions of air quality using survey data and addresses factors related to air pollution. 
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+527,"This paper should be included in the study as it utilizes survey data to explore risk reduction behaviors related to PM2.5 exposure among outdoor exercisers, focusing on air pollution as a primary outcome.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+528,"This paper should be included as it utilizes survey data to investigate air pollution behaviors, focusing specifically on protective behavioral intentions related to PM2.5 among parents in urban and rural settings.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+531,"This paper primarily analyzes social media comments to understand public perception of haze weather rather than utilizing survey data as a primary research method, thus it does not meet the inclusion criteria.  
+output_json  
+{ ""inclusion"": ""excluded"" }",excluded,gpt-4o-mini-2024-07-18
+547,"This paper develops and validates scales that measure haze risk perception and its influencing factors among college students, using survey data specifically focused on air pollution, meeting all inclusion criteria.  
+output_json  
+{  ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+580,"This paper uses survey data to examine perceptions of risks related to both traffic and wood combustion air pollution in Northern Europe, meeting all the specified criteria for inclusion.
+
+output_json
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+587,"This paper should be included in the study because it investigates public perception and behaviors related to air pollution using survey data, which aligns with the specified criteria. 
+
+output_json  
+{ ""inclusion"": ""included"" }",included,gpt-4o-mini-2024-07-18
+594,"This paper uses survey data to analyze the relationship between air quality perception and residents' health, focusing on air pollution as a significant explanatory variable, thus meeting all the criteria for inclusion.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+601,"The paper should be included as it utilizes survey data to explore the population's perceptions of air pollution in Beirut, focusing on outdoor air quality and its associated risks.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+603,"The paper meets all the specified criteria as it utilizes survey data about indoor air quality perceptions related to air pollution in newly decorated office buildings, focusing on air pollution outcomes.  
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+609,"This paper should be included as it uses survey data to explore the determinants of indoor air pollution and its perceived impact on health, directly aligning with the study criteria.  
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+610,"This paper meets all the criteria as it utilizes survey data to analyze perceptions and behaviors related to outdoor air pollution among different populations, focusing on willingness to pay and propensity to migrate.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+613,"This paper should be included as it utilizes survey data to examine factors influencing protective behaviors during haze episodes, focusing on air pollution as a primary outcome.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+636,"This paper focuses on auto-rickshaw drivers' knowledge and perceptions regarding the health effects of air pollution, using survey data, and thus meets all the criteria for inclusion in our study.  
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+651,"The paper should be excluded because, while it addresses awareness of air pollution, it does not explicitly analyze air quality as a primary outcome or focus on its implications in a way that meets the criteria.
+
+output_json  
+{ ""inclusion"": [""excluded""] }",excluded,gpt-4o-mini-2024-07-18
+659,"This paper should be included in the study as it employs survey data to assess residents' perceptions and concerns related to air pollution in the South Durban Basin, aligning with the stipulated criteria.  
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
+673,"This paper meets the criteria as it conducts a research study using survey data on indoor air pollution related to biomass fuel use in rural communities, focusing on perceptions and prevalence of air quality issues. 
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+675,"This paper meets all the specified criteria by using survey data to explore local perceptions of indoor air pollution due to biomass fuel in rural communities, making it relevant for inclusion in our study.
+
+output_json  
+{ ""inclusion"": [""included""] }",included,gpt-4o-mini-2024-07-18
+702,"This paper should be included in our study as it investigates the perception of health in relation to air quality among populations living in different environments of industrial pollution, utilizing survey data (SF-36 questionnaire) and measuring health outcomes related to air quality.
+
+output_json  
+{ ""inclusion"": [""included""]}",included,gpt-4o-mini-2024-07-18
