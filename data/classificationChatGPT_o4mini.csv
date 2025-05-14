@@ -1,0 +1,690 @@
+custom_id,choice_index,message_content,classificationChatGPTClean,response.body.model
+6,0,,,o4-mini-2025-04-16
+6,1,"The paper assesses how relative humidity affects perceived indoor air quality and symptoms but does not address perceptions, behaviors, policies, health impacts, or priority judgments related to air pollution. It falls outside the specified categories.
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+6,2,"The study examines perceived air quality and comfort in relation to indoor relative humidity, but it does not address people’s perceptions of air pollution, pollution-related behaviors, policy preferences, health impacts of pollution, or the priority given to pollution issues. It instead focuses on indoor environmental quality (humidity) rather than air pollution.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+15,0,"This paper is a policy position paper based on scientific evidence (air quality measurements, health impact assessments, and economic evaluations) rather than survey data on public attitudes, perceptions, behaviors, or priorities. It does not present or analyze survey results about how people think, feel, or act regarding air pollution.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+15,1,"The paper is a policy position statement and does not present survey data on public perceptions, behaviors, policy preferences, health-related survey insights, or priority rankings. Therefore, it does not fit any of the specified categories.
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+15,2,,,o4-mini-2025-04-16
+38,0,"The paper reports environmental measurements of NO₂ concentrations and does not involve any survey data on people’s perceptions, behaviors, policy preferences, health perceptions, or priority rankings related to air pollution.
+
+output_json
+
+{""categories"": [""None""]}",None,o4-mini-2025-04-16
+38,1,"The paper focuses on measuring ambient NO2 concentrations and their seasonal and spatial variations using passive samplers. It does not involve survey data on people’s perceptions, behaviors, policy preferences, health-related self-reports, or priority rankings.
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+38,2,"This paper reports ambient NO₂ measurements and analyzes spatial and seasonal variations using passive samplers and meteorological data. It does not involve any survey data on perceptions, behaviors, policy preferences, health-related surveys, or priority assessments by respondents.
+
+output_json
+{""categories"": [""None""]}",None,o4-mini-2025-04-16
+49,0,,,o4-mini-2025-04-16
+49,1,"The study estimates individuals’ willingness to pay for air quality improvements, which directly reflects public support for and preferences toward government or institutional policies to reduce pollution. This aligns with the ""Policy"" category.
+
+output_json
+{
+    ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+49,2,,,o4-mini-2025-04-16
+112,0,"The paper analyzes technological change and knowledge use in the SO2 cap‐and‐trade compliance process at power plants, based on interviews and supply‐chain data. It does not use survey data on public perceptions, behaviors, policy preferences, health impacts, or priority rankings related to air pollution.
+
+output_json
+{""categories"": []}",,o4-mini-2025-04-16
+112,1,"The paper examines firm-level technological change and knowledge in compliance with the SO2 cap‐and‐trade program rather than people’s perceptions, reported behaviors, policy preferences elicited through surveys, health impacts in surveys, or the public’s issue priorities. It does not fall into any of the specified categories.
+
+output_json
+{""categories"": [""None""]}",None,o4-mini-2025-04-16
+112,2,"The paper examines technological and knowledge-based factors in SO2 pollution abatement under a cap-and-trade program, rather than surveying people’s perceptions, behaviors, policy preferences, health impacts, or issue priorities. 
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+121,0,"The paper assesses public willingness to pay for smog mitigation—a clear stated preference for government-led pollution reduction policies—which places it squarely in the Policy category.
+
+output_json
+{
+    ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+121,1,"The paper uses a contingent valuation survey to elicit the public’s willingness to pay for smog mitigation, which directly reflects support for and preferences toward a government policy intervention to reduce air pollution. Therefore, it falls squarely under the Policy category.
+
+output_json
+{
+    ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+121,2,"The paper assesses the public’s willingness to pay for smog mitigation, which directly corresponds to stated preferences for policy actions (i.e., financial support for pollution reduction). It does not primarily explore perceptions of pollution severity, health impacts, or priority rankings, nor does it report on actual behaviors other than the intended financial contribution.
+
+output_json
+{
+    ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+122,0,,,o4-mini-2025-04-16
+122,1,,,o4-mini-2025-04-16
+122,2,,,o4-mini-2025-04-16
+129,0,"The paper uses travel behavior data solely to model exposure to air pollution, rather than examining people’s perceptions, protective behaviors, policy attitudes, health perceptions, or priority rankings related to air pollution. Therefore, it does not fit into any of the specified categories.
+
+output_json
+{
+  ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+129,1,,,o4-mini-2025-04-16
+129,2,"The paper focuses on modeling dynamic air pollution exposure by integrating travel behavior and land use regression. It does not investigate people’s perceptions, reported or intended protective behaviors, policy preferences, health-related survey responses, or issue prioritization. Therefore, it does not fall into any of the specified categories.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+131,0,"The study examines pregnant women’s subjective risk perceptions of PM2.5 (perceived indoor attributions) and links both objective exposure and these perceptions to a health outcome (mental stress). Therefore, it falls under both the Perceptions and Health categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+131,1,"The study examines pregnant women’s subjective perceptions of PM2.5 risk (i.e., perceived indoor attributions of pollution) and links these perceptions, along with objective exposure, to a health outcome (mental stress). Therefore, it falls under both the Perceptions and Health categories.
+
+output_json
+{""categories"": [""Perceptions"", ""Health""]}","Perceptions, Health",o4-mini-2025-04-16
+131,2,"The paper examines how pregnant women’s perceived risk of PM2.5 pollution relates to their mental stress, and it explicitly measures both risk perception (what people think) and a health outcome (stress levels). Therefore, it fits into both the Perceptions and Health categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+143,0,"The paper assesses actual exposure to traffic-related air pollution based on travel behaviour and mobility data rather than people’s perceptions, reported or intended pollution-related actions, policy preferences, health impacts via survey, or priority rankings. Therefore, it does not fit any of the specified categories.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+143,1,,,o4-mini-2025-04-16
+143,2,"The paper assesses actual exposure to traffic-related air pollution based on travel behavior and mobility patterns, but does not investigate people’s perceptions, reported or intended protective behaviors, policy preferences, health-related survey outcomes, or relative prioritization of air pollution. Therefore, it does not fit any of the specified categories.
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+158,0,,,o4-mini-2025-04-16
+158,1,"The study uses a survey to capture respondents’ perceptions of air quality improvement (60% perceived improvement) and identifies an odds ratio linking perceived air quality change to perceived health improvement (OR=5.2). Thus, it clearly falls into both the Perceptions category (what people think or believe about air pollution) and the Health category (perceptions of health impacts related to air quality).
+
+output_json
+{""categories"": [""Perceptions"", ""Health""]}","Perceptions, Health",o4-mini-2025-04-16
+158,2,"The paper focuses on what people think and believe about changes in air quality (perceived improvement and sources) and connects those perceptions to perceived health improvements. It does not examine specific behaviors, policy preferences, or issue prioritization.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+167,0,,,o4-mini-2025-04-16
+167,1,"The paper uses survey-based contingent valuation to elicit the public’s willingness to pay for government-led smog reduction measures. This reflects stated preferences toward a policy intervention rather than just perceptions or individual protective behaviors.
+
+output_json
+
+{
+  ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+167,2,,,o4-mini-2025-04-16
+171,0,"The study uses both stated and revealed survey data to examine how individuals adjust their urban park visitation behavior in response to varying air pollution levels. It focuses on concrete actions (number of park visits, risk-taking behaviors) rather than on perceptions, policy preferences, or priority rankings.
+
+output_json
+{
+  ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+171,1,,,o4-mini-2025-04-16
+171,2,"The study examines how actual and intended park-visiting behavior changes in response to air pollution levels. It focuses on concrete actions (number of visits, willingness to visit) under varying pollution conditions, rather than just perceptions, policy preferences, or health outcomes.
+
+output_json
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+174,0,,,o4-mini-2025-04-16
+174,1,,,o4-mini-2025-04-16
+174,2,"The study measures individuals’ knowledge and attitudes about air quality control policies (what people know and believe), their behavioral intentions (willingness to act), and their attitudes toward specific air quality policies. Therefore, it covers:
+
+- Perceptions: assessing knowledge and attitudes about air quality and policies  
+- Behaviors: measuring stated intentions to take actions for air quality improvement  
+- Policy: evaluating attitudes toward air quality control policies  
+
+output_json
+
+{
+  ""categories"": [""Perceptions"", ""Behaviors"", ""Policy""]
+}","Perceptions, Behaviors, Policy",o4-mini-2025-04-16
+190,0,,,o4-mini-2025-04-16
+190,1,,,o4-mini-2025-04-16
+190,2,"The study primarily assesses participants’ self-reported travel behaviors before and after using the sensor technology and explores their perceptions of the technology’s effectiveness and their capacity for behavior change. It does not focus on policy preferences, health impacts, or issue priority rankings.
+
+output_json
+{""categories"": [""Behaviors"", ""Perceptions""]}","Behaviors, Perceptions",o4-mini-2025-04-16
+224,0,"The study assesses how individuals perceive air quality (including levels of concern and information needs) rather than what actions they take, their support for specific policies, health outcomes, or relative priority ranking. It therefore falls squarely in the Perceptions category.
+
+output_json
+
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+224,1,,,o4-mini-2025-04-16
+224,2,"The study assesses how residents perceive air quality—examining factors that explain their awareness, concern, and beliefs—without analyzing actual or intended actions, health outcomes, or policy support. 
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+226,0,"The paper reports on what people actually do to protect themselves from air pollution (mask use, filtration devices, avoidance behaviors) and examines factors driving these protective actions. It does not focus on general awareness, policy preferences, health impacts, or issue priority, but squarely on individuals’ defensive behaviors.
+
+output_json
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+226,1,"The paper primarily examines the concrete protective actions people take (e.g., mask use, filtration devices, combined strategies) in response to air pollution, which aligns with the “Behaviors” category.
+
+output_json
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+226,2,,,o4-mini-2025-04-16
+240,0,,,o4-mini-2025-04-16
+240,1,,,o4-mini-2025-04-16
+240,2,"The study examines how urban residents perceive smog, how they rank environmental quality relative to other issues (priority), and links these perceptions to health and family well‐being.
+
+output_json
+{
+  ""categories"": [""Perceptions"", ""Priority"", ""Health""]
+}","Perceptions, Priority, Health",o4-mini-2025-04-16
+242,0,"The paper is a scientific review of air pollution impacts on forests and identifies knowledge gaps; it does not involve survey data on human perceptions, behaviors, policy attitudes, health-related survey responses, or priority rankings of air pollution issues.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+242,1,"The paper focuses on summarizing scientific knowledge and identifying gaps regarding the impacts of air pollution on forests, rather than surveying human perceptions, behaviors, policy preferences, health beliefs, or issue prioritization. Therefore, it does not fit into any of the specified categories.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+242,2,"The paper reviews scientific knowledge on how air pollution affects forests, rather than using survey data to explore human perceptions, behaviors, policy attitudes, health concerns, or priority rankings among respondents. Therefore, it does not fall into any of the specified social science categories.
+
+output_json
+{
+  ""categories"": []
+}",,o4-mini-2025-04-16
+251,0,"The provided paper appears to be a commentary or expert reply on the health impacts of air pollutants without any survey data on perceptions, behaviors, policy preferences, health-related survey outcomes, or priority rankings. Therefore, it does not fit any of the specified categories.
+
+output_json
+{
+    ""categories"": []
+}",,o4-mini-2025-04-16
+251,1,"This paper appears to be a scientific reply discussing the health impacts of air pollutants, without focusing on people’s perceptions, actions, policy preferences, or priority rankings. It addresses the relationship between pollution and health outcomes, fitting squarely into the Health category.
+
+output_json
+{
+    ""categories"": [""Health""]
+}",Health,o4-mini-2025-04-16
+251,2,"This paper appears to be a commentary or expert reply on the health effects of air pollutants rather than an empirical survey study. It does not present survey data on perceptions, behaviors, policy attitudes, health-related surveys, or priority rankings among respondents. Therefore, it does not fit into any of the specified categories.
+
+output_json
+{
+    ""categories"": [""None""]
+}",None,o4-mini-2025-04-16
+255,0,"The study examines how online news exposure shapes people’s perceived risk of air pollution and their trust in regulators, focusing on what people think about the issue rather than their behaviors, policy support, health outcomes, or priority rankings. Thus, it fits the “Perceptions” category.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+255,1,"The study examines how exposure to online news influences people’s perceived risk of air pollution and their trust in regulators, focusing on risk perceptions rather than actual behaviors, policy preferences, health outcomes, or prioritization. Therefore, it fits the “Perceptions” category.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+255,2,"The study examines how online news exposure influences people’s perceived risk of air pollution—and in turn their trust in regulators—focusing on what people think and believe about pollution rather than their actions, policy preferences, health outcomes, or issue prioritization. Hence, it falls under the “Perceptions” category.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+269,0,,,o4-mini-2025-04-16
+269,1,,,o4-mini-2025-04-16
+269,2,,,o4-mini-2025-04-16
+289,0,"The study explicitly measures hikers’ perceptions of air pollution (their awareness and stress appraisal) and examines their coping behaviours (substitution strategies and behavioural responses) in response to pollution. It does not address policy support, health impacts beyond stress, or issue prioritization.
+
+output_json
+
+{""categories"": [""Perceptions"", ""Behaviors""]}","Perceptions, Behaviors",o4-mini-2025-04-16
+289,1,"This study measures hikers’ perceptions of air pollution (their awareness, stress, and perceived risk) and also examines their reported coping behaviours (protective actions taken in response to pollution). Thus it falls into both the Perceptions and Behaviors categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+289,2,"The study examines hikers’ perceptions of air pollution (their awareness and stress levels) and their coping behaviors in response to air pollution. Thus it fits both the Perceptions and Behaviors categories.
+
+output_json
+{""categories"": [""Perceptions"", ""Behaviors""]}","Perceptions, Behaviors",o4-mini-2025-04-16
+290,0,"This paper examines how residents perceive health risks from traffic-related air pollution (lay beliefs, perceived effects on self/family) using interview and survey data. It focuses on what people think and know about the health impacts of pollution. Therefore, it falls under:
+
+- Perceptions: it explores people’s perceptions and beliefs about air pollution risks.  
+- Health: it specifically addresses perceived health impacts and health-related beliefs.
+
+output_json
+
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+290,1,"The paper investigates residents’ beliefs and understandings of health risks from traffic-related air pollution (lay epidemiology), focusing on what people think and know about its health impacts (perceived respiratory, allergic, and cardiovascular effects). Therefore, it falls under both the Perceptions category (examining lay views and knowledge) and the Health category (linking air pollution to self-reported and perceived health outcomes).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+290,2,"The paper investigates how residents perceive health risks from traffic-related air pollution, focusing on what people think and believe about its potential health effects. It uses survey and interview data to capture lay knowledge and perceived health impacts (respiratory, allergic, heart morbidity), aligning it clearly with both perceptions of pollution and health-related perceptions.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+302,0,,,o4-mini-2025-04-16
+302,1,"The paper is a historical and theoretical analysis of government support for common goods, including air pollution control, based on expert polling and case studies. It does not use survey data on public perceptions, behaviors, policy preferences, health impacts, or priority rankings regarding air pollution.
+
+output_json
+{""categories"": [""None""]}",None,o4-mini-2025-04-16
+302,2,,,o4-mini-2025-04-16
+305,0,"The study uses contingent valuation to elicit individuals’ willingness to pay for haze‐mitigation measures—i.e. their stated preferences and support for a policy action to reduce air pollution. This places it squarely in the Policy category.
+
+output_json
+{""categories"": [""Policy""]}",Policy,o4-mini-2025-04-16
+305,1,,,o4-mini-2025-04-16
+305,2,"The paper uses contingent valuation to estimate Singaporeans’ willingness to pay for haze mitigation—a stated preference for a government or institutional policy to reduce air pollution. This clearly fits the “Policy” category.
+
+output_json
+{
+    ""categories"": [""Policy""]
+}",Policy,o4-mini-2025-04-16
+309,0,,,o4-mini-2025-04-16
+309,1,"The study explores what people know, think, and believe about air pollution—its sources, the official Air Pollution Index, and long-term health effects—which aligns it with the Perceptions category. It also examines awareness and beliefs regarding health risks from pollution, fitting it into the Health category.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+309,2,"The study examines what people know and believe about air pollution—including its sources and long-term health risks—and reports on their awareness of health impacts. Thus it falls into both the Perceptions and Health categories.
+
+output_json
+{
+  ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+319,0,"The study examines restaurant managers’ perceptions of PM source attributions and risk judgments (cognitive and affective), as well as their intentions to adopt mitigation behaviors. Thus it covers both how people perceive air pollution and their behavioral intentions in response.
+
+output_json
+
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+319,1,"The paper examines restaurant managers’ perceptions of PM source attributions (what they believe about the origins of pollution) and how these perceptions shape their mitigation behavioral intentions (what they intend to do to reduce emissions). Thus it covers both how people perceive air pollution (Perceptions) and their stated willingness to act (Behaviors).
+
+output_json
+{""categories"": [""Perceptions"", ""Behaviors""]}","Perceptions, Behaviors",o4-mini-2025-04-16
+319,2,"The study assesses restaurant managers’ perceptions of PM source attributions and risk judgments, and examines their intentions to adopt mitigation behaviors. Hence it falls into both the Perceptions and Behaviors categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+325,0,,,o4-mini-2025-04-16
+325,1,,,o4-mini-2025-04-16
+325,2,,,o4-mini-2025-04-16
+347,0,,,o4-mini-2025-04-16
+347,1,"The study assesses what people know and believe about how long air pollution and CO₂ remain in the atmosphere and how these beliefs influence support for taking action (e.g., policy measures) on climate change. This aligns primarily with the Perceptions category, as it examines respondents’ understanding and beliefs about air pollution and greenhouse gases. 
+
+output_json
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+347,2,,,o4-mini-2025-04-16
+356,0,"This paper is focused on what households actually do (or are encouraged to do) in terms of cooking fuel use to reduce household air pollution. It develops and monitors strategies to achieve exclusive use of LPG stoves, which places it squarely in the “Behaviors” category.
+
+output_json
+{""categories"": [""Behaviors""]}",Behaviors,o4-mini-2025-04-16
+356,1,,,o4-mini-2025-04-16
+356,2,,,o4-mini-2025-04-16
+369,0,"This paper develops and tests a model of individual and collective pro-environmental behaviors in response to air pollution, focusing on reported and intended actions rather than risk perceptions, policy support, health impacts, or issue priority.  
+
+output_json  
+{""categories"": [""Behaviors""]}",Behaviors,o4-mini-2025-04-16
+369,1,"The study develops and tests a model of individual and collective pro‐environmental actions in response to air pollution, focusing on reported and intended behaviors rather than perceptions, policies, health impacts, or priority rankings. Therefore, it falls under the “Behaviors” category.
+
+output_json
+{
+  ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+369,2,"The paper develops and tests a model of individual and collective pro-environmental behaviors (PEB) in response to air pollution. It uses survey data to examine what people do (or intend to do) rather than solely their perceptions of pollution levels or their policy preferences. Therefore, it falls squarely into the Behaviors category.
+
+output_json
+{
+  ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+379,0,"The paper examines office workers’ subjective evaluations of air quality (perceptions) and links these perceptions to self-reported health status and symptoms (health impacts). Hence it covers both Perceptions and Health categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+379,1,"This paper investigates how office workers subjectively perceive indoor air quality and thermal comfort (Perceptions) and links these perceptions to self-reported health symptoms and health status (Health).
+
+output_json
+{""categories"": [""Perceptions"", ""Health""]}","Perceptions, Health",o4-mini-2025-04-16
+379,2,"The paper surveys employees about their subjective evaluation of the thermal environment and perceived air quality in office settings (Perceptions) and links these perceptions to self-reported health status and symptom prevalence, defining and analyzing a health index (Health).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+409,0,"The study assesses the association between measured air pollution exposures at schools and children’s behavioral and ADHD-related outcomes, which are health-related impacts identified via survey instruments. Therefore, it fits into the Health category.
+
+output_json
+{""categories"": [""Health""]}",Health,o4-mini-2025-04-16
+409,1,"The study investigates the relationship between measured traffic-related air pollution and noise exposures at schools and children’s behavioral and ADHD symptoms, which constitutes examination of health-related impacts. This falls squarely in the “Health” category.  
+
+output_json
+{
+    ""categories"": [""Health""]
+}",Health,o4-mini-2025-04-16
+409,2,"This study investigates the association between objectively measured air pollution and noise exposures at schools and children’s behavioral health outcomes (SDQ and ADHD symptoms). It does not examine perceptions, self-reported protective behaviors, policy preferences, or priority rankings; instead, it focuses squarely on health impacts assessed via survey instruments.  
+
+output_json
+{
+    ""categories"": [""Health""]
+}",Health,o4-mini-2025-04-16
+414,0,"The study examines parents’ perceptions of indoor air quality (various odors and sensations) and links those perceptions to children’s respiratory health outcomes. Therefore it covers both the Perceptions category (what people think or sense about air quality) and the Health category (survey-based associations between air quality perceptions and health impacts).
+
+output_json
+{""categories"": [""Perceptions"", ""Health""]}","Perceptions, Health",o4-mini-2025-04-16
+414,1,"The study examines parents’ perceptions of indoor air quality (perceived odors, humidity) and links these perceptions to children’s respiratory health outcomes. Thus, it falls under both “Perceptions” (measuring what people think about air quality) and “Health” (associating perceived air quality with health impacts).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+414,2,"This study examines parents’ subjective perceptions of indoor air quality (odors, humidity) and directly links those perceptions to children’s respiratory health outcomes. Thus, it fits both the Perceptions category (exploring what people perceive about pollution) and the Health category (survey data on health impacts of pollution).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+443,0,,,o4-mini-2025-04-16
+443,1,"The study assesses what decision-makers know and believe about air pollution (types, sources, threats) rather than examining what they do, their policy preferences, or specific health behaviors or priorities. This clearly falls under the “Perceptions” category.  
+
+output_json  
+{  
+    ""categories"": [""Perceptions""]  
+}",Perceptions,o4-mini-2025-04-16
+443,2,,,o4-mini-2025-04-16
+453,0,,,o4-mini-2025-04-16
+453,1,"The study assesses fieldworkers’ knowledge and attitudes (perceptions) about household air pollution as well as their reported practices and behavior change around mitigation measures (behaviors), but does not address policy support, health impacts survey, or priority ranking.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+453,2,"The paper assesses fieldworkers’ knowledge and attitudes about household air pollution (Perceptions) and reports on their changed practices in response to it (Behaviors).  
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+500,0,,,o4-mini-2025-04-16
+500,1,,,o4-mini-2025-04-16
+500,2,,,o4-mini-2025-04-16
+508,0,,,o4-mini-2025-04-16
+508,1,,,o4-mini-2025-04-16
+508,2,,,o4-mini-2025-04-16
+518,0,"The study examines what parents believe and know about local air quality and analyzes factors influencing their perceptions, without addressing actual behaviors, policy support, health impacts, or issue prioritization.
+
+output_json
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+518,1,"The study examines what parents think and believe about air quality—specifically their perceptions of whether air pollution has improved or worsened—rather than what they do in response, their policy preferences, or explicitly their health behaviors or priorities. Therefore, it falls squarely into the Perceptions category.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+518,2,"The study investigates how parents perceive air quality and the factors that shape these perceptions, without examining actual behaviors, policy preferences, or health impacts directly. This aligns it with the “Perceptions” category.
+
+output_json
+
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+527,0,"The study examines specific protective actions that outdoor exercisers report taking to reduce their PM2.5 exposure (e.g., wearing masks, using purifiers, minimizing window opening), which clearly places it in the Behaviors category.
+
+output_json
+
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+527,1,"The study surveys outdoor exercisers on the specific protective actions they take to reduce PM2.5 exposure (e.g., wearing masks, using air purifiers), and analyzes factors influencing those behaviors. This aligns directly with the “Behaviors” category, as it reports on concrete actions related to air pollution.
+
+output_json
+
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+527,2,,,o4-mini-2025-04-16
+528,0,"The study applies the Theory of Planned Behavior to assess parents’ intentions to take protective actions against PM2.5, focusing squarely on what they are willing to do rather than merely what they know or believe, so it falls under the Behaviors category.
+
+output_json
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+528,1,"The study focuses on parents’ stated intentions to engage in protective actions against PM2.5 (i.e., behavioral intentions), using the Theory of Planned Behavior framework to analyze attitudes, norms, and control beliefs that drive these intended actions. Therefore, it falls under the Behaviors category.  
+
+output_json  
+{  
+  ""categories"": [""Behaviors""]  
+}",Behaviors,o4-mini-2025-04-16
+528,2,"The study focuses on parents’ stated intentions to engage in protective actions against PM2.5 (anti-PM2.5 behavioral intentions), which aligns with examining willingness to act rather than just perceptions or policy preferences.
+
+output_json
+{
+    ""categories"": [""Behaviors""]
+}",Behaviors,o4-mini-2025-04-16
+531,0,"The paper analyzes how the public thinks and feels about haze weather (its causes, seasonal concerns, and even health impacts), based on social media comments. It does not focus on what actions people take (Behaviors), policy preferences (Policy), actual health outcomes (Health), or priority ranking relative to other issues (Priority), but rather on perceptions of haze.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+531,1,"The paper analyzes how people talk about haze—its causes, impacts (including health), and prevention measures—on social media. It focuses on what people think and feel about haze (awareness, concerns, beliefs), rather than on their actual behaviors, policy preferences, or issue prioritization. Therefore, it falls squarely in the Perceptions category.  
+output_json
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+531,2,"This paper analyzes what people think and focus on regarding haze weather—identifying their awareness of causes, seasonal concerns, and perceived health impacts—based on social media comments. It does not examine actual behaviors, policy preferences, or prioritize air pollution relative to other issues.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+547,0,"This paper develops and validates scales measuring college students’ perceptions of haze risk and the factors influencing those perceptions. It focuses on what people think and believe about air pollution (risk perception), rather than on their behaviors, policy preferences, health outcomes, or issue ranking.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+547,1,,,o4-mini-2025-04-16
+547,2,,,o4-mini-2025-04-16
+580,0,,,o4-mini-2025-04-16
+580,1,"The paper centers on how individuals perceive risks from traffic exhaust and wood-smoke, including their knowledge, worry, symptom reporting, and perceived vulnerability. Although it touches on health-related perceptions (e.g., worry about symptoms, vulnerability due to poor health), it does not examine actual behaviors taken or policy preferences, nor does it rank air pollution relative to other issues. Thus, it falls under both the Perceptions and Health categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+580,2,,,o4-mini-2025-04-16
+587,0,,,o4-mini-2025-04-16
+587,1,"The paper investigates both how people perceive air pollution risks (public risk perception, awareness) and what actions they take or intend to take in response (exposure-reduction behaviors). 
+
+output_json
+
+{
+  ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+587,2,"The study explicitly measures both how individuals perceive air pollution risks and the protective or exposure-reducing actions they report or intend to take. Therefore, it fits into both the Perceptions and Behaviors categories.
+
+output_json
+{
+  ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+594,0,"The paper examines how individuals perceive air pollution (“pollution perception”) and the impact of both subjective perception and objective air quality on self-rated and mental health. Thus, it addresses the Perceptions category (people’s perceptions of pollution) and the Health category (the health-related impacts of pollution perceptions and exposure).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+594,1,,,o4-mini-2025-04-16
+594,2,"The paper examines how residents’ subjective perceptions of air pollution (and objective pollution levels) affect their self-rated and mental health. This squarely places it in both the Perceptions category (measuring beliefs about pollution) and the Health category (linking pollution perceptions and exposure to health outcomes).
+
+output_json
+{""categories"": [""Perceptions"", ""Health""]}","Perceptions, Health",o4-mini-2025-04-16
+601,0,"The paper assesses how Beirut residents think about air pollution (its quality, sources, and who it affects) and compares the perceived importance of air pollution risks relative to other risks (e.g., security). Thus it falls under:
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Priority""]
+}","Perceptions, Priority",o4-mini-2025-04-16
+601,1,"The study examines how Beirut’s residents perceive air quality, its sources, and relative importance compared to other risks (e.g., security). It measures awareness and beliefs about air pollution (Perceptions) and assesses how people rank the urgency or importance of environmental risks versus other societal concerns (Priority).
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Priority""]
+}","Perceptions, Priority",o4-mini-2025-04-16
+601,2,,,o4-mini-2025-04-16
+603,0,,,o4-mini-2025-04-16
+603,1,,,o4-mini-2025-04-16
+603,2,"The paper includes questionnaire surveys asking staff whether they notice changes in indoor air quality under different window-opening schemes, which falls under Perceptions. It also collects self‐reported adverse reactions (health symptoms) from staff, linking air pollution exposure to health impacts, which falls under Health.
+
+output_json
+{
+  ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+609,0,,,o4-mini-2025-04-16
+609,1,"The study documents both what people do in their homes (use of incense sticks and mosquito coils, ventilation practices) and the health impacts they report (dizziness, cough, acute respiratory infections), so it fits into both the Behaviors and Health categories.
+
+output_json
+{
+    ""categories"": [""Behaviors"", ""Health""]
+}","Behaviors, Health",o4-mini-2025-04-16
+609,2,"The study reports on both what residents actually do in their homes (use of incense sticks, mosquito coils, window‐opening practices) and their self‐reported health symptoms attributed to indoor air pollution. These map directly onto the Behaviors and Health categories.
+
+output_json
+{
+  ""categories"": [""Behaviors"", ""Health""]
+}","Behaviors, Health",o4-mini-2025-04-16
+610,0,,,o4-mini-2025-04-16
+610,1,"The study measures parents’ intentions to take concrete actions (migrating and paying) in response to air pollution, and it also elicits their willingness to pay for air quality improvements (a stated preference for policy‐relevant intervention), so it falls into both the Behaviors and Policy categories.
+
+output_json
+{""categories"": [""Behaviors"", ""Policy""]}","Behaviors, Policy",o4-mini-2025-04-16
+610,2,"The study examines parents’ stated intentions to migrate (an intended behavior in response to air pollution) and their willingness to pay for air quality improvements (a stated preference for policy or governmental action). Thus, it covers both the Behaviors and Policy categories.
+
+output_json
+{
+    ""categories"": [""Behaviors"", ""Policy""]
+}","Behaviors, Policy",o4-mini-2025-04-16
+613,0,"The study assesses respondents’ knowledge and perceived risk of haze (Perceptions) and examines self‐reported protective actions such as mask‐wearing during haze episodes (Behaviors).  
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+613,1,"The study examines both what people know and believe about haze (knowledge and perceived risk) as well as the protective actions they undertook during haze episodes (use of N95 masks and other behaviours). Therefore, it spans both the “Perceptions” and “Behaviors” categories.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+613,2,"This study measures participants’ knowledge and perceived risk of haze (capturing what people think or know about air pollution) and examines their reported protective behaviours during haze episodes (capturing concrete actions in response to air pollution). It does not evaluate any policies or rank air pollution against other issues.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+636,0,"The study assesses auto‐rickshaw drivers’ awareness and understanding of how air pollution affects health and how to prevent its impacts. This aligns with the “Perceptions” category, which covers knowledge and beliefs about air pollution rather than actual behaviors, policy preferences, or health outcomes.
+
+output_json
+
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+636,1,,,o4-mini-2025-04-16
+636,2,,,o4-mini-2025-04-16
+651,0,"The study measures college students’ knowledge and awareness of air pollution risk factors and adverse effects, which falls squarely within the “Perceptions” category—it captures what people know or believe about air pollution rather than their actions, policy views, or health outcomes.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+651,1,"The study assesses college students’ awareness and knowledge of air pollution risk factors and adverse effects, capturing what they know and believe rather than what they do, their policy preferences, or the relative priority they assign to air pollution.
+
+output_json
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+651,2,"The study assesses college students’ awareness and knowledge of the risk factors and adverse effects of air pollution, which falls squarely under how people perceive and understand the issue rather than their actions, policy preferences, or health outcomes.
+
+output_json
+{
+    ""categories"": [""Perceptions""]
+}",Perceptions,o4-mini-2025-04-16
+659,0,"The paper uses survey questionnaires to elicit residents’ knowledge, perceptions, and concerns about industrial emissions and their impacts, focusing on what people think and feel about air pollution rather than their actions, policy preferences, or prioritization relative to other issues.
+
+output_json
+{""categories"": [""Perceptions""]}",Perceptions,o4-mini-2025-04-16
+659,1,,,o4-mini-2025-04-16
+659,2,"The paper uses survey data to elicit residents’ knowledge, perceptions and concerns about air pollution and industrial emissions, which clearly places it in the Perceptions category. Because one of the main focal issues reported by respondents is the effect of pollution on community health (i.e. perceived health risks and concerns), it also fits within the Health category.
+
+output_json
+{
+    ""categories"": [""Perceptions"", ""Health""]
+}","Perceptions, Health",o4-mini-2025-04-16
+673,0,,,o4-mini-2025-04-16
+673,1,,,o4-mini-2025-04-16
+673,2,,,o4-mini-2025-04-16
+675,0,,,o4-mini-2025-04-16
+675,1,,,o4-mini-2025-04-16
+675,2,"The study primarily reports on what people know and believe about clean fuels and pollution (perceptions) as well as on their actual cooking practices and fuel choices (behaviors). 
+
+output_json
+{
+  ""categories"": [""Perceptions"", ""Behaviors""]
+}","Perceptions, Behaviors",o4-mini-2025-04-16
+702,0,"The study examines how proximity to industrial pollution affects people’s self-reported health and well‐being (using the SF-36 and other measures), focusing on perceptions of health impacts rather than actions, policies, or prioritization of air pollution. Thus, it falls squarely in the “Health” category.
+
+output_json
+{""categories"": [""Health""]}",Health,o4-mini-2025-04-16
+702,1,"The study examines how people living near industrial polluters perceive their health (using SF-36) and compares these self-reported health outcomes to objective measures, directly linking air quality to health perceptions. This clearly falls under the Health category.
+
+output_json
+{
+  ""categories"": [""Health""]
+}",Health,o4-mini-2025-04-16
+702,2,"The study uses survey data to examine self-reported health perceptions (SF-36) and objective health measures among populations exposed to industrial air pollutants, establishing a clear link between air pollution presence and perceived health impacts. This aligns with the “Health” category.
+
+output_json
+{
+    ""categories"": [""Health""]
+}",Health,o4-mini-2025-04-16

@@ -12,16 +12,26 @@ getmode <- function(v) {
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
 
-datasetGPTsummary <- datasetGPT %>%
+# USE THIS ONE TO INSPECT UNCERTAINTY IN CLASSIFICATION
+datasetGPTsummaryInspect <- datasetGPT %>%
   group_by(custom_id) %>% 
   summarize(inclusionChatGPTCleanMode = getmode(inclusionChatGPTClean),
             countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
-            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE))
+            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE)) %>% 
+  rename(ID = custom_id)
 
-datasetGPTsimple <- datasetGPT %>%
-  select(ID, inclusionChatGPT) %>% 
+datasetGPTsummary <- datasetGPT %>%
+  filter(inclusionChatGPTClean %in% c("excluded", "included")) %>% 
+  group_by(custom_id) %>% 
+  summarize(inclusionChatGPTCleanMode = getmode(inclusionChatGPTClean),
+            countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
+            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE)) %>% 
+  rename(ID = custom_id)
+
+datasetGPTsimple <- datasetGPTsummary %>%
+  select(ID, inclusionChatGPTCleanMode) %>% 
   rename(
-    Inclusion        = inclusionChatGPT,
+    Inclusion        = inclusionChatGPTCleanMode,
   ) %>% 
   mutate(reader = "ChatGPT")
 
