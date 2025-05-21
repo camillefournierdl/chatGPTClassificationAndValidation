@@ -1,10 +1,50 @@
 ########## comparing inclusion only
 library(tidyverse)
+library(stringi)
+library(fuzzyjoin)
 
 datasetHand <- read.csv("data/classificationByHand3.csv", sep = ";")
 
 # datasetGPT <- read.csv("data/inclusionChatGPT1704.csv")
 datasetGPT <- read.csv("data/inclusionChatGPT_testO4mini.csv")
+datasetGPT <- read.csv("dataNew/inclusionChatGPT_O4mini_final.csv")
+
+clean_title <- function(x) {
+  x %>%
+    stri_trans_general("Latin-ASCII") %>%  # turn “é” → “e”
+    tolower() %>%                          # lowercase
+    gsub("[^[:alnum:] ]+", "", .) %>%      # drop punctuation
+    trimws()                               # trim whitespace
+}
+
+datasetGPTForID <- read.csv("dataNew/datasetToClassifyGPT.csv") %>%
+  select(ID, Title) %>% 
+  rename(IDgpt = ID) %>% 
+  mutate(title_clean = clean_title(Title))
+
+datasetHandForID <- datasetHand %>% 
+  group_by(ID) %>% 
+  summarize(Title = first(Title)) %>% 
+  rename(IDhand = ID) %>% 
+  mutate(title_clean = clean_title(Title))
+
+df_merged2 <- stringdist_left_join(
+  datasetHandForID, datasetGPTForID,
+  by = "title_clean",
+  method = "lv",        # Levenshtein
+  max_dist = 2,         # tweak this
+  distance_col = "dist" # keep the distance
+) %>%
+  arrange(-dist) %>%          # smallest distances first
+  group_by(IDhand) %>% 
+  summarize(IDgpt = first(IDgpt),
+            Title = first(Title.y))
+
+datasetGPTwithID <- merge(datasetGPT, df_merged2, by.x = "custom_id", by.y = "IDgpt")
+
+datasetGPTwithID$ID <- datasetGPTwithID$IDhand
+
+# datasetGPT$custom_id = datasetGPT$custom_id+1
 
 getmode <- function(v) {
   v <- na.omit(v)
@@ -13,20 +53,60 @@ getmode <- function(v) {
 }
 
 # USE THIS ONE TO INSPECT UNCERTAINTY IN CLASSIFICATION
-datasetGPTsummaryInspect <- datasetGPT %>%
-  group_by(custom_id) %>% 
+datasetGPTsummaryInspect <- datasetGPTwithID %>%
+  group_by(ID) %>% 
   summarize(inclusionChatGPTCleanMode = getmode(inclusionChatGPTClean),
             countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
-            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE)) %>% 
-  rename(ID = custom_id)
+            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE),
+            countBlank = sum(inclusionChatGPTClean == "", na.rm=T))
 
-datasetGPTsummary <- datasetGPT %>%
-  filter(inclusionChatGPTClean %in% c("excluded", "included")) %>% 
-  group_by(custom_id) %>% 
+# norm_entropy <- function(n) {
+#   p <- n / sum(n)
+#   p <- p[p > 0]
+#   H <- - sum(p * log(p))
+#   H / log(length(n))
+# }
+# 
+# # apply row-wise via mapply
+# datasetGPTsummaryInspect$entropy_norm <- mapply(
+#   function(a, b, c) norm_entropy(c(a, b, c)),
+#   datasetGPTsummaryInspect$countExclusion,
+#   datasetGPTsummaryInspect$countInclusion,
+#   datasetGPTsummaryInspect$countBlank
+# )
+
+# similarly for Gini
+norm_gini <- function(n) {
+  p <- n / sum(n)
+  G <- 1 - sum(p^2)
+  G / (1 - 1/length(n))
+}
+
+datasetGPTsummaryInspect$gini_norm <- mapply(
+  function(a, b, c) norm_gini(c(a, b, c)),
+  datasetGPTsummaryInspect$countExclusion,
+  datasetGPTsummaryInspect$countInclusion,
+  datasetGPTsummaryInspect$countBlank
+)
+
+datasetGPTsummary <- datasetGPTwithID %>%
+  # filter(inclusionChatGPTClean %in% c("excluded", "included")) %>% 
+  group_by(ID) %>% 
   summarize(inclusionChatGPTCleanMode = getmode(inclusionChatGPTClean),
             countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
-            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE)) %>% 
-  rename(ID = custom_id)
+            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE),
+            countBlank = sum(inclusionChatGPTClean == "", na.rm=T))
+
+datasetGPTsummary$gini_norm <- mapply(
+  function(a, b, c) norm_gini(c(a, b, c)),
+  datasetGPTsummary$countExclusion,
+  datasetGPTsummary$countInclusion,
+  datasetGPTsummary$countBlank
+)
+
+# only include predictions with 100% agreement between GPT classifications
+datasetGPTsummary <- subset(datasetGPTsummary, countBlank < 2)
+datasetGPTsummary <- subset(datasetGPTsummary, gini_norm < 0.1)
 
 datasetGPTsimple <- datasetGPTsummary %>%
   select(ID, inclusionChatGPTCleanMode) %>% 
@@ -45,6 +125,8 @@ datasetGPTsimple$Inclusion <- ifelse(datasetGPTsimple$Inclusion == "included", 1
 
 datasetHand_fit <- datasetHand %>% 
   select(ID, Inclusion, reader)
+
+datasetGPTsimple <- subset(datasetGPTsimple, ID %in% unique(datasetHand_fit$ID))
 
 #### Merging classifications to make comparisons
 dataCompare <- rbind(datasetHand_fit, datasetGPTsimple)
