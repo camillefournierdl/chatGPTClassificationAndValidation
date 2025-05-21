@@ -106,7 +106,7 @@ datasetGPTsummary$gini_norm <- mapply(
 
 # only include predictions with 100% agreement between GPT classifications
 datasetGPTsummary <- subset(datasetGPTsummary, countBlank < 2)
-datasetGPTsummary <- subset(datasetGPTsummary, gini_norm < 0.1)
+datasetGPTsummary <- subset(datasetGPTsummary, gini_norm < 0.5)
 
 datasetGPTsimple <- datasetGPTsummary %>%
   select(ID, inclusionChatGPTCleanMode) %>% 
