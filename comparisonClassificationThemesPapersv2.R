@@ -1,22 +1,11 @@
-########## comparing classif
 library(tidyverse)
 
 datasetHand <- read.csv("data/classificationByHand3.csv", sep = ";")
 
-datasetGPT <- read.csv("data/classificationChatGPT_o4mini.csv")
+datasetGPT <- read.csv("dataNew/classificationChatGPT_o4mini_final.csv")
 
-cols <- c("Perceptions", "Behavior", "Policy", "Health", "Priority")
-
-# cols <- c("inclusion", "Perceptions", "Behavior", "Policy", "Health", "Priority")
-
-datasetHand[cols] <- lapply(datasetHand[cols], function(x) ifelse(is.na(x) | x == "?" | x == " " | x == "", 0, x))
-
-datasetGPT <- subset(datasetGPT, message_content != "")
-
-datasetGPTsimple <- datasetGPT %>%
-  select(custom_id, choice_index, classificationChatGPTClean)
-
-datasetGPTsimple$classificationChatGPTClean <- ifelse(datasetGPTsimple$classificationChatGPTClean == "", "None", datasetGPTsimple$classificationChatGPTClean)
+#### exclude papers that are excluded from the first script ####
+datasetGPTinclusion <- read.csv("dataNew/inclusionChatGPT_o4mini_fi nal.csv")
 
 getmode <- function(v) {
   v <- na.omit(v)
@@ -24,7 +13,66 @@ getmode <- function(v) {
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }
 
-colsGPT <- c("Perceptions", "Behaviors", "Policy", "Health", "Priority", "None")
+# similarly for Gini
+norm_gini <- function(n) {
+  p <- n / sum(n)
+  G <- 1 - sum(p^2)
+  G / (1 - 1/length(n))
+}
+
+datasetGPTsummary <- datasetGPTinclusion %>%
+  # filter(inclusionChatGPTClean %in% c("excluded", "included")) %>% 
+  group_by(custom_id) %>% 
+  summarize(inclusionChatGPTCleanMode = getmode(inclusionChatGPTClean),
+            countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
+            countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE),
+            countBlank = sum(inclusionChatGPTClean == "", na.rm=T))
+
+datasetGPTsummary$gini_norm <- mapply(
+  function(a, b, c) norm_gini(c(a, b, c)),
+  datasetGPTsummary$countExclusion,
+  datasetGPTsummary$countInclusion,
+  datasetGPTsummary$countBlank
+)
+
+#IDs to check manually for exclusion from inclusion data
+IDmanual2 <- unique(subset(datasetGPTsummary, gini_norm > 0.5)$custom_id)
+IDmanual3 <- subset(datasetGPTsummary, countBlank > 1)$custom_id
+
+save(IDmanual2, IDmanual3, file = "output/checkIDmanualInclusion.RData")
+
+# these are the uncertain ones, for now I remove here
+datasetGPTsummary <- subset(datasetGPTsummary, gini_norm < 0.5)
+datasetGPTsummary <- subset(datasetGPTsummary, countBlank < 2)
+
+datasetInclusion <- subset(datasetGPTsummary, countInclusion > 2)
+
+##### make sure the IDs match #####
+dataMatching <- read.csv("output/tableIDMatching.csv")
+
+datasetHand <- merge(datasetHand, dataMatching %>% 
+                       select(IDhand, IDgpt), by.x = "ID", by.y = "IDhand")
+
+datasetHand <- subset(datasetHand, IDgpt %in% unique(datasetInclusion$custom_id))
+datasetGPT <- subset(datasetGPT, custom_id %in% unique(datasetInclusion$custom_id))
+
+#### preparing the classification dataset from chatgpt ####
+datasetGPTsimple <- datasetGPT %>%
+  select(custom_id, choice_index, classificationChatGPTClean)
+
+datasetGPTsimple$classificationChatGPTClean <- ifelse(datasetGPTsimple$classificationChatGPTClean == "", "Blank", datasetGPTsimple$classificationChatGPTClean)
+
+getmode <- function(v) {
+  v <- na.omit(v)
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+colsGPT <- c("Perceptions", "Behaviors", "Policy", "Health", "Priority", "None", "Blank")
+
+# find a way to measure uncertainty for each category
+
+# for sure, count, but then what, count the number for every category? Could work
 
 datasetGPTsimple_wide <- datasetGPTsimple %>%
   group_by(custom_id, choice_index) %>% 
@@ -40,15 +88,31 @@ datasetGPTsimple_wide <- datasetGPTsimple %>%
   group_by(custom_id) %>% 
   summarise(
     across(
-      all_of(colsGPT),   # or just `categories` if you’re unquoted
-      getmode,              # the function to apply
-      .names = "{.col}"     # leave the names unchanged; use "mode_{.col}" if you prefer
+      all_of(colsGPT),
+      .fns = list(
+        mode  = getmode,            # your existing mode function
+        count = ~ sum(.x, na.rm = TRUE)
+      ),
+      .names = "{.col}_{.fn}"
     )
   )
 
-datasetGPTsimple_wide_fit <- datasetGPTsimple_wide %>% 
+#IDs to check manually for inclusion from classification data
+IDmanual <- unique(subset(datasetGPTsimple_wide, Blank_count > 1)$custom_id)
+save(IDmanual, file = "output/checkIDmanualClassif.RData")
+
+datasetGPTsimple_wide_certain <- subset(datasetGPTsimple_wide, Blank_count < 2)
+
+colsGPT <- c("Perceptions", "Behaviors", "Policy", "Health", "Priority", "None")
+
+datasetGPTsimple_wide_fit <- datasetGPTsimple_wide_certain %>% 
   rename(
-    Behavior        = Behaviors,
+    Behavior = Behaviors_mode,
+    Perceptions = Perceptions_mode,
+    Policy = Policy_mode,
+    Health = Health_mode,
+    Priority = Priority_mode,
+    None = None_mode
   ) %>%
   mutate(reader = "ChatGPT",
          ID = custom_id) %>% 
@@ -56,10 +120,22 @@ datasetGPTsimple_wide_fit <- datasetGPTsimple_wide %>%
 
 datasetHand_fit <- datasetHand %>% 
   mutate(None = ifelse(Inclusion == 0, 1, 0)) %>% 
-  select(ID, Perceptions, Priority, Policy, Health, Behavior, None, reader)
+  select(IDgpt, Perceptions, Priority, Policy, Health, Behavior, None, reader) %>% 
+  rename(ID = IDgpt)
+
+write.csv(datasetGPTsimple_wide_fit, "output/dataClassifToPlot.csv", row.names = F)
 
 #### Merging classifications to make comparisons
 dataCompare <- rbind(datasetHand_fit, datasetGPTsimple_wide_fit)
+
+dataCompare <- dataCompare %>%
+  group_by(ID) %>%
+  filter(n() > 1) %>%
+  ungroup()
+
+# remove duplicate
+dataCompare <- dataCompare %>%
+  distinct(ID, reader, .keep_all = TRUE)
 
 colsBoth <- c("Perceptions", "Behavior", "Policy", "Health", "Priority", "None")
 
@@ -276,4 +352,12 @@ ggplot(comparison_long, aes(x = Category, y = Rate, fill = Rater)) +
        x = "Category",
        y = "Mean Positive Rate") +
   theme_minimal()
+
+
+
+
+
+
+
+
 

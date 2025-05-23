@@ -40,6 +40,8 @@ df_merged2 <- stringdist_left_join(
   summarize(IDgpt = first(IDgpt),
             Title = first(Title.y))
 
+write.csv(df_merged2, "output/tableIDMatching.csv", row.names = F)
+
 datasetGPTwithID <- merge(datasetGPT, df_merged2, by.x = "custom_id", by.y = "IDgpt")
 
 datasetGPTwithID$ID <- datasetGPTwithID$IDhand

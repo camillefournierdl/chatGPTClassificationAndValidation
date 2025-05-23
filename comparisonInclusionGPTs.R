@@ -84,14 +84,14 @@ datasetGPTsummary$gini_norm <- mapply(
   datasetGPTsummary$countBlank
 )
 
-#IDs to check manually for inclusion from inclusion data
+#IDs to check manually for exclusion from inclusion data
 IDmanual2 <- unique(subset(datasetGPTsummary, gini_norm > 0.5)$custom_id)
 IDmanual3 <- subset(datasetGPTsummary, countBlank > 1)$custom_id
 
 datasetGPTsummary <- subset(datasetGPTsummary, gini_norm < 0.5)
 datasetGPTsummary <- subset(datasetGPTsummary, countBlank < 2)
 
-datasetExclusionInclusion <- subset(datasetGPTsummary, countExclusion > 3)
+datasetExclusionInclusion <- subset(datasetGPTsummary, countExclusion > 2)
 
 #### comparing overlap
 A <- unique(datasetExclusionClassif$custom_id)
