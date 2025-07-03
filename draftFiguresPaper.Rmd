@@ -54,7 +54,18 @@ papers_by_country <- datasetClassificationCountries_long_clean %>%
   arrange(desc(n_papers)) %>% 
   merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
 
-papers_by_country %>%
+papers_by_country$Income.group <- factor(
+  papers_by_country$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  ),
+  ordered = TRUE
+)
+
+pCountryPaperIncome <- papers_by_country %>%
   slice_max(n_papers, n = 20) %>%                     # top 30
   mutate(
     # 1) reorder by paper count (so bars go largest→smallest),
@@ -72,6 +83,10 @@ papers_by_country %>%
       title = "Top 20 Countries by Paper Count"
     ) +
     theme_minimal()
+
+ggsave(plot = pCountryPaperIncome, filename = paste("plots/countryPapersIncome.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
 
 #### make a map ####
 
@@ -138,6 +153,9 @@ map_plot_viridis_clean <- ggplot() +
 
 # Print it
 map_plot_viridis_clean
+
+ggsave(plot = map_plot_viridis_clean, filename = paste("plots/mapPapersCount.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
 
 ### add  monitor data to compare
 # load the monitor dataset and subset it
@@ -238,9 +256,21 @@ cum <- yearly_complete %>%
 
 cum$Income.group <- ifelse(is.na(cum$Income.group), "Unknown", cum$Income.group)
 
-cum %>%
+cum$Income.group <- factor(
+  cum$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+    # "Unknown"
+  ),
+  ordered = TRUE
+)
+
+ppapersIncome <- cum %>%
   ggplot(aes(x = Year, y = n_cumulative, col = Income.group)) +
-    geom_line(linewidth = 2) +
+    geom_line(linewidth = 1) +
     labs(
       x = "Year",
       y = "Cumulative # of Papers",
@@ -248,6 +278,8 @@ cum %>%
     ) +
     theme_minimal()
 
+ggsave(plot = ppapersIncome, filename = paste("plots/incomePaperYear.png", sep = ""),
+       dpi=600, width = 16, height = 8, units='cm')
 
 # then cumulative for different categories of papers
 
@@ -275,6 +307,18 @@ yearly_cat <- yearly_cat %>%
     fill = list(n_papers = 0)
   )
 
+yearly_cat$Income.group <- factor(
+  yearly_cat$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+    # "Unknown"
+  ),
+  ordered = TRUE
+)
+
 yearly_cat <- yearly_cat %>%
   group_by(Income.group, category) %>%
   arrange(Year, .by_group = TRUE) %>%
@@ -284,11 +328,14 @@ yearly_cat <- yearly_cat %>%
   mutate(category = fct_reorder2(category, Year, n_cum))
 
 # 4) plot: one facet per category, colored by income group
-ggplot(yearly_cat,
+ppapersIncomeYear <- ggplot(yearly_cat,
        aes(x = Year, y = n_cum, color = category)) +
-  geom_line(linewidth = 2) +
+  geom_line(linewidth = 1) +
   facet_wrap(~ Income.group, scales = "free_y") +
   theme_minimal()
+
+ggsave(plot = ppapersIncomeYear, filename = paste("plots/incomeCategoryPapersYear.png", sep = ""),
+       dpi=600, width = 20, height = 12, units='cm')
 
 # a) sum across incomes, then compute cumulative
 yearly_cat_agg <- yearly_cat %>%
@@ -300,9 +347,9 @@ yearly_cat_agg <- yearly_cat %>%
   ungroup()
 
 # b) plot one line per category
-ggplot(yearly_cat_agg,
+ppapersYear <- ggplot(yearly_cat_agg,
        aes(x = Year, y = n_cum, color = category)) +
-  geom_line(linewidth = 2) +
+  geom_line(linewidth = 1) +
   theme_minimal() +
   labs(
     x     = "Year",
@@ -311,13 +358,331 @@ ggplot(yearly_cat_agg,
     title = "Cumulative Papers by Category (all incomes combined)"
   )
 
+ggsave(plot = ppapersYear, filename = paste("plots/countryPapersYear.png", sep = ""),
+       dpi=600, width = 16, height = 8, units='cm')
+
 
 ```
+
 
 
 ```{r linking nb of papers with pollution levels over space and time?}
 
 ```
+
+
+```{r survey classification}
+
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+surveyClassification <- read.csv("dataNew/surveyClassif.csv", sep = ";")
+
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Kazakhstan; Kyrgyzstan, Tajikistan, Uzbekistan, Turkmenistan",
+                                                 "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
+                                                 surveyClassification$surveyedCountries)
+
+# 1) split into one row per country
+surveyCountries_long <- surveyClassification %>%
+  separate_rows(surveyedCountries, sep = ";\\s*") %>%
+  mutate(countries = str_trim(surveyedCountries))
+
+# fix country names first manual then with iso3
+
+surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
+                                         ifelse(surveyCountries_long$countries %in% c("Northern Ireland"), "Ireland",
+                                                ifelse(surveyCountries_long$countries %in% c("Czech"), "Czechia",
+                                                       ifelse(surveyCountries_long$countries %in% c("Uruguah"), "Uruguay",
+                                                              ifelse(surveyCountries_long$countries %in% c("Natherlands"), "Netherlands",
+                                                                     ifelse(surveyCountries_long$countries %in% c("Croaatia"), "Croatia",
+                                                                            ifelse(surveyCountries_long$countries %in% c("Kyrgysztan"), "Kyrgyzstan",
+                                                                                   ifelse(surveyCountries_long$countries %in% c("El Savador"), "El Salvador", surveyCountries_long$countries))))))))
+
+
+
+library(countrycode)
+
+# 1. Direct mapping
+surveyCountries_long_clean <- surveyCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+surveyCountries_long_clean <- merge(surveyCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+# 2) get total surveys by country
+surveys_by_country <- surveyCountries_long_clean %>%
+  group_by(countries, iso3, .drop = F) %>% 
+  count(iso3, name = "n_surveys") %>%
+  arrange(desc(n_surveys)) %>% 
+  merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+psurveyCountry <- surveys_by_country %>%
+  slice_max(n_surveys, n = 40) %>%                     # top 30
+  mutate(
+    # 1) reorder by paper count (so bars go largest→smallest),
+    country = fct_reorder(countries, n_surveys),
+    # 2) then shove "Unknown" to the very end
+    # country = fct_relevel(country, "Unknown", after = 0)
+  ) %>%
+  ggplot(aes(x = country, y = n_surveys, fill = Income.group)) +
+    geom_col() +
+    coord_flip() +
+    scale_fill_discrete(na.value = 'grey')+
+    labs(
+      x = "Country",
+      y = "Number of Surveys",
+      title = "Top 40 Countries by Survey Question Count"
+    ) +
+    theme_minimal()
+
+ggsave(plot = psurveyCountry, filename = paste("plots/countrySurveyIncome.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+df_cat_long <- surveyCountries_long_clean %>%
+  pivot_longer(
+    cols = c(Perceptions, Priority, Policy, Health, Behavior),
+    names_to  = "category",
+    values_to = "flag"
+  ) %>%
+  # keep only “paper belongs to this category”
+  filter(flag == 1) %>%
+  select(-flag)
+
+# 2) count per year × income_group × category
+overall_cat <- df_cat_long %>%
+  count(Income.group, category, name = "n_surveys")
+
+# 4) plot: one facet per category, colored by income group
+ggplot(overall_cat,
+       aes(y = n_surveys, x = category, fill = category)) +
+  geom_col() +
+  facet_wrap(~ Income.group, scales = "free_y") +
+  theme_minimal()
+
+
+
+## same but over time 
+
+
+surveyCountries_long_clean_yearly <- surveyCountries_long_clean
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2017 - 2021", 2018, surveyCountries_long_clean_yearly$year)
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2021 - 2022", 2021, surveyCountries_long_clean_yearly$year)
+
+surveyCountries_long_clean_yearly_t <- surveyCountries_long_clean_yearly %>%
+  # 1. build a single “years” string
+  mutate(
+    all_years = if_else(
+      is.na(repeatedMeasure) | repeatedMeasure == "",
+      as.character(year),
+      paste(year, repeatedMeasure, sep = ";")
+    ),
+    # drop every space character
+    all_years = str_remove_all(all_years, "\\s+")
+  ) %>%
+  separate_rows(all_years, sep = ";") %>%
+  mutate(year_num = as.integer(all_years)) %>%
+  select(-all_years, -repeatedMeasure)
+
+df_cat_long <- surveyCountries_long_clean_yearly_t %>%
+  pivot_longer(
+    cols = c(Perceptions, Priority, Policy, Health, Behavior),
+    names_to  = "category",
+    values_to = "flag"
+  ) %>%
+  # keep only “paper belongs to this category”
+  filter(flag == 1) %>%
+  select(-flag)
+
+# 2) count per year × income_group × category
+yearly_cat <- df_cat_long %>%
+  count(year_num, Income.group, category, name = "n_surveys")
+
+# 3) fill zeros so lines don’t break
+all_years <- seq(min(surveyCountries_long_clean_yearly_t$year_num), max(surveyCountries_long_clean_yearly_t$year_num))
+
+yearly_cat_filled <- yearly_cat %>%
+  complete(
+    year_num = all_years,
+    Income.group, category,
+    fill = list(n_surveys = 0)
+  )
+
+yearly_cat_filled <- yearly_cat_filled %>%
+  group_by(Income.group, category) %>%
+  arrange(year_num, .by_group = TRUE) %>%
+  mutate(n_cum = cumsum(n_surveys)) %>%
+  ungroup() %>% 
+  # reorder so levels go from lowest to highest n_cum at the final Year
+  mutate(category = fct_reorder2(category, year_num, n_cum))
+
+# 4) plot: one facet per income group, colored by category
+ggplot(yearly_cat_filled,
+       aes(x = year_num, y = n_cum, color = category)) +
+  # geom_point()+
+  geom_line(linewidth = 2) +
+  facet_wrap(~ Income.group, scales = "free_y") +
+  theme_minimal()
+
+yearly_cat_filled$Income.group <- factor(
+  yearly_cat_filled$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  ),
+  ordered = TRUE
+)
+
+pyear_survey <- ggplot(yearly_cat_filled,
+       aes(x = year_num, y = n_cum, color = category)) +
+  # geom_point()+
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Income.group, scales = "free_y") +
+  theme_minimal()
+
+ggsave(plot = pyear_survey, filename = paste("plots/yearSurveyIncome.png", sep = ""),
+       dpi=600, width = 16, height = 8, units='cm')
+
+```
+
+
+
+```{r make a map for the survey data}
+
+#### make a map ####
+
+### getting the data together
+library(rnaturalearth)
+library(terra)
+library(tidyterra)
+library(tidyverse)
+
+"%ni%" = Negate("%in%")
+
+surveyClassification <- read.csv("dataNew/surveyClassif.csv", sep = ";")
+
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Kazakhstan; Kyrgyzstan, Tajikistan, Uzbekistan, Turkmenistan",
+                                                 "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
+                                                 surveyClassification$surveyedCountries)
+
+# 1) split into one row per country
+surveyCountries_long <- surveyClassification %>%
+  separate_rows(surveyedCountries, sep = ";\\s*") %>%
+  mutate(countries = str_trim(surveyedCountries))
+
+# fix country names first manual then with iso3
+
+surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
+                                         ifelse(surveyCountries_long$countries %in% c("Northern Ireland"), "Ireland",
+                                                ifelse(surveyCountries_long$countries %in% c("Czech"), "Czechia",
+                                                       ifelse(surveyCountries_long$countries %in% c("Uruguah"), "Uruguay",
+                                                              ifelse(surveyCountries_long$countries %in% c("Natherlands"), "Netherlands",
+                                                                     ifelse(surveyCountries_long$countries %in% c("Croaatia"), "Croatia",
+                                                                            ifelse(surveyCountries_long$countries %in% c("Kyrgysztan"), "Kyrgyzstan",
+                                                                                   ifelse(surveyCountries_long$countries %in% c("El Savador"), "El Salvador", surveyCountries_long$countries))))))))
+
+
+
+library(countrycode)
+
+# 1. Direct mapping
+surveyCountries_long_clean <- surveyCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+surveyCountries_long_clean <- merge(surveyCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+# 2) get total surveys by country
+surveys_by_country <- surveyCountries_long_clean %>%
+  group_by(countries, iso3, .drop = F) %>% 
+  count(iso3, name = "n_surveys") %>%
+  arrange(desc(n_surveys)) %>% 
+  merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+
+world_countries$iso_a3 <- ifelse(world_countries$sovereignt == "Somaliland", "SOM", world_countries$iso_a3)
+
+world_countries_merged <- merge(world_countries, surveys_by_country, by.x = "adm0_a3", by.y = "iso3", all.x = T)
+
+world_countries_merged$n_surveys <- ifelse(is.na(world_countries_merged$n_surveys), 0, world_countries_merged$n_surveys)
+
+my_breaks = c(1, 5, 10, 20)
+
+map_plot_reference <- ggplot() +
+  geom_spatvector(data = world_countries_merged, aes(fill = n_surveys)) +
+  scale_fill_gradient(name = "nb of surveys", trans = "log",
+                        breaks = my_breaks, labels = my_breaks)+
+  theme_void()
+
+plot(map_plot_reference)
+
+library(scales)          # for label formatting
+
+# 1) Filter out Antarctica from your data:
+world_no_antarctica <- 
+  world_countries_merged %>%
+  filter(name != "Antarctica")
+
+# 2) Build the map with integer labels and no decimals:
+map_plot_viridis_clean_survey <- ggplot() +
+  geom_spatvector(
+    data = world_no_antarctica,
+    aes(fill = n_surveys),
+    color = "grey70",
+    size  = 0.1
+  ) +
+  scale_fill_viridis_c(
+    name    = "Papers",
+    # option  = "plasma",
+    trans   = "log10",
+    breaks  = my_breaks,
+    labels  = label_number(accuracy = 1,    # round to whole numbers
+                           big.mark = ",",
+                           trim     = TRUE),
+    na.value = "grey80"
+  ) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title    = "Global Survey Question Counts by Country",
+    # subtitle = "Log₁₀ scale, viridis “plasma” palette"
+  ) +
+  theme_void(base_size = 14) +
+  theme(
+    legend.position  = "bottom",
+    legend.key.width = unit(2, "cm"),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle    = element_text(hjust = 0.5)
+  )
+
+# Print it
+map_plot_viridis_clean_survey
+
+ggsave(plot = map_plot_viridis_clean_survey, filename = paste("plots/mapSurveyCount.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+
+
+
+```
+
+
+
 
 
 
