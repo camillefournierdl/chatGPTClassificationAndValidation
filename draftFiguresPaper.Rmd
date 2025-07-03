@@ -423,6 +423,17 @@ surveys_by_country <- surveyCountries_long_clean %>%
   arrange(desc(n_surveys)) %>% 
   merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
 
+surveys_by_country$Income.group <- factor(
+  surveys_by_country$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  ),
+  ordered = TRUE
+)
+
 psurveyCountry <- surveys_by_country %>%
   slice_max(n_surveys, n = 40) %>%                     # top 30
   mutate(
@@ -541,6 +552,18 @@ yearly_cat_filled$Income.group <- factor(
   ordered = TRUE
 )
 
+yearly_cat_filled$category <- factor(
+  yearly_cat_filled$category,
+  levels = c(
+    "Perceptions",
+    "Health",
+    "Behavior",
+    "Policy",
+    "Priority"
+  ),
+  ordered = TRUE
+)
+
 pyear_survey <- ggplot(yearly_cat_filled,
        aes(x = year_num, y = n_cum, color = category)) +
   # geom_point()+
@@ -648,7 +671,7 @@ map_plot_viridis_clean_survey <- ggplot() +
     size  = 0.1
   ) +
   scale_fill_viridis_c(
-    name    = "Papers",
+    name    = "Survey Questions",
     # option  = "plasma",
     trans   = "log10",
     breaks  = my_breaks,
