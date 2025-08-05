@@ -2,6 +2,24 @@ library(tidyverse)
 
 datasetGPTclassification <- read.csv("dataNew/classificationChatGPT_O4mini_final.csv")
 
+
+## identify papers that have ventilation focus
+
+# pattern: whole-word "ventilation", case-insensitive
+pattern <- "\\bventilation\\b"
+
+# logical vector of rows that match
+has_ventilation <- grepl(pattern, datasetGPTclassification$message_content, ignore.case = TRUE)
+
+# 1a) get row numbers
+row_nums <- which(has_ventilation)
+
+# 1b) subset the data.frame
+df_ventilation <- datasetGPTclassification[has_ventilation, ]
+
+#### end of identification
+
+
 cols <- c("Perceptions", "Behavior", "Policy", "Health", "Priority")
 
 # datasetGPTclassification <- subset(datasetGPTclassification, message_content != "")

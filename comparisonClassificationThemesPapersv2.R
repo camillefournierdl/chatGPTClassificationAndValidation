@@ -5,7 +5,7 @@ datasetHand <- read.csv("data/classificationByHand3.csv", sep = ";")
 datasetGPT <- read.csv("dataNew/classificationChatGPT_o4mini_final.csv")
 
 #### exclude papers that are excluded from the first script ####
-datasetGPTinclusion <- read.csv("dataNew/inclusionChatGPT_o4mini_fi nal.csv")
+datasetGPTinclusion <- read.csv("dataNew/inclusionChatGPT_o4mini_final.csv")
 
 getmode <- function(v) {
   v <- na.omit(v)
