@@ -1,0 +1,474 @@
+---
+title: "robustnessDraft"
+output: html_document
+---
+
+```{r identfying papers that are not in social science journals}
+
+litReviewSub <- read.csv("dataNew/combined_lit-socialscience.csv")
+litReview <- read.csv("dataNew/combined_lit.csv")
+
+clean_title <- function(x) {
+  x %>%
+    stri_trans_general("Latin-ASCII") %>%  # turn “é” → “e”
+    tolower() %>%                          # lowercase
+    gsub("[^[:alnum:] ]+", "", .) %>%      # drop punctuation
+    trimws()                               # trim whitespace
+}
+
+library(stringi)
+library(fuzzyjoin)
+
+litReviewSub <- litReviewSub %>%
+  select(Title) %>% 
+  mutate(title_clean = clean_title(Title))
+
+litReviewSub <- litReviewSub %>%
+  group_by(title_clean) %>% 
+  summarize(title_clean = first(title_clean))
+
+datasetID <- read.csv("dataNew/datasetToClassifyGPT.csv")
+
+datasetID <- datasetID %>%
+  mutate(title_clean = clean_title(Title))
+
+litReviewMerged2 <- stringdist_left_join(
+  litReviewSub, datasetID,
+  by = "title_clean",
+  method = "lv",        # Levenshtein
+  max_dist = 15,         # tweak this
+  distance_col = "dist" # keep the distance
+) %>%
+  arrange(-dist) %>%          # largest distances first
+  group_by(ID) %>% 
+  summarize(ID = first(ID),
+            Title = first(Title))
+
+write.csv(litReviewMerged2, "output/robustnessSocialScience.csv", row.names = F)
+
+
+
+```
+
+```{r wasting time matching something that should not be compliated}
+
+datasetClassification <- read.csv("output/dataClassifToPlot.csv")
+
+test <- read.csv("dataNew/allgpt-lit_w_countries.csv") %>% 
+  select(X , Title) %>% 
+  rename(ID = X)
+
+datasetClassificationMerged <- merge(datasetClassification, test, by = "ID")
+
+write.csv(datasetClassificationMerged, "output/dataClassifToPlotTemporaryRobust.csv", row.names = F)
+
+```
+
+
+```{r}
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+########### ALL BELOW TO DELETE AND ADAPT WHEN CLEAN CODE..... #########
+datasetClassification <- read.csv("output/dataClassifToPlotTemporaryRobust.csv")
+
+clean_title <- function(x) {
+  x %>%
+    stri_trans_general("Latin-ASCII") %>%  # turn “é” → “e”
+    tolower() %>%                          # lowercase
+    gsub("[^[:alnum:] ]+", "", .) %>%      # drop punctuation
+    trimws()                               # trim whitespace
+}
+
+library(stringi)
+library(fuzzyjoin)
+
+datasetClassificationR <- datasetClassification %>%
+  mutate(title_clean = clean_title(Title))
+
+robustnessSubset <- read.csv("output/robustnessSocialScience.csv")
+
+robustnessSubset <- robustnessSubset %>%
+  filter(!is.na(Title)) %>% 
+  mutate(title_clean = clean_title(Title)) %>% 
+  select(title_clean)
+
+datasetClassificationR2 <- stringdist_left_join(
+  datasetClassificationR, robustnessSubset,
+  by = "title_clean",
+  method = "lv",        # Levenshtein
+  max_dist = 15,         # tweak this
+  distance_col = "dist" # keep the distance
+) %>%
+  filter(!is.na(title_clean.y)) %>% 
+  arrange(-dist) %>%          # largest distances first
+  group_by(ID) %>% 
+  summarize(ID = first(ID),
+            Title = first(Title))
+
+datasetClassificationRobustIDs <- unique(datasetClassificationR2$ID)
+
+###### ALL ABOVE TO DELETE WHEN CLEAN CODE.... ######
+datasetClassification <- read.csv("output/dataClassifToPlot.csv")
+datasetCountries <- read.csv("dataNew/allgpt-lit_w_countries.csv")
+
+datasetClassificationR <- subset(datasetClassification, ID %in% datasetClassificationRobustIDs)
+
+datasetClassificationCountries <- merge(datasetClassificationR, datasetCountries %>% 
+                                          select(X, Year, country) %>% 
+                                          rename(ID = X),
+                                        by = "ID") %>% 
+  select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ";\\s*") %>%
+  mutate(countries = str_trim(country))
+
+# fix country names 
+library(countrycode)
+
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+### add income groups to the dataset
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+datasetClassificationCountries_long_clean <- merge(datasetClassificationCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+# 2) get total papers by country
+papers_by_country <- datasetClassificationCountries_long_clean %>%
+  group_by(country, iso3, .drop = F) %>% 
+  count(iso3, name = "n_papers") %>%
+  arrange(desc(n_papers)) %>% 
+  merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+papers_by_country$Income.group <- factor(
+  papers_by_country$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  ),
+  ordered = TRUE
+)
+
+pCountryPaperIncome <- papers_by_country %>%
+  slice_max(n_papers, n = 20) %>%                     # top 30
+  mutate(
+    # 1) reorder by paper count (so bars go largest→smallest),
+    country = fct_reorder(country, n_papers),
+    # 2) then shove "Unknown" to the very end
+    country = fct_relevel(country, "Unknown", after = 0)
+  ) %>%
+  ggplot(aes(x = country, y = n_papers, fill = Income.group)) +
+    geom_col() +
+    coord_flip() +
+    scale_fill_discrete(na.value = 'grey')+
+    labs(
+      x = "Country",
+      y = "Number of papers",
+      title = "Top 20 Countries by Paper Count"
+    ) +
+    theme_minimal()
+
+ggsave(plot = pCountryPaperIncome, filename = paste("robustness/plots/countryPapersIncome.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+
+#### make a map ####
+
+### getting the data together
+library(rnaturalearth)
+library(terra)
+library(tidyterra)
+
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+
+world_countries$iso_a3 <- ifelse(world_countries$sovereignt == "Somaliland", "SOM", world_countries$iso_a3)
+
+world_countries_merged <- merge(world_countries, papers_by_country, by.x = "adm0_a3", by.y = "iso3", all.x = T)
+
+world_countries_merged$n_papers <- ifelse(is.na(world_countries_merged$n_papers), 0, world_countries_merged$n_papers)
+
+my_breaks = c(1, 5, 20, 50, 150)
+
+map_plot_reference <- ggplot() +
+  geom_spatvector(data = world_countries_merged, aes(fill = n_papers)) +
+  scale_fill_gradient(name = "nb of papers", trans = "log",
+                        breaks = my_breaks, labels = my_breaks)+
+  theme_void()
+
+plot(map_plot_reference)
+
+library(scales)          # for label formatting
+
+# 1) Filter out Antarctica from your data:
+world_no_antarctica <- 
+  world_countries_merged %>%
+  filter(name != "Antarctica")
+
+# 2) Build the map with integer labels and no decimals:
+map_plot_viridis_clean <- ggplot() +
+  geom_spatvector(
+    data = world_no_antarctica,
+    aes(fill = n_papers),
+    color = "grey70",
+    size  = 0.1
+  ) +
+  scale_fill_viridis_c(
+    name    = "Papers",
+    # option  = "plasma",
+    trans   = "log10",
+    breaks  = my_breaks,
+    labels  = label_number(accuracy = 1,    # round to whole numbers
+                           big.mark = ",",
+                           trim     = TRUE),
+    na.value = "grey80"
+  ) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title    = "Global Publication Counts by Country",
+    # subtitle = "Log₁₀ scale, viridis “plasma” palette"
+  ) +
+  theme_void(base_size = 14) +
+  theme(
+    legend.position  = "bottom",
+    legend.key.width = unit(2, "cm"),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle    = element_text(hjust = 0.5)
+  )
+
+# Print it
+map_plot_viridis_clean
+
+ggsave(plot = map_plot_viridis_clean, filename = paste("robustness/plots/mapPapersCount.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+### add  monitor data to compare
+# load the monitor dataset and subset it
+monitors <- read.csv("dataNew/mergedMonitors_v7.csv")
+
+# keep only reference grade monitors
+monitorsRef <- subset(monitors, isMonitor)
+
+# keep only active (different datasets have different ways of dealing with that)
+# airnow
+# no subset because no precise info on when active
+
+# openaq
+monitorsRef$diffDays <- as.numeric(difftime(monitorsRef$lastUpdated, monitorsRef$firstUpdated, units = "days"))
+
+monitorsRef <- subset(monitorsRef, !(diffDays < 30 & firstUpdated < ymd_hms("2025-02-01T00:00:00+00:00") & database == "OpenAQ"))
+
+# waqi
+monitorsRef <- subset(monitorsRef, !(occurenceWAQI < 2 & database == "WAQI"))
+
+# WHO I am not sure if we should filter points that are only active for a year
+table(monitorsRef$database)
+
+# we probably want to check if the results are consistent if removing embassy monitors
+table(monitorsRef$isEmbassy)
+
+monitorsRef_simple <- monitorsRef %>%
+  # filter(!isEmbassy) %>% # here to filter embassies
+  select(newID, longitude, latitude)
+
+monitors_vect <- vect(monitorsRef_simple, geom=c("longitude", "latitude"), crs=crs(world_no_antarctica))
+
+# 1. intersect: this returns only those points lying in (or on) each polygon,
+#    with the polygon’s attributes copied over
+pts_in_c <- intersect(monitors_vect, world_no_antarctica)
+
+# 2. now simply tally by the country name
+counts2 <- table(pts_in_c$iso_a3)
+
+print(counts2)
+
+# aggregate the intersected points by country NAME
+agg <- aggregate(pts_in_c, by = "iso_a3", fun = length) %>% as.data.frame() %>% 
+  rename(count = agg_newID) %>% 
+  select(iso_a3, count)
+
+# join back to the country layer
+world_no_antarctica <- merge(world_no_antarctica, agg, by = "iso_a3", all.x = TRUE)
+
+world_no_antarctica_df <- world_no_antarctica %>% as.data.frame()
+
+world_no_antarctica_df$count <- ifelse(is.na(world_no_antarctica_df$count), 0, world_no_antarctica_df$count)
+
+world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  facet_wrap(~income_grp)
+
+
+
+# world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
+#   geom_point()+
+#   geom_smooth(method = "lm")+
+#   facet_wrap(~Income.group)
+
+world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+subset(world_no_antarctica_df, count < 10) %>% ggplot(aes(x = n_papers, y = count))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+#### vs mean levels of pollution !!! to be done ####
+
+
+
+##### categories over time #####
+# 
+
+# 2) count papers per country-year
+yearly <- datasetClassificationCountries_long_clean %>%
+  count(Income.group, Year, name = "n_year") 
+
+# 3) ensure every country has an entry for every year in your span
+years <- seq(min(datasetClassificationCountries_long_clean$Year),
+             max(datasetClassificationCountries_long_clean$Year))
+
+yearly_complete <- yearly %>%
+  complete(Income.group, Year = years, fill = list(n_year = 0))
+
+# 4) compute cumulative sum within each country
+cum <- yearly_complete %>%
+  group_by(Income.group) %>%
+  arrange(Year, .by_group = TRUE) %>%
+  mutate(n_cumulative = cumsum(n_year)) %>%
+  ungroup()
+
+cum$Income.group <- ifelse(is.na(cum$Income.group), "Unknown", cum$Income.group)
+
+cum$Income.group <- factor(
+  cum$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+    # "Unknown"
+  ),
+  ordered = TRUE
+)
+
+ppapersIncome <- cum %>%
+  ggplot(aes(x = Year, y = n_cumulative, col = Income.group)) +
+    geom_line(linewidth = 1) +
+    labs(
+      x = "Year",
+      y = "Cumulative # of Papers",
+      title = "Growth of Papers by income group"
+    ) +
+    theme_minimal()
+
+ggsave(plot = ppapersIncome, filename = paste("robustness/plots/incomePaperYear.png", sep = ""),
+       dpi=600, width = 16, height = 8, units='cm')
+
+# then cumulative for different categories of papers
+
+# 1) pivot your dummy columns into long form
+df_cat_long <- datasetClassificationCountries_long_clean %>%
+  pivot_longer(
+    cols = c(Perceptions, Priority, Policy, Health, Behavior),
+    names_to  = "category",
+    values_to = "flag"
+  ) %>%
+  # keep only “paper belongs to this category”
+  filter(flag == 1) %>%
+  select(-flag)
+
+# 2) count per year × income_group × category
+yearly_cat <- df_cat_long %>%
+  count(Year, Income.group, category, name = "n_papers")
+
+# 3) fill zeros so lines don’t break
+all_years <- seq(min(datasetClassificationCountries_long_clean$Year), max(datasetClassificationCountries_long_clean$Year))
+
+yearly_cat <- yearly_cat %>%
+  complete(
+    Year, Income.group, category,
+    fill = list(n_papers = 0)
+  )
+
+yearly_cat$Income.group <- factor(
+  yearly_cat$Income.group,
+  levels = c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+    # "Unknown"
+  ),
+  ordered = TRUE
+)
+
+yearly_cat <- yearly_cat %>%
+  group_by(Income.group, category) %>%
+  arrange(Year, .by_group = TRUE) %>%
+  mutate(n_cum = cumsum(n_papers)) %>%
+  ungroup() %>% 
+  # reorder so levels go from lowest to highest n_cum at the final Year
+  mutate(category = fct_reorder2(category, Year, n_cum))
+
+# 4) plot: one facet per category, colored by income group
+ppapersIncomeYear <- ggplot(yearly_cat,
+       aes(x = Year, y = n_cum, color = category)) +
+  geom_line(linewidth = 1) +
+  facet_wrap(~ Income.group, scales = "free_y") +
+  theme_minimal()
+
+ggsave(plot = ppapersIncomeYear, filename = paste("robustness/plots/incomeCategoryPapersYear.png", sep = ""),
+       dpi=600, width = 20, height = 12, units='cm')
+
+# a) sum across incomes, then compute cumulative
+yearly_cat_agg <- yearly_cat %>%
+  group_by(Year, category) %>%
+  summarise(n_year = sum(n_papers), .groups="drop") %>%
+  arrange(category, Year) %>%
+  group_by(category) %>%
+  mutate(n_cum = cumsum(n_year)) %>%
+  ungroup()
+
+# b) plot one line per category
+ppapersYear <- ggplot(yearly_cat_agg,
+       aes(x = Year, y = n_cum, color = category)) +
+  geom_line(linewidth = 1) +
+  theme_minimal() +
+  labs(
+    x     = "Year",
+    y     = "Cumulative # of Papers",
+    color = "Category",
+    title = "Cumulative Papers by Category (all incomes combined)"
+  )
+
+ggsave(plot = ppapersYear, filename = paste("robustness/plots/countryPapersYear.png", sep = ""),
+       dpi=600, width = 16, height = 8, units='cm')
+
+
+```
+
+
+
+```{r linking nb of papers with pollution levels over space and time?}
+
+```
+
+

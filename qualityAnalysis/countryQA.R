@@ -37,5 +37,3 @@ QAcountry <- mergedClassifs %>%
     )
 
 table(QAcountry$similarity)
-
-test1 <- read.csv("dataNew/datasetToClassifyGPT.csv")
