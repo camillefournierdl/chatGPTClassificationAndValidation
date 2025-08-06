@@ -36,4 +36,4 @@ QAcountry <- mergedClassifs %>%
     similarity = if_else(uni > 0, inter / uni, NA_real_)
     )
 
-table(QAcountry$similarity)
+table(QAcountry$similarity) # almost perfect match

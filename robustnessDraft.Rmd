@@ -5,6 +5,9 @@ output: html_document
 
 ```{r identfying papers that are not in social science journals}
 
+
+### !!!!! ihi something weird about papers that have a translation
+
 litReviewSub <- read.csv("dataNew/combined_lit-socialscience.csv")
 litReview <- read.csv("dataNew/combined_lit.csv")
 
@@ -16,6 +19,7 @@ clean_title <- function(x) {
     trimws()                               # trim whitespace
 }
 
+library(tidyverse)
 library(stringi)
 library(fuzzyjoin)
 
