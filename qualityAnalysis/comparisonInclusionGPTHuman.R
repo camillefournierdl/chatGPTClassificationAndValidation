@@ -1,52 +1,15 @@
 ########## comparing inclusion only
 library(tidyverse)
-library(stringi)
-library(fuzzyjoin)
 
-datasetHand <- read.csv("data/classificationByHand3.csv", sep = ";")
+modelName <- "o4mini"
+# modelName <- "5mini"
 
-# datasetGPT <- read.csv("data/inclusionChatGPT1704.csv")
-datasetGPT <- read.csv("data/inclusionChatGPT_testO4mini.csv")
-datasetGPT <- read.csv("dataNew/inclusionChatGPT_O4mini_final.csv")
+## first load gpt-coded labeled data
+datasetGPT <- read.csv(paste("LLMClassif/inclusionChatGPT_", modelName, "_final.csv", sep = ""))
 
-clean_title <- function(x) {
-  x %>%
-    stri_trans_general("Latin-ASCII") %>%  # turn “é” → “e”
-    tolower() %>%                          # lowercase
-    gsub("[^[:alnum:] ]+", "", .) %>%      # drop punctuation
-    trimws()                               # trim whitespace
-}
-
-datasetGPTForID <- read.csv("dataNew/datasetToClassifyGPT.csv") %>%
-  select(ID, Title) %>% 
-  rename(IDgpt = ID) %>% 
-  mutate(title_clean = clean_title(Title))
-
-datasetHandForID <- datasetHand %>% 
-  group_by(ID) %>% 
-  summarize(Title = first(Title)) %>% 
-  rename(IDhand = ID) %>% 
-  mutate(title_clean = clean_title(Title))
-
-df_merged2 <- stringdist_left_join(
-  datasetHandForID, datasetGPTForID,
-  by = "title_clean",
-  method = "lv",        # Levenshtein
-  max_dist = 2,         # tweak this
-  distance_col = "dist" # keep the distance
-) %>%
-  arrange(-dist) %>%          # smallest distances first
-  group_by(IDhand) %>% 
-  summarize(IDgpt = first(IDgpt),
-            Title = first(Title.y))
-
-write.csv(df_merged2, "output/tableIDMatching.csv", row.names = F)
-
-datasetGPTwithID <- merge(datasetGPT, df_merged2, by.x = "custom_id", by.y = "IDgpt")
-
-datasetGPTwithID$ID <- datasetGPTwithID$IDhand
-
-# datasetGPT$custom_id = datasetGPT$custom_id+1
+datasetGPTwithID <- datasetGPT %>% 
+  rename(ID = custom_id)
+# datasetGPTwithID <- merge(datasetGPT, datasetHand, by = "ID")
 
 getmode <- function(v) {
   v <- na.omit(v)
@@ -61,21 +24,6 @@ datasetGPTsummaryInspect <- datasetGPTwithID %>%
             countExclusion = sum(inclusionChatGPTClean == "excluded", na.rm = TRUE),
             countInclusion = sum(inclusionChatGPTClean == "included", na.rm = TRUE),
             countBlank = sum(inclusionChatGPTClean == "", na.rm=T))
-
-# norm_entropy <- function(n) {
-#   p <- n / sum(n)
-#   p <- p[p > 0]
-#   H <- - sum(p * log(p))
-#   H / log(length(n))
-# }
-# 
-# # apply row-wise via mapply
-# datasetGPTsummaryInspect$entropy_norm <- mapply(
-#   function(a, b, c) norm_entropy(c(a, b, c)),
-#   datasetGPTsummaryInspect$countExclusion,
-#   datasetGPTsummaryInspect$countInclusion,
-#   datasetGPTsummaryInspect$countBlank
-# )
 
 # similarly for Gini
 norm_gini <- function(n) {
@@ -125,6 +73,8 @@ datasetGPTsimple$Inclusion <- gsub(
 
 datasetGPTsimple$Inclusion <- ifelse(datasetGPTsimple$Inclusion == "included", 1, 0)
 
+
+datasetHand <- read.csv("dataNew/classificationByHand3.csv", sep = ";")
 datasetHand_fit <- datasetHand %>% 
   select(ID, Inclusion, reader)
 
@@ -238,18 +188,13 @@ for (pair in pairs) {
 # Display the results
 print(agreement_results)
 
+agreement_results %>% 
+  group_by(PairType) %>% 
+  summarize(averageAgreement = mean(PercentAgreement))
+
 ### visualise this
 
-# Boxplot with jittered points to show distribution by Category and PairType
-# ggplot(agreement_results, aes(x = Category, y = PercentAgreement, fill = PairType)) +
-#   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
-#   geom_jitter(width = 0.05, alpha = 0.5, color = "black") +
-#   labs(title = "Pairwise Agreement by Category and Pair Type",
-#        x = "Category",
-#        y = "Percent Agreement") +
-#   theme_minimal()
-
-ggplot(agreement_results, aes(x = Category, y = PercentAgreement, fill = PairType)) +
+p1 <- ggplot(agreement_results, aes(x = Category, y = PercentAgreement, fill = PairType)) +
   geom_boxplot(position = position_dodge(width = 0.8), outlier.shape = NA, alpha = 0.7) +
   geom_jitter(aes(shape = PairType), 
               position = position_dodge(width = 0.8), alpha = 1) +
@@ -257,6 +202,9 @@ ggplot(agreement_results, aes(x = Category, y = PercentAgreement, fill = PairTyp
        x = "Category",
        y = "Percent Agreement") +
   theme_minimal()
+
+ggsave(plot = p1, filename = paste("qualityAnalysis/inclusionGPTHuman", modelName, ".png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
 
 agg_data <- agreement_results %>%
   group_by(Category, PairType) %>%
@@ -269,15 +217,18 @@ agg_data <- agreement_results %>%
   mutate(se = sd_agreement / sqrt(n))
 
 # Plot bar chart with error bars (using standard error)
-ggplot(agg_data, aes(x = Category, y = mean_agreement, fill = PairType)) +
+p2 <- ggplot(agg_data, aes(x = Category, y = mean_agreement, fill = PairType)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
   geom_errorbar(aes(ymin = mean_agreement - se, ymax = mean_agreement + se),
                 width = 0.2,
                 position = position_dodge(width = 0.9)) +
-  labs(title = "Average Agreement by Category and Pair Type",
-       x = "Category",
-       y = "Average Percent Agreement") +
+  labs(x = "",
+       y = "Percent Agreement") +
   theme_minimal()
+
+ggsave(plot = p2, filename = paste("qualityAnalysis/inclusionGPTHumanBar", modelName, ".png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
 
 ### getting more insights
 # Calculate the prevalence (positive rate) for each category per reader
@@ -293,54 +244,14 @@ prevalence_data <- dataCompare %>%
 print(prevalence_data)
 
 # Example plot: Compare positive rates per category for each reader
-ggplot(prevalence_data, aes(x = Category, y = positive_rate, fill = reader)) +
+p3 <- ggplot(prevalence_data, aes(x = Category, y = positive_rate, fill = reader)) +
   geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
-  labs(title = "Prevalence of Positive Class (1) by Category and reader",
-       x = "Category",
+  labs(x = "",
        y = "Positive Rate") +
   theme_minimal()
 
-# Step 2: For human raters, compute the mean positive rate and standard deviation per category.
-human_prevalence <- prevalence_data %>%
-  filter(reader != "ChatGPT") %>%
-  group_by(Category) %>%
-  summarise(mean_human_rate = mean(positive_rate, na.rm = TRUE),
-            sd_human_rate = sd(positive_rate, na.rm = TRUE),
-            .groups = "drop")
-
-# Step 3: For the model, extract the positive rate for each category.
-model_prevalence <- prevalence_data %>%
-  filter(reader == "ChatGPT") %>%
-  select(Category, model_rate = positive_rate)
-
-# Step 4: Merge the human and model results by Category.
-comparison_data <- left_join(model_prevalence, human_prevalence, by = "Category")
-
-# Step 5: Reshape for plotting the two groups (Model and Humans).
-comparison_long <- comparison_data %>%
-  pivot_longer(cols = c(model_rate, mean_human_rate),
-               names_to = "Rater", values_to = "Rate") %>%
-  mutate(Rater = recode(Rater,
-                        "model_rate" = "Model",
-                        "mean_human_rate" = "Humans"))
-
-comparison_long$sd_human_rate <- ifelse(comparison_long$Rater == "Model", 0, comparison_long$sd_human_rate)
-
-# Step 6: Plot the comparison with error bars (only for the human group).
-ggplot(comparison_long, aes(x = Category, y = Rate, fill = Rater)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.9), alpha = 0.8) +
-  # Add error bars only for Humans
-  geom_errorbar(data = comparison_long,
-                aes(x = Category,
-                    ymin = Rate - sd_human_rate,
-                    ymax = Rate + sd_human_rate),
-                width = 0.2,
-                position = position_dodge(width = 0.9)) +
-  labs(title = "Mean Positive Rate by Category",
-       x = "Category",
-       y = "Mean Positive Rate") +
-  theme_minimal()
-
+ggsave(plot = p3, filename = paste("qualityAnalysis/inclusionGPTHumanPositiveRate", modelName, ".png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
 
 ### papers that see disagreements:
 disagreements <- subset(datasetHand, ID %in% unique(subset(pairwise, agreement == "Disagree")$ID)) %>% select(ID, Title, Abstract) %>% group_by(ID) %>% 
