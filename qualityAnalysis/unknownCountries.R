@@ -3,7 +3,11 @@ library(tidyverse)
 
 datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv") # to know which countries are excluded
 
-IDsubset <- unique(datasetClassification$ID)
+# for now remove studies that were classified as none of the categories during classification
+datasetClassificationSub <- subset(datasetClassification, None != 1)
+
+datasetClassificationSub 
+IDsubset <- unique(datasetClassificationSub$ID)
 
 # datasetCountries <- read.csv("LLMclassif/countriesChatGPT_5mini_final.csv")
 datasetCountries <- read.csv("LLMclassif/countriesChatGPT_o4mini_final.csv")
