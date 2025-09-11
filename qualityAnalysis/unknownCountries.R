@@ -134,13 +134,19 @@ write.csv(unknownCountriesSave, "output/unknownCountryo4mini.csv", row.names = F
 ######### after manually coding the countries:
 
 # load manually coded remaining papers
-manualCoded <- read.csv("dataNew/unknownCountryo4mini_CF.csv")
+manualCoded <- read.csv("dataNew/unknownCountryo4mini_CF.csv", sep = ";")
+manualCoded <- subset(manualCoded, !is.na(countryCF))  
 
 # merge and save for final classif
 
 datasetCountriesPartial_f <- merge(datasetCountriesPartial, manualCoded %>%
-                                     select(ID, manualCountry),
+                                     select(ID, countryCF),
                                    all.x = T, all.y = F, by = "ID")
+
+datasetCountriesPartial_f$countryPartialF <- ifelse(datasetCountriesPartial_f$countryPartial == "Unknown", datasetCountriesPartial_f$countryCF,
+                                                    datasetCountriesPartial_f$countryPartial)
+
+datasetCountriesPartial_f <- subset(datasetCountriesPartial_f, !is.na(countryPartialF))
 
 write.csv(datasetCountriesPartial_f, "output/fullClassifCountryo4mini.csv", row.names = F) # this should be used for final plotting
 

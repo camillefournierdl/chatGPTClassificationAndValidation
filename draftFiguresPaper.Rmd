@@ -9,13 +9,15 @@ output: html_document
 library(tidyverse)
 "%ni%" = Negate("%in%")
 
-datasetClassification <- read.csv("output/dataClassifToPlot.csv")
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
 
-datasetCountries <- read.csv("dataNew/allgpt-lit_w_countries.csv")
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
 
-datasetClassificationCountries <- merge(datasetClassification, datasetCountries %>% 
-                                          select(X, Year, country) %>% 
-                                          rename(ID = X),
+datasetCountries <- datasetCountries %>% 
+  select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
                                         by = "ID") %>% 
   select(-reader)
 
@@ -23,11 +25,16 @@ datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$
 
 table(datasetClassificationCountries$country)
 
+
+
 # 1) split into one row per country
 datasetClassificationCountries_long <- datasetClassificationCountries %>%
-  separate_rows(country, sep = ";\\s*") %>%
+  separate_rows(country, sep = ",\\s*") %>%
   mutate(countries = str_trim(country))
 
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
 # fix country names 
 library(countrycode)
 
@@ -69,9 +76,7 @@ pCountryPaperIncome <- papers_by_country %>%
   slice_max(n_papers, n = 20) %>%                     # top 30
   mutate(
     # 1) reorder by paper count (so bars go largest→smallest),
-    country = fct_reorder(country, n_papers),
-    # 2) then shove "Unknown" to the very end
-    country = fct_relevel(country, "Unknown", after = 0)
+    country = fct_reorder(country, n_papers)
   ) %>%
   ggplot(aes(x = country, y = n_papers, fill = Income.group)) +
     geom_col() +
@@ -157,84 +162,16 @@ map_plot_viridis_clean
 ggsave(plot = map_plot_viridis_clean, filename = paste("plots/mapPapersCount.png", sep = ""),
        dpi=600, width = 16, height = 12, units='cm')
 
-### add  monitor data to compare
-# load the monitor dataset and subset it
-monitors <- read.csv("dataNew/mergedMonitors_v7.csv")
-
-# keep only reference grade monitors
-monitorsRef <- subset(monitors, isMonitor)
-
-# keep only active (different datasets have different ways of dealing with that)
-# airnow
-# no subset because no precise info on when active
-
-# openaq
-monitorsRef$diffDays <- as.numeric(difftime(monitorsRef$lastUpdated, monitorsRef$firstUpdated, units = "days"))
-
-monitorsRef <- subset(monitorsRef, !(diffDays < 30 & firstUpdated < ymd_hms("2025-02-01T00:00:00+00:00") & database == "OpenAQ"))
-
-# waqi
-monitorsRef <- subset(monitorsRef, !(occurenceWAQI < 2 & database == "WAQI"))
-
-# WHO I am not sure if we should filter points that are only active for a year
-table(monitorsRef$database)
-
-# we probably want to check if the results are consistent if removing embassy monitors
-table(monitorsRef$isEmbassy)
-
-monitorsRef_simple <- monitorsRef %>%
-  # filter(!isEmbassy) %>% # here to filter embassies
-  select(newID, longitude, latitude)
-
-monitors_vect <- vect(monitorsRef_simple, geom=c("longitude", "latitude"), crs=crs(world_no_antarctica))
-
-# 1. intersect: this returns only those points lying in (or on) each polygon,
-#    with the polygon’s attributes copied over
-pts_in_c <- intersect(monitors_vect, world_no_antarctica)
-
-# 2. now simply tally by the country name
-counts2 <- table(pts_in_c$iso_a3)
-
-print(counts2)
-
-# aggregate the intersected points by country NAME
-agg <- aggregate(pts_in_c, by = "iso_a3", fun = length) %>% as.data.frame() %>% 
-  rename(count = agg_newID) %>% 
-  select(iso_a3, count)
-
-# join back to the country layer
-world_no_antarctica <- merge(world_no_antarctica, agg, by = "iso_a3", all.x = TRUE)
-
-world_no_antarctica_df <- world_no_antarctica %>% as.data.frame()
-
-world_no_antarctica_df$count <- ifelse(is.na(world_no_antarctica_df$count), 0, world_no_antarctica_df$count)
-
-world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
-  geom_point()+
-  geom_smooth(method = "lm")+
-  facet_wrap(~income_grp)
-
-
-
-# world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
-#   geom_point()+
-#   geom_smooth(method = "lm")+
-#   facet_wrap(~Income.group)
-
-world_no_antarctica_df %>% ggplot(aes(x = n_papers, y = count))+
-  geom_point()+
-  geom_smooth(method = "lm")
-
-subset(world_no_antarctica_df, count < 10) %>% ggplot(aes(x = n_papers, y = count))+
-  geom_point()+
-  geom_smooth(method = "lm")
-
-#### vs mean levels of pollution !!! to be done ####
-
-
-
 ##### categories over time #####
 # 
+
+# data with ID year 
+datasetYear <- read.csv("dataNew/datasetToClassifyGPT.csv") %>% 
+  select(ID, Year)
+
+datasetClassificationCountries_long_clean <- merge(datasetClassificationCountries_long_clean,
+                                                   datasetYear,
+                                                   by = "ID", all.x = T, all.y = F)
 
 # 2) count papers per country-year
 yearly <- datasetClassificationCountries_long_clean %>%
@@ -698,9 +635,6 @@ map_plot_viridis_clean_survey
 
 ggsave(plot = map_plot_viridis_clean_survey, filename = paste("plots/mapSurveyCount.png", sep = ""),
        dpi=600, width = 16, height = 12, units='cm')
-
-
-
 
 ```
 
