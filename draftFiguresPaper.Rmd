@@ -205,7 +205,7 @@ cum$Income.group <- factor(
   ordered = TRUE
 )
 
-ppapersIncome <- cum %>%
+ppapersIncome <- subset(cum, !is.na(Income.group)) %>% 
   ggplot(aes(x = Year, y = n_cumulative, col = Income.group)) +
     geom_line(linewidth = 1) +
     labs(
@@ -265,7 +265,7 @@ yearly_cat <- yearly_cat %>%
   mutate(category = fct_reorder2(category, Year, n_cum))
 
 # 4) plot: one facet per category, colored by income group
-ppapersIncomeYear <- ggplot(yearly_cat,
+ppapersIncomeYear <- ggplot(subset(yearly_cat, !is.na(Income.group)),
        aes(x = Year, y = n_cum, color = category)) +
   geom_line(linewidth = 1) +
   facet_wrap(~ Income.group, scales = "free_y") +
@@ -300,7 +300,6 @@ ggsave(plot = ppapersYear, filename = paste("plots/countryPapersYear.png", sep =
 
 
 ```
-
 
 
 ```{r linking nb of papers with pollution levels over space and time?}
