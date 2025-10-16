@@ -469,6 +469,14 @@ plot(summaryDataset %>%
 summaryDataset$isChina <- ifelse(summaryDataset$iso3 == "CHN", 1, 0)
 summaryDataset$isIndia <- ifelse(summaryDataset$iso3 == "IND", 1, 0)
 
+# add region from natural earth
+
+library(rnaturalearth)
+
+# .
+# .
+# .
+
 write.csv(summaryDataset, "output/datasetPlots.csv", row.names = F)
 
 ```
