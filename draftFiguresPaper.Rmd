@@ -302,8 +302,398 @@ ggsave(plot = ppapersYear, filename = paste("plots/countryPapersYear.png", sep =
 ```
 
 
+
+
+```{r putting data together}
+
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
+
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
+
+datasetCountries <- datasetCountries %>% 
+  select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
+                                        by = "ID") %>% 
+  select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ",\\s*") %>%
+  mutate(countries = str_trim(country))
+
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
+# fix country names 
+library(countrycode)
+
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+### add income groups to the dataset
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+datasetClassificationCountries_long_clean <- merge(datasetClassificationCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+# 2) get total papers by country
+papers_by_country <- datasetClassificationCountries_long_clean %>%
+  group_by(country, iso3, .drop = F) %>% 
+  count(iso3, name = "n_papers") %>%
+  arrange(desc(n_papers)) %>% 
+  merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+
+datasetPollution <- read.csv("dataNew/GlobalPM25-V6GL0203-Annual-1998-2023-wThresFrac.csv")
+
+datasetPollution_avg <- datasetPollution %>% 
+  filter(Year == 2019) %>% 
+  group_by(Region) %>% 
+  summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
+
+datasetPollution_ctr <- datasetPollution_avg %>%
+  mutate(
+    iso3 = countrycode(Region,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(!is.na(iso3)) %>% 
+  rename(countryName = Region)
+
+papers_by_country_pollution <- merge(papers_by_country, datasetPollution_ctr, by = "iso3", all.x = T, all.y = T)
+
+fullCountrylist <- unique(countrycode::codelist$iso3c)
+
+papers_by_country_pollution$n_papers <- ifelse(!is.na(papers_by_country_pollution$n_papers), papers_by_country_pollution$n_papers, 0)
+
+iso3_un_members <- c(
+  "AFG","ALB","DZA","AND","AGO","ATG","ARG","ARM","AUS","AUT","AZE",
+  "BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BTN","BOL","BIH",
+  "BWA","BRA","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CAF",
+  "TCD","CHL","CHN","COL","COM","COG","COD","CRI","CIV","HRV","CUB",
+  "CYP","CZE","DNK","DJI","DMA","DOM","ECU","EGY","SLV","GNQ","ERI",
+  "EST","SWZ","ETH","FJI","FIN","FRA","GAB","GMB","GEO","DEU","GHA",
+  "GRC","GRD","GTM","GIN","GNB","GUY","HTI","HND","HUN","ISL","IND",
+  "IDN","IRN","IRQ","IRL","ISR","ITA","JAM","JPN","JOR","KAZ","KEN",
+  "KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY",
+  "LIE","LTU","LUX","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MRT",
+  "MUS","MEX","FSM","MDA","MCO","MNG","MNE","MAR","MOZ","MMR","NAM",
+  "NRU","NPL","NLD","NZL","NIC","NER","NGA","MKD","NOR","OMN","PAK",
+  "PLW","PAN","PNG","PRY","PER","PHL","POL","PRT","QAT","ROU","RUS",
+  "RWA","KNA","LCA","VCT","WSM","SMR","STP","SAU","SEN","SRB","SYC",
+  "SLE","SGP","SVK","SVN","SLB","SOM","ZAF","SSD","ESP","LKA","SDN",
+  "SUR","SWE","CHE","SYR","TJK","TZA","THA","TLS","TGO","TON","TTO",
+  "TUN","TUR","TKM","TUV","UGA","UKR","ARE","GBR","USA","URY","UZB",
+  "VUT","VEN","VNM","YEM","ZMB","ZWE"
+)
+
+papers_by_country_pollution_filteredUN <- subset(papers_by_country_pollution, iso3 %in% iso3_un_members) %>% 
+  filter(!is.na(iso3))
+
+## adding survey nb 
+
+surveyClassification <- read.csv("dataNew/surveyClassif.csv", sep = ";")
+
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Kazakhstan; Kyrgyzstan, Tajikistan, Uzbekistan, Turkmenistan",
+                                                 "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
+                                                 surveyClassification$surveyedCountries)
+
+# 1) split into one row per country
+surveyCountries_long <- surveyClassification %>%
+  separate_rows(surveyedCountries, sep = ";\\s*") %>%
+  mutate(countries = str_trim(surveyedCountries))
+
+# fix country names first manual then with iso3
+
+surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
+                                         ifelse(surveyCountries_long$countries %in% c("Northern Ireland"), "Ireland",
+                                                ifelse(surveyCountries_long$countries %in% c("Czech"), "Czechia",
+                                                       ifelse(surveyCountries_long$countries %in% c("Uruguah"), "Uruguay",
+                                                              ifelse(surveyCountries_long$countries %in% c("Natherlands"), "Netherlands",
+                                                                     ifelse(surveyCountries_long$countries %in% c("Croaatia"), "Croatia",
+                                                                            ifelse(surveyCountries_long$countries %in% c("Kyrgysztan"), "Kyrgyzstan",
+                                                                                   ifelse(surveyCountries_long$countries %in% c("El Savador"), "El Salvador", surveyCountries_long$countries))))))))
+
+
+
+# 1. Direct mapping
+surveyCountries_long_clean <- surveyCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+# 2) get total surveys by country
+surveys_by_country <- surveyCountries_long_clean %>%
+  group_by(iso3, .drop = F) %>% 
+  count(iso3, name = "n_surveys") %>%
+  arrange(desc(n_surveys))
+
+papers_by_country_pollution_filteredUN_survey <- merge(papers_by_country_pollution_filteredUN, surveys_by_country, by = "iso3", all.x = T, all.y = T)
+
+papers_by_country_pollution_filteredUN_survey$n_surveys <- ifelse(is.na(papers_by_country_pollution_filteredUN_survey$n_surveys), 0, papers_by_country_pollution_filteredUN_survey$n_surveys)
+
+population <- read.csv("dataNew/GHS_pop.csv", sep = ";")
+
+popCtr <- population %>%
+  group_by(GADM_ISO) %>% 
+  summarize(population2015 = sum(X2015))
+
+summaryDataset <- merge(papers_by_country_pollution_filteredUN_survey, popCtr, by.x = "iso3", by.y = "GADM_ISO", all.x = T, all.y = F)
+
+summaryDataset$categoryPollution <- cut(summaryDataset$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                  labels = c("very low", "low", "medium", "high", "very high"), 
+                  right = FALSE)
+
+plot(summaryDataset %>% 
+       select(Income.group, pm25Avg, n_papers, n_surveys, population2015, categoryPollution))
+
+summaryDataset$isChina <- ifelse(summaryDataset$iso3 == "CHN", 1, 0)
+summaryDataset$isIndia <- ifelse(summaryDataset$iso3 == "IND", 1, 0)
+
+write.csv(summaryDataset, "output/datasetPlots.csv", row.names = F)
+
+```
+
+
+
+
+
+
+
+
 ```{r linking nb of papers with pollution levels over space and time?}
 
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
+
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
+
+datasetCountries <- datasetCountries %>% 
+  select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
+                                        by = "ID") %>% 
+  select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ",\\s*") %>%
+  mutate(countries = str_trim(country))
+
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
+# fix country names 
+library(countrycode)
+
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+### add income groups to the dataset
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+datasetClassificationCountries_long_clean <- merge(datasetClassificationCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+# 2) get total papers by country
+papers_by_country <- datasetClassificationCountries_long_clean %>%
+  group_by(country, iso3, .drop = F) %>% 
+  count(iso3, name = "n_papers") %>%
+  arrange(desc(n_papers)) %>% 
+  merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+
+datasetPollution <- read.csv("dataNew/GlobalPM25-V6GL0203-Annual-1998-2023-wThresFrac.csv")
+
+datasetPollution_avg <- datasetPollution %>% 
+  filter(Year == 2019) %>% 
+  group_by(Region) %>% 
+  summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
+
+
+datasetPollution_ctr <- datasetPollution_avg %>%
+  mutate(
+    iso3 = countrycode(Region,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(!is.na(iso3))
+
+papers_by_country_pollution <- merge(papers_by_country, datasetPollution_ctr, by = "iso3", all.x = T, all.y = T)
+
+fullCountrylist <- unique(countrycode::codelist$iso3c)
+
+papers_by_country_pollution$n_papers <- ifelse(!is.na(papers_by_country_pollution$n_papers), papers_by_country_pollution$n_papers, 0)
+
+papers_by_country_pollution_filtered <- subset(papers_by_country_pollution, iso3 %in% fullCountrylist) %>% 
+  filter(!is.na(iso3))
+
+papers_by_country_pollution_filtered %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()
+
+papers_by_country_pollution_filtered %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth()
+
+papers_by_country_pollution_filtered %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+subset(papers_by_country_pollution_filtered, n_papers > 0) %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+papers_by_country_pollution_filtered %>% 
+  filter(n_papers > 0) %>%
+  filter(iso3 != "CHN") %>% 
+  ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+papers_by_country_pollution_filtered %>% 
+  # filter(n_papers > 0) %>%
+  filter(iso3 != "CHN") %>% 
+  ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+iso3_un_members <- c(
+  "AFG","ALB","DZA","AND","AGO","ATG","ARG","ARM","AUS","AUT","AZE",
+  "BHS","BHR","BGD","BRB","BLR","BEL","BLZ","BEN","BTN","BOL","BIH",
+  "BWA","BRA","BRN","BGR","BFA","BDI","CPV","KHM","CMR","CAN","CAF",
+  "TCD","CHL","CHN","COL","COM","COG","COD","CRI","CIV","HRV","CUB",
+  "CYP","CZE","DNK","DJI","DMA","DOM","ECU","EGY","SLV","GNQ","ERI",
+  "EST","SWZ","ETH","FJI","FIN","FRA","GAB","GMB","GEO","DEU","GHA",
+  "GRC","GRD","GTM","GIN","GNB","GUY","HTI","HND","HUN","ISL","IND",
+  "IDN","IRN","IRQ","IRL","ISR","ITA","JAM","JPN","JOR","KAZ","KEN",
+  "KIR","PRK","KOR","KWT","KGZ","LAO","LVA","LBN","LSO","LBR","LBY",
+  "LIE","LTU","LUX","MDG","MWI","MYS","MDV","MLI","MLT","MHL","MRT",
+  "MUS","MEX","FSM","MDA","MCO","MNG","MNE","MAR","MOZ","MMR","NAM",
+  "NRU","NPL","NLD","NZL","NIC","NER","NGA","MKD","NOR","OMN","PAK",
+  "PLW","PAN","PNG","PRY","PER","PHL","POL","PRT","QAT","ROU","RUS",
+  "RWA","KNA","LCA","VCT","WSM","SMR","STP","SAU","SEN","SRB","SYC",
+  "SLE","SGP","SVK","SVN","SLB","SOM","ZAF","SSD","ESP","LKA","SDN",
+  "SUR","SWE","CHE","SYR","TJK","TZA","THA","TLS","TGO","TON","TTO",
+  "TUN","TUR","TKM","TUV","UGA","UKR","ARE","GBR","USA","URY","UZB",
+  "VUT","VEN","VNM","YEM","ZMB","ZWE"
+)
+
+papers_by_country_pollution_filteredUN <- subset(papers_by_country_pollution, iso3 %in% iso3_un_members) %>% 
+  filter(!is.na(iso3))
+
+
+papers_by_country_pollution_filteredUN %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()
+
+papers_by_country_pollution_filteredUN %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth()
+
+papers_by_country_pollution_filteredUN %>% ggplot(aes(x = pm25Avg, y = (n_papers)))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+papers_by_country_pollution_filteredUN %>% ggplot(aes(x = pm25Avg, y = (n_papers)))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  ylim(0,40)
+
+subset(papers_by_country_pollution_filteredUN, n_papers > 0) %>% ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+papers_by_country_pollution_filteredUN %>% 
+  filter(n_papers > 0) %>%
+  filter(iso3 != "CHN") %>% 
+  ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+papers_by_country_pollution_filteredUN %>% 
+  # filter(n_papers > 0) %>%
+  filter(iso3 != "CHN") %>% 
+  ggplot(aes(x = pm25Avg, y = n_papers))+
+  geom_point()+
+  geom_smooth(method = "lm")
+
+
+papers_by_country_pollution_filteredUN %>% ggplot(aes(x = n_papers > 0, y = pm25Avg))+
+  geom_boxplot()
+
+papers_by_country_pollution_filteredUN$categoryPollution <- cut(papers_by_country_pollution_filteredUN$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                  labels = c("very low", "low", "medium", "high", "very high"), 
+                  right = FALSE)
+
+papers_by_country_pollution_filteredUN %>% 
+  # filter(iso3 != "CHN") %>%
+  ggplot(aes(x = categoryPollution, y = log(n_papers)))+
+  geom_boxplot()
+
+
+papers_by_country_pollution_filteredUN_summary <- papers_by_country_pollution_filteredUN %>% 
+  mutate(paperBin = ifelse(n_papers > 0, 1, 0)) %>% 
+  group_by(categoryPollution) %>% 
+  summarize(proportionPaper = sum(paperBin, na.rm=T)/n(),
+            nbCountries = n())
+
+papers_by_country_pollution_filteredUN_summary %>% ggplot(aes(x = categoryPollution, y = proportionPaper))+
+  geom_boxplot()+
+  ylim(0,1)
+
+
+papers_by_country_pollution_filteredUN_summary <- papers_by_country_pollution_filteredUN %>% 
+  group_by(categoryPollution) %>% 
+  summarize(papersPerCountry = sum(n_papers, na.rm=T)/n(),
+            nbCountries = n(),
+            medianPapersPerCountry = median(n_papers, na.rm=T))
+
+papers_by_country_pollution_filteredUN_summary %>% ggplot(aes(x = categoryPollution, y = medianPapersPerCountry))+
+  geom_boxplot()
+  
+table(papers_by_country_pollution_filteredUN$categoryPollution)
+
+papers_by_country_pollution_filteredUN_summary %>% ggplot(aes(x = categoryPollution, y = papersPerCountry))+
+  geom_boxplot()
+
+
+
+TEST <- papers_by_country_pollution_filteredUN %>% 
+  filter(categoryPollution == "very high")
+
+# ylim(0,1)
 ```
 
 
