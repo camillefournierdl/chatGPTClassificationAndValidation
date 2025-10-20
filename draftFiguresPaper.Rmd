@@ -173,6 +173,11 @@ datasetClassificationCountries_long_clean <- merge(datasetClassificationCountrie
                                                    datasetYear,
                                                    by = "ID", all.x = T, all.y = F)
 
+
+## save this dataset for further analyses
+write.csv(datasetClassificationCountries_long_clean, "output/datasetClassificationCountries_long_clean.csv", row.names = F)
+
+
 # 2) count papers per country-year
 yearly <- datasetClassificationCountries_long_clean %>%
   count(Income.group, Year, name = "n_year") 
@@ -749,6 +754,9 @@ incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
 incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
 
 surveyCountries_long_clean <- merge(surveyCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+## save this dataset for further analyses
+write.csv(surveyCountries_long_clean, "output/datasetSurveyCountries_long_clean.csv", row.names = F)
 
 # 2) get total surveys by country
 surveys_by_country <- surveyCountries_long_clean %>%
