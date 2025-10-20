@@ -1,0 +1,422 @@
+---
+title: "Figure two"
+author: "Ella Henninger"
+date: "2025-10-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+## clean environment
+rm(list = ls())
+
+# Define which packages needed for analyses
+p_needed <-
+  c("knitr",
+    "dplyr", 
+    "stargazer",
+    "ggplot2",
+    "viridis",
+    "haven",
+    "MASS",
+    "modelsummary",
+    "tidyr",
+    "data.table",
+    "scales")
+
+# Check which packages are already installed on your computer
+packages <- rownames(installed.packages())
+
+# Check which packages are not installed
+p_to_install <- p_needed[!(p_needed %in% packages)]
+
+if (length(p_to_install) > 0) {
+  install.packages(p_to_install)
+}
+sapply(p_needed, require, character.only = TRUE)
+
+
+# Set an option for the final document that can be produced from the .Rmd file.
+knitr::opts_chunk$set(echo = TRUE)
+
+## For replicability: session information 
+session_info <- print(sessionInfo())
+```
+
+## Load the data
+
+```{r data}
+
+#-------------------------------------------------------------------------------
+# Load the data
+#-------------------------------------------------------------------------------
+papers <- read.csv2("output/datasetClassificationCountries_long_clean.csv", 
+                    header = T, sep = ",", dec = ".")
+
+surveys <- read.csv2("output/datasetSurveyCountries_long_clean.csv", 
+                     header = T, sep = ",", dec = ".")
+
+```
+
+## Clean the data
+
+```{r clean}
+
+#-------------------------------------------------------------------------------
+# consistent country names 
+#-------------------------------------------------------------------------------
+
+## paper
+papers <- papers %>%
+  mutate(country_clean = recode(country,
+    # Turkey variants
+    "Turkey" = "Turkyie",
+    "Türkiye" = "Turkyie",
+    
+    # UK variants
+    "UK" = "United Kingdom",
+    "England" = "United Kingdom",
+    "Wales" = "United Kingdom",
+    
+    # Korea variants
+    "Korea" = "South Korea",
+    
+    # Netherlands variants
+    "The Netherlands" = "Netherlands",
+    
+    # Czechia variants
+    "Czech Republic" = "Czechia",
+    
+    # US variants
+    "USA" = "United States",
+    
+    .default = country  # keep as is otherwise
+  ))
+
+papers <- papers[which(papers$country_clean != "exclude"),]
+papers <- papers[which(papers$country_clean != "no info"),]
+
+
+## survey
+surveys <- surveys %>%
+  mutate(country_clean = recode(countries,
+    # Turkey variants
+    "Turkey" = "Turkyie",
+    "Türkiye" = "Turkyie",
+    
+    # UK variants
+    "UK" = "United Kingdom",
+    "England" = "United Kingdom",
+    "Wales" = "United Kingdom",
+    
+    # Korea variants
+    "Korea" = "South Korea",
+    
+    # Netherlands variants
+    "The Netherlands" = "Netherlands",
+    
+    # Czechia variants
+    "Czech Republic" = "Czechia",
+    
+    # US variants
+    "USA" = "United States",
+    
+    .default = countries  # keep as is otherwise
+  ))
+
+
+#-------------------------------------------------------------------------------
+# relevant columns
+#-------------------------------------------------------------------------------
+papers <- papers[,c("ID", "country_clean",
+                    "Income.group", "Region", 
+                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "None")]
+
+surveys <- surveys[,c("id", "country_clean", "year", "Income.group", "Region", 
+                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "Inclusion")]
+
+```
+
+## Visualizations full data
+
+```{r visualise}
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+# reshape to long format and count topics
+papers_long <- papers %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health, None),
+    names_to = "Topic",
+    values_to = "Value"
+  ) %>%
+  filter(Value == 1) %>%
+  group_by(Topic) %>%
+  summarise(n = n()) %>%
+  mutate(share = n / sum(n))
+
+# bar plot with counts and percentage labels
+pdf("plots/Figure2_category_paper_barplot.pdf")
+ggplot(papers_long, aes(x = reorder(Topic, -n), y = n, fill = Topic)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = percent(share, accuracy = 1)),
+            vjust = -0.3, size = 5) +
+  labs(x = NULL, y = "Number of papers") +
+  scale_fill_manual(values = c(
+    "Perceptions" = "#8B7B8B",
+    "Behavior"    = "#EED8AE",
+    "Priority"    = "#CDB5CD",
+    "Policy"      = "#CD919E",
+    "Health"      = "#8B475D",
+    "None"        = "#F4A460")) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 16))
+dev.off()
+
+
+## Different visualisation
+install.packages("treemapify")
+library(treemapify)
+
+pdf("plots/Figure2_category_paper_tiles.pdf")
+ggplot(papers_long, aes(area = share, fill = Topic, label = paste0(Topic, "\n", scales::percent(share, accuracy = 1)))) +
+  geom_treemap(color = "white", size = 10) +
+  geom_treemap_text(colour = "white", place = "centre", grow = F, reflow = TRUE) +
+  scale_fill_manual(values = c(
+  "Perceptions" = "#8B7B8B",
+  "Behavior"    = "#EED8AE",
+  "Priority"    = "#CDB5CD",
+  "Policy"      = "#CD919E",
+  "Health"      = "#8B475D",
+  "None"        = "#F4A460")) +
+  theme(legend.position = "none")
+dev.off()
+
+
+
+#-------------------------------------------------------------------------------
+# surveys
+#-------------------------------------------------------------------------------
+
+# reshape to long format and count topics
+surveys_long <- surveys %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health),
+    names_to = "Topic",
+    values_to = "Value"
+  ) %>%
+  filter(Value == 1) %>%
+  group_by(Topic) %>%
+  summarise(n = n()) %>%
+  mutate(share = n / sum(n))
+
+# bar plot with counts and percentage labels
+pdf("plots/Figure2_category_survey_barplot.pdf")
+ggplot(surveys_long, aes(x = reorder(Topic, -n), y = n, fill = Topic)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = percent(share, accuracy = 1)),
+            vjust = -0.3, size = 5) +
+  labs(x = NULL, y = "Number of papers") +
+  scale_fill_manual(values = c(
+    "Perceptions" = "#8B7B8B",
+    "Behavior"    = "#EED8AE",
+    "Priority"    = "#CDB5CD",
+    "Policy"      = "#CD919E",
+    "Health"      = "#8B475D",
+    "None"        = "#F4A460")) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.title = element_text(size = 16))
+dev.off()
+
+## Different approach
+pdf("plots/Figure2_category_survey_tiles.pdf")
+ggplot(surveys_long, aes(area = share, fill = Topic, label = paste0(Topic, "\n", scales::percent(share, accuracy = 1)))) +
+  geom_treemap(color = "white", size = 10) +
+  geom_treemap_text(colour = "white", place = "centre", grow = F, reflow = TRUE) +
+  scale_fill_manual(values = c(
+  "Perceptions" = "#8B7B8B",
+  "Behavior"    = "#EED8AE",
+  "Priority"    = "#CDB5CD",
+  "Policy"      = "#CD919E",
+  "Health"      = "#8B475D",
+  "None"        = "#F4A460")) +
+  theme(legend.position = "none")
+dev.off()
+
+```
+
+
+## Visualizations by subgroup
+
+```{r subgroupies}
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+install.packages("ggnewscale")
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(ggnewscale)
+
+# 1. Prepare topic-level data (shares within income group)
+topics_data <- papers %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health, None),
+    names_to = "Topic",
+    values_to = "Value") %>%
+  filter(Value == 1, !is.na(Income.group)) %>%
+  group_by(Topic, Income.group) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(Income.group) %>%
+  mutate(share = n / sum(n),
+         total = sum(n)) %>%
+  ungroup() %>%
+  mutate(Income.group = factor(
+    Income.group,
+    levels = c("Low income", "Lower middle income", "Upper middle income", "High income")))
+
+# 2. Prepare totals row data (absolute counts)
+totals_data <- topics_data %>%
+  distinct(Income.group, total) %>%
+  mutate(Topic = "Total papers")
+
+# 3. Define consistent factor levels for the y-axis
+topic_levels <- c("Total papers", unique(topics_data$Topic))
+
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_paper_by_income.pdf")
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data,
+            aes(x = Income.group, y = "Total papers", fill = total),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data,
+    aes(x = Income.group, y = "Total papers",
+        label = paste0("n=", total),
+        color = ifelse(total > max(topics_data$total) * 0.4, "white", "black")), size = 4) +
+  scale_fill_gradient(
+    name = "Total papers",
+    low = "#EED8AE", high = "#8B864E",
+    breaks = range(totals_data$total),         
+  labels = range(totals_data$total)) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data,
+            aes(x = Income.group, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data,
+    aes(x = Income.group, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 4) +
+  scale_fill_gradient(
+    name = "Share within\nincome group",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data$share), max(topics_data$share))) +
+  scale_color_identity() +
+labs(x = "Income group", y = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 13),
+    axis.text.y = element_text(size = 13),
+    legend.position = "top")
+
+dev.off()
+
+#-------------------------------------------------------------------------------
+# surveys
+#-------------------------------------------------------------------------------
+
+# 1. Prepare topic-level data (shares within income group)
+topics_data_s <- surveys %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health),
+    names_to = "Topic",
+    values_to = "Value") %>%
+  filter(Value == 1, !is.na(Income.group)) %>%
+  group_by(Topic, Income.group) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(Income.group) %>%
+  mutate(share = n / sum(n),
+         total = sum(n)) %>%
+  ungroup() %>%
+  mutate(Income.group = factor(
+    Income.group,
+    levels = c("Low income", "Lower middle income", "Upper middle income", "High income")))
+
+# 2. Prepare totals row data (absolute counts)
+totals_data_s <- topics_data %>%
+  distinct(Income.group, total) %>%
+  mutate(Topic = "Total papers")
+
+# 3. Define consistent factor levels for the y-axis
+topic_levels_s <- c("Total items", unique(topics_data$Topic))
+
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_survey_by_income.pdf")
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data_s,
+            aes(x = Income.group, y = "Total items", fill = total),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data_s,
+    aes(x = Income.group, y = "Total items",
+        label = paste0("n=", total),
+        color = ifelse(total > max(topics_data_s$total) * 0.4, "white", "black")), size = 4) +
+  scale_fill_gradient(
+    name = "Total items",
+    low = "#EED8AE", high = "#8B864E",
+    breaks = range(totals_data_s$total),         
+  labels = range(totals_data_s$total)) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data_s,
+            aes(x = Income.group, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data_s,
+    aes(x = Income.group, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 4) +
+  scale_fill_gradient(
+    name = "Share within\nincome group",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data_s$share), max(topics_data_s$share))) +
+  scale_color_identity() +
+labs(x = "Income group", y = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 13),
+    axis.text.y = element_text(size = 13),
+    legend.position = "top")
+
+dev.off()
+
+```
+
