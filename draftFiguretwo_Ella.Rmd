@@ -222,7 +222,7 @@ ggplot(surveys_long, aes(x = reorder(Topic, -n), y = n, fill = Topic)) +
   geom_col(color = "black") +
   geom_text(aes(label = percent(share, accuracy = 1)),
             vjust = -0.3, size = 5) +
-  labs(x = NULL, y = "Number of papers") +
+  labs(x = NULL, y = "Number of items") +
   scale_fill_manual(values = c(
     "Perceptions" = "#8B7B8B",
     "Behavior"    = "#EED8AE",
@@ -296,7 +296,7 @@ totals_data <- topics_data %>%
 topic_levels <- c("Total papers", unique(topics_data$Topic))
 
 # 4. Plot with two independent fill scales
-pdf("plots/Figure2_category_paper_by_income.pdf")
+pdf("plots/Figure2_category_paper_by_income.pdf", width = 10)
 ggplot() +
   # --- top totals row ---
   geom_tile(data = totals_data,
@@ -372,7 +372,7 @@ totals_data_s <- topics_data %>%
 topic_levels_s <- c("Total items", unique(topics_data$Topic))
 
 # 4. Plot with two independent fill scales
-pdf("plots/Figure2_category_survey_by_income.pdf")
+pdf("plots/Figure2_category_survey_by_income.pdf", width = 10)
 ggplot() +
   # --- top totals row ---
   geom_tile(data = totals_data_s,
