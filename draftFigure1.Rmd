@@ -1,0 +1,339 @@
+---
+title: "draftFigure1"
+output: html_document
+---
+
+```{r panels}
+
+library(tidyverse)
+
+dataset <- read.csv("output/datasetPlots.csv")
+
+dataset$isDiff <- ifelse(dataset$isIndia == 1, "India",
+                         ifelse(dataset$isChina == 1, "China", "Rest"))
+
+summaryPaperInc <- dataset %>% 
+  group_by(Income.group, isDiff) %>% 
+  summarize(nTotal = sum(n_papers, na.rm = T)) %>% 
+  filter(!is.na(Income.group))
+
+
+summaryPaperInc$Income.group <- factor(
+  summaryPaperInc$Income.group,
+  levels = rev(c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  )),
+  ordered = TRUE
+)
+
+# simple version of the plot
+# summaryPaperInc %>% ggplot(aes(x = Income.group, y = nTotal))+
+#   geom_bar(stat = "identity", aes(fill = isDiff))+
+#   scale_fill_manual(values = c("#C19EAB", "#C19EAB", "#8B475D"))+
+#   theme_minimal()+
+#   labs(y = "Total number of papers", x = "Income group")+
+#   theme(legend.position = "none")
+
+totals <- summaryPaperInc %>%
+  group_by(Income.group) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p1 <- summaryPaperInc %>%
+  ggplot(aes(x = Income.group, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = Income.group, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#C19EAB", "#C19EAB", "#8B475D")) +
+  theme_minimal() +
+  labs(y = "Total number of papers", x = "Income group") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p1
+
+pdf("plots/Figure1_papers_by_income.pdf", width = 10)
+p1
+dev.off()
+
+
+## then surveys
+summarySurveysInc <- dataset %>% 
+  group_by(Income.group, isDiff) %>% 
+  summarize(nTotal = sum(n_surveys, na.rm = T)) %>% 
+  filter(!is.na(Income.group))
+
+summarySurveysInc$Income.group <- factor(
+  summarySurveysInc$Income.group,
+  levels = rev(c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  )),
+  ordered = TRUE
+)
+
+totals <- summarySurveysInc %>%
+  group_by(Income.group) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p2 <- summarySurveysInc %>%
+  ggplot(aes(x = Income.group, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = Income.group, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#E6D0F4", "#E6D0F4", "#B873E7")) +
+  theme_minimal() +
+  labs(y = "Total number of survey items", x = "income Group") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p2
+
+pdf("plots/Figure1_surveys_by_income.pdf", width = 10)
+p2
+dev.off()
+
+
+## then papers per exposure
+
+summaryPaperExp <- dataset %>% 
+  group_by(categoryPollution, isDiff) %>% 
+  summarize(nTotal = sum(n_papers, na.rm = T)) %>% 
+  filter(!is.na(categoryPollution))
+
+summaryPaperExp$categoryPollution <- ifelse(
+  !is.na(summaryPaperExp$categoryPollution),
+  paste0(toupper(substr(summaryPaperExp$categoryPollution, 1, 1)),
+         substr(summaryPaperExp$categoryPollution, 2, nchar(summaryPaperExp$categoryPollution))),
+  NA
+)
+
+summaryPaperExp$categoryPollution <- factor(
+  summaryPaperExp$categoryPollution,
+  levels = rev(c(
+    "Very high",
+    "High",
+    "Medium",
+    "Low",
+    "Very low"
+  )),
+  ordered = TRUE
+)
+
+totals <- summaryPaperExp %>%
+  group_by(categoryPollution) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p3 <- summaryPaperExp %>%
+  ggplot(aes(x = categoryPollution, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = categoryPollution, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#C19EAB", "#A67384", "#8B475D")) +
+  theme_minimal() +
+  labs(y = "Total number of papers", x = "Pollution exposure") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p3
+
+pdf("plots/Figure1_papers_by_exposure.pdf", width = 10)
+p3
+dev.off()
+
+## then surveys per exposure
+
+summarySurveysExp <- dataset %>% 
+  group_by(categoryPollution, isDiff) %>% 
+  summarize(nTotal = sum(n_surveys, na.rm = T)) %>% 
+  filter(!is.na(categoryPollution))
+
+summarySurveysExp$categoryPollution <- ifelse(
+  !is.na(summarySurveysExp$categoryPollution),
+  paste0(toupper(substr(summarySurveysExp$categoryPollution, 1, 1)),
+         substr(summarySurveysExp$categoryPollution, 2, nchar(summarySurveysExp$categoryPollution))),
+  NA
+)
+
+summarySurveysExp$categoryPollution <- factor(
+  summarySurveysExp$categoryPollution,
+  levels = rev(c(
+    "Very high",
+    "High",
+    "Medium",
+    "Low",
+    "Very low"
+  )),
+  ordered = TRUE
+)
+
+totals <- summarySurveysExp %>%
+  group_by(categoryPollution) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p4 <- summarySurveysExp %>%
+  ggplot(aes(x = categoryPollution, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = categoryPollution, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#E6D0F4", "#D4ABEF", "#B873E7")) +
+  theme_minimal() +
+  labs(y = "Total number of survey items", x = "Pollution exposure") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p4
+
+pdf("plots/Figure1_surveys_by_exposure.pdf", width = 10)
+p4
+dev.off()
+
+```
+
+
+
+```{r maps}
+
+library(tidyverse)
+library(rnaturalearth)
+library(terra)
+library(tidyterra)
+library(scales)          # for label formatting
+
+dataset <- read.csv("output/datasetPlots.csv")
+
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+
+world_countries$iso_a3 <- ifelse(world_countries$iso_a3_eh == "FRA", "FRA",
+                                    ifelse(world_countries$iso_a3_eh == "NOR", "NOR", world_countries$iso_a3))
+
+world_countries_merged <- merge(world_countries, dataset
+                                , by.x = "iso_a3", by.y = "iso3", all.x = T, all.y = F)
+
+world_countries_merged$n_papers <- ifelse(is.na(world_countries_merged$n_papers), 0, world_countries_merged$n_papers)
+
+my_breaks = c(1, 5, 20, 50, 150)
+
+world_no_antarctica <- 
+  world_countries_merged %>%
+  filter(name != "Antarctica")
+
+# 2) Build the map with integer labels and no decimals:
+map_plot_clean <- ggplot() +
+  geom_spatvector(
+    data = world_no_antarctica,
+    aes(fill = n_papers),
+    color = "grey80",
+    size  = 0.1
+  ) +
+  scale_fill_gradientn(
+    colours = c("#DCC9D2", "#8B475D", "#4F2A30"),
+    name    = "Papers",
+    trans   = "log10",
+    breaks  = my_breaks,
+    labels  = label_number(
+      accuracy = 1,
+      big.mark = ",",
+      trim     = TRUE
+    ),
+    na.value = "grey90"
+  ) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title    = "Global Publication Counts by Country",
+    # subtitle = "Log₁₀ scale, viridis “plasma” palette"
+  ) +
+  theme_void(base_size = 14) +
+  theme(
+    legend.position  = "bottom",
+    legend.key.width = unit(2, "cm"),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle    = element_text(hjust = 0.5)
+  )
+
+# Print it
+map_plot_clean
+
+ggsave(plot = map_plot_clean, filename = paste("plots/mapPapersCount.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+pdf("plots/Figure1_mapPapersCount.pdf", width = 10)
+map_plot_clean
+dev.off()
+
+
+## then for surveys
+world_countries_merged$n_surveys <- ifelse(is.na(world_countries_merged$n_surveys), 0, world_countries_merged$n_surveys)
+
+my_breaks = c(1, 5, 10, 20)
+
+# 1) Filter out Antarctica from your data:
+world_no_antarctica <- 
+  world_countries_merged %>%
+  filter(name != "Antarctica")
+
+# 2) Build the map with integer labels and no decimals:
+map_plot_clean_survey <- ggplot() +
+  geom_spatvector(
+    data = world_no_antarctica,
+    aes(fill = n_surveys),
+    color = "grey70",
+    size  = 0.1
+  ) +
+  scale_fill_gradientn(
+    colours = c("#F3EBF8", "#D4ABEF", "#541F78"),
+    name    = "Papers",
+    trans   = "log10",
+    breaks  = my_breaks,
+    labels  = label_number(
+      accuracy = 1,
+      big.mark = ",",
+      trim     = TRUE
+    ),
+    na.value = "grey85"
+  ) +
+  coord_sf(expand = FALSE) +
+  labs(
+    title    = "Global Survey Question Counts by Country",
+    # subtitle = "Log₁₀ scale, viridis “plasma” palette"
+  ) +
+  theme_void(base_size = 14) +
+  theme(
+    legend.position  = "bottom",
+    legend.key.width = unit(2, "cm"),
+    plot.title       = element_text(face = "bold", hjust = 0.5),
+    plot.subtitle    = element_text(hjust = 0.5)
+  )
+
+# Print it
+map_plot_clean_survey
+
+ggsave(plot = map_plot_clean_survey, filename = paste("plots/mapSurveyCount.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+pdf("plots/Figure1_mapSurveyCount.pdf", width = 10)
+map_plot_clean_survey
+dev.off()
+
+
+```
+
+
+
+
