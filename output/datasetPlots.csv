@@ -1,208 +1,200 @@
-"iso3","country","n_papers","Economy","Region","Income.group","Lending.category","countryName","pm25Avg","n_surveys","population2015","categoryPollution","isChina","isIndia"
-"AFG",NA,0,NA,NA,NA,NA,"Afghanistan",32.6,0,33760563.728,"high",0,0
-"AGO",NA,0,NA,NA,NA,NA,"Angola",19.7,7,28131377.368,"medium",0,0
-"ALB",NA,0,NA,NA,NA,NA,"Albania",16,18,2882256.2209,"medium",0,0
-"AND",NA,0,NA,NA,NA,NA,"Andorra",6.3,1,71599.20824,"very low",0,0
-"ARE","United Arab Emirates",1,"United Arab Emirates","Middle East & North Africa","High income","","United Arab Emirates",46,0,8865812.0958,"very high",0,0
-"ARG",NA,0,NA,NA,NA,NA,"Argentina",13.9,2,43243256.584,"low",0,0
-"ARM",NA,0,NA,NA,NA,NA,"Armenia",28.8,1,2881787.387,"high",0,0
-"ATG",NA,0,NA,NA,NA,NA,"Antigua and Barbuda",10.4,0,89941.00002,"low",0,0
-"AUS","Australia",9,"Australia","East Asia & Pacific","High income","","Australia",9.2,7,23819590.174,"very low",0,0
-"AUT","Austria",4,"Austria","Europe & Central Asia","High income","","Austria",10.6,66,8638698.04,"low",0,0
-"AZE",NA,0,NA,NA,NA,NA,"Azerbaijan",17.7,0,9778662.034,"medium",0,0
-"BDI",NA,0,NA,NA,NA,NA,"Burundi",27.4,0,10725013.726,"high",0,0
-"BEL","Belgium",5,"Belgium","Europe & Central Asia","High income","","Belgium",10.6,63,11247664.394,"low",0,0
-"BEN","Benin",1,"Benin","Sub-Saharan Africa","Lower middle income","IDA","Benin",29.2,7,10919007.948,"high",0,0
-"BFA",NA,0,NA,NA,NA,NA,"Burkina Faso",32.7,7,18677318.4,"high",0,0
-"BGD","Bangladesh",4,"Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1,2,157540165.332,"very high",0,0
-"BGR","Bulgaria",1,"Bulgaria","Europe & Central Asia","High income","IBRD","Bulgaria",17.2,62,7294496.561,"medium",0,0
-"BHR","Bahrain",1,"Bahrain","Middle East & North Africa","High income","","Bahrain",51.8,0,1362053.80928,"very high",0,0
-"BHS",NA,0,NA,NA,NA,NA,"Bahamas",5.7,0,392696.9999,"very low",0,0
-"BIH","Bosnia and Herzegovina",1,"Bosnia and Herzegovina","Europe & Central Asia","Upper middle income","IBRD","Bosnia and Herzegovina",20.1,17,3519876.9959,"medium",0,0
-"BLR",NA,0,NA,NA,NA,NA,"Belarus",12.9,0,9703914.493,"low",0,0
-"BLZ",NA,0,NA,NA,NA,NA,"Belize",10.3,0,357670.60895,"low",0,0
-"BOL",NA,0,NA,NA,NA,NA,"Bolivia",23,1,11122028.826,"medium",0,0
-"BRA","Brazil",4,"Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3,3,205180111.37,"low",0,0
-"BRB",NA,0,NA,NA,NA,NA,"Barbados",13.7,0,278082.99991,"low",0,0
-"BRN","Brunei",1,"Brunei Darussalam","East Asia & Pacific","High income","","Brunei",15,0,421205.3389,"medium",0,0
-"BTN",NA,0,NA,NA,NA,NA,"Bhutan",35.2,0,808200.6064,"very high",0,0
-"BWA",NA,0,NA,NA,NA,NA,"Botswana",12.7,7,2305984.1766,"low",0,0
-"CAF",NA,0,NA,NA,NA,NA,"Central African Republic",34.3,0,4832052.597,"high",0,0
-"CAN","Canada",8,"Canada","North America","High income","","Canada",6.4,3,35718888.85,"very low",0,0
-"CHE","Switzerland",3,"Switzerland","Europe & Central Asia","High income","","Switzerland",8.8,21,8240652.067,"very low",0,0
-"CHL","Chile",6,"Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3,2,17870505.86,"medium",0,0
-"CHN","China",168,"China","East Asia & Pacific","Upper middle income","IBRD","China",37.7,8,1401793873.9,"very high",1,0
-"CIV",NA,0,NA,NA,NA,NA,"Côte d'Ivoire",21.9,7,23578198.716,"medium",0,0
-"CMR",NA,0,NA,NA,NA,NA,"Cameroon",37,7,23038492.024,"very high",0,0
-"COD",NA,0,NA,NA,NA,NA,"Democratic Republic of the Congo",29.8,0,78664750.16,"high",0,0
-"COG",NA,0,NA,NA,NA,NA,"Republic of Congo",34.2,7,5082311.3174,"high",0,0
-"COL","Colombia",5,"Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4,2,47128348.602,"medium",0,0
-"COM",NA,0,NA,NA,NA,NA,"Comoros",6.5,0,730216.0002,"very low",0,0
-"CPV",NA,0,NA,NA,NA,NA,"Cape Verde",14.1,7,552166.0004,"low",0,0
-"CRI",NA,0,NA,NA,NA,NA,"Costa Rica",18.1,0,4903346.81,"medium",0,0
-"CUB",NA,0,NA,NA,NA,NA,"Cuba",9.3,0,11339894,"very low",0,0
-"CYP","Cyprus",1,"Cyprus","Europe & Central Asia","High income","","Northern Cyprus",14.4,63,829545.2764,"low",0,0
-"CYP","Cyprus",1,"Cyprus","Europe & Central Asia","High income","","Cyprus",14.9,63,829545.2764,"low",0,0
-"CZE","Czech Republic",2,"Czechia","Europe & Central Asia","High income","","Czech Republic",13.3,64,10528713.864,"low",0,0
-"CZE","Czechia",1,"Czechia","Europe & Central Asia","High income","","Czech Republic",13.3,64,10528713.864,"low",0,0
-"DEU","Germany",11,"Germany","Europe & Central Asia","High income","","Germany",9.6,69,82149541.57,"very low",0,0
-"DJI",NA,0,NA,NA,NA,NA,"Djibouti",24.6,0,1012339.9909,"medium",0,0
-"DMA",NA,0,NA,NA,NA,NA,"Dominica",9.1,0,70007.00001,"very low",0,0
-"DNK","Denmark",3,"Denmark","Europe & Central Asia","High income","","Denmark",8.9,67,5677894.974,"very low",0,0
-"DOM",NA,0,NA,NA,NA,NA,"Dominican Republic",16.1,0,10391057.897,"medium",0,0
-"DZA",NA,0,NA,NA,NA,NA,"Algeria",13,1,39544078.244,"low",0,0
-"ECU","Ecuador",1,"Ecuador","Latin America & Caribbean","Upper middle income","IBRD","Ecuador",19.5,1,16196517.256,"medium",0,0
-"EGY","Egypt",1,"Egypt, Arab Rep.","Middle East & North Africa","Lower middle income","IBRD","Egypt",50.5,3,97730135.631,"very high",0,0
-"ERI",NA,0,NA,NA,NA,NA,"Eritrea",22.2,0,3326554.6487,"medium",0,0
-"ESP","Spain",12,"Spain","Europe & Central Asia","High income","","Spain",10.1,68,46428809.67,"low",0,0
-"EST","Estonia",3,"Estonia","Europe & Central Asia","High income","","Estonia",6.8,62,1311099.545,"very low",0,0
-"ETH","Ethiopia",1,"Ethiopia","Sub-Saharan Africa","Low income","IDA","Ethiopia",25.5,8,102345078.66,"high",0,0
-"FIN","Finland",13,"Finland","Europe & Central Asia","High income","","Finland",5.1,66,5447090.285,"very low",0,0
-"FJI",NA,0,NA,NA,NA,NA,"Fiji",5.4,0,917200,"very low",0,0
-"FRA","France",12,"France","Europe & Central Asia","High income","","France",9.4,68,63821694.19,"very low",0,0
-"GAB",NA,0,NA,NA,NA,NA,"Gabon",23.7,7,2045204.9733,"medium",0,0
-"GBR","UK",1,"United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9,48,65224257.284,"very low",0,0
-"GBR","England",6,"United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9,48,65224257.284,"very low",0,0
-"GBR","Wales",1,"United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9,48,65224257.284,"very low",0,0
-"GBR","United Kingdom",18,"United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9,48,65224257.284,"very low",0,0
-"GEO","Georgia",1,"Georgia","Europe & Central Asia","Upper middle income","IBRD","Georgia",15.7,0,3772078.135,"medium",0,0
-"GHA","Ghana",3,"Ghana","Sub-Saharan Africa","Lower middle income","IDA","Ghana",26.9,8,28974454.991,"high",0,0
-"GIN",NA,0,NA,NA,NA,NA,"Guinea",24.3,7,11627868.888,"medium",0,0
-"GMB",NA,0,NA,NA,NA,NA,"Gambia",30.7,7,2256690.1121,"high",0,0
-"GNB",NA,0,NA,NA,NA,NA,"Guinea-Bissau",26.3,0,1789591.5445,"high",0,0
-"GNQ",NA,0,NA,NA,NA,NA,"Equatorial Guinea",16,0,1325245.7975,"medium",0,0
-"GRC","Greece",6,"Greece","Europe & Central Asia","High income","","Greece",14.8,63,10807782.015,"low",0,0
-"GRD",NA,0,NA,NA,NA,NA,"Grenada",10.9,0,118979.99989,"low",0,0
-"GTM","Guatemala",2,"Guatemala","Latin America & Caribbean","Upper middle income","IBRD","Guatemala",22,1,15997665.775,"medium",0,0
-"GUY",NA,0,NA,NA,NA,NA,"Guyana",13.2,0,750300.3958,"low",0,0
-"HKG",NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,0,0
-"HND",NA,0,NA,NA,NA,NA,"Honduras",21.8,0,9305049.743,"medium",0,0
-"HRV","Croatia",2,"Croatia","Europe & Central Asia","High income","IBRD","Croatia",13.7,39,4254148.74,"low",0,0
-"HTI",NA,0,NA,NA,NA,NA,"Haiti",13.4,0,10578531.102,"low",0,0
-"HUN","Hungary",1,"Hungary","Europe & Central Asia","High income","","Hungary",14,66,9845520.657,"low",0,0
-"IDN","Indonesia",8,"Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1,2,259083290.41,"medium",0,0
-"IND","India",25,"India","South Asia","Lower middle income","IBRD","India",51.4,8,1323107937.3,"very high",0,1
-"IRL","Ireland",4,"Ireland","Europe & Central Asia","High income","","Ireland",8.9,46,4665866.723,"very low",0,0
-"IRN","Iran",14,"Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8,1,81764618.24,"high",0,0
-"IRQ",NA,0,NA,NA,NA,NA,"Iraq",36.3,2,37758248.721,"very high",0,0
-"ISL","Iceland",1,"Iceland","Europe & Central Asia","High income","","Iceland",4.7,21,331059.99998,"very low",0,0
-"ISR",NA,0,NA,NA,NA,NA,"Israel",21.6,0,8006085.191,"medium",0,0
-"ITA","Italy",18,"Italy","Europe & Central Asia","High income","","Italy",14.4,68,60254972.26,"low",0,0
-"JAM",NA,0,NA,NA,NA,NA,"Jamaica",15.4,0,2794445.0005,"medium",0,0
-"JOR","Jordan",2,"Jordan","Middle East & North Africa","Lower middle income","IBRD","Jordan",31.4,3,9493248.3607,"high",0,0
-"JPN","Japan",6,"Japan","East Asia & Pacific","High income","","Japan",13.6,7,127250931.89,"low",0,0
-"KAZ","Kazakhstan",1,"Kazakhstan","Europe & Central Asia","Upper middle income","IBRD","Kazakhstan",18.3,3,17837537.223,"medium",0,0
-"KEN",NA,0,NA,NA,NA,NA,"Kenya",20.7,9,46966103.845,"medium",0,0
-"KGZ","Kyrgyzstan",1,"Kyrgyz Republic","Europe & Central Asia","Lower middle income","IDA","Kyrgyzstan",20.5,3,5784506.115,"medium",0,0
-"KHM","Cambodia",1,"Cambodia","East Asia & Pacific","Lower middle income","IDA","Cambodia",22.7,0,15409796.658,"medium",0,0
-"KIR",NA,0,NA,NA,NA,NA,"Kiribati",3.6,0,116706.99998,"very low",0,0
-"KNA",NA,0,NA,NA,NA,NA,"Saint Kitts and Nevis",7.8,0,47790.00006,"very low",0,0
-"KOR","South Korea",21,"Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3,7,50994550.335,"medium",0,0
-"KOR","Korea",5,"Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3,7,50994550.335,"medium",0,0
-"KWT",NA,0,NA,NA,NA,NA,"Kuwait",56.6,1,3908967.1646,"very high",0,0
-"LAO",NA,0,NA,NA,NA,NA,"Laos",25.7,0,6811332.9584,"high",0,0
-"LBN","Lebanon",3,"Lebanon","Middle East & North Africa","Lower middle income","IBRD","Lebanon",30.8,3,6385091.402,"high",0,0
-"LBR",NA,0,NA,NA,NA,NA,"Liberia",18,7,4615232.7046,"medium",0,0
-"LBY",NA,0,NA,NA,NA,NA,"Libya",19.3,2,6191982.845,"medium",0,0
-"LCA",NA,0,NA,NA,NA,NA,"Saint Lucia",12.6,0,175622.99988,"low",0,0
-"LIE",NA,0,NA,NA,NA,NA,"Liechtenstein",8.6,0,37173.459498,"very low",0,0
-"LKA",NA,0,NA,NA,NA,NA,"Sri Lanka",20.6,0,21336697.003,"medium",0,0
-"LSO",NA,0,NA,NA,NA,NA,"Lesotho",59.1,7,2117932.4656,"very high",0,0
-"LTU","Lithuania",1,"Lithuania","Europe & Central Asia","High income","","Lithuania",10.7,66,2965336.0678,"low",0,0
-"LUX","Luxembourg",1,"Luxembourg","Europe & Central Asia","High income","","Luxembourg",8.7,62,564745.4612,"very low",0,0
-"LVA","Latvia",2,"Latvia","Europe & Central Asia","High income","","Latvia",9.3,62,1992345.4992,"very low",0,0
-"MAC",NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,0,0
-"MAR",NA,0,NA,NA,NA,NA,"Morocco",14.3,9,34682354.769,"low",0,0
-"MCO",NA,0,NA,NA,NA,NA,"Monaco",10,0,36661.26966,"low",0,0
-"MDA",NA,0,NA,NA,NA,NA,"Moldova",13.5,0,3282187.079,"low",0,0
-"MDG",NA,0,NA,NA,NA,NA,"Madagascar",10.2,7,24850912.002,"low",0,0
-"MDV",NA,0,NA,NA,NA,NA,"Maldives",11.9,1,435582.00007,"low",0,0
-"MEX","Mexico",10,"Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4,2,120128231.05,"medium",0,0
-"MHL",NA,0,NA,NA,NA,NA,"Marshall Islands",3.2,0,49410.00001,"very low",0,0
-"MKD","Macedonia",2,"North Macedonia","Europe & Central Asia","Upper middle income","IBRD","Macedonia",20.3,18,2107669.836,"medium",0,0
-"MLI",NA,0,NA,NA,NA,NA,"Mali",32.5,7,18114840.393,"high",0,0
-"MLT","Malta",1,"Malta","Middle East & North Africa","High income","","Malta",11.9,62,456578.99994,"low",0,0
-"MMR","Myanmar",1,"Myanmar","East Asia & Pacific","Lower middle income","IDA","Myanmar",32.7,1,51471274.35,"high",0,0
-"MNE","Montenegro",2,"Montenegro","Europe & Central Asia","Upper middle income","IBRD","Montenegro",13,18,633373.0467,"low",0,0
-"MNG","Mongolia",1,"Mongolia","East Asia & Pacific","Upper middle income","IBRD","Mongolia",26.3,1,2961148.2406,"high",0,0
-"MOZ",NA,0,NA,NA,NA,NA,"Mozambique",11.5,7,26874712.887,"low",0,0
-"MRT",NA,0,NA,NA,NA,NA,"Mauritania",38.2,8,3936260.9543,"very high",0,0
-"MUS",NA,0,NA,NA,NA,NA,"Mauritius",12.5,7,1293152.9999,"low",0,0
-"MWI",NA,0,NA,NA,NA,NA,"Malawi",14.5,7,16907389.578,"low",0,0
-"MYS","Malaysia",23,"Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9,3,31081433.179,"medium",0,0
-"NAM",NA,0,NA,NA,NA,NA,"Namibia",12.7,7,2282695.4977,"low",0,0
-"NER",NA,0,NA,NA,NA,NA,"Niger",42.7,7,20142084.567,"very high",0,0
-"NGA","Nigeria",1,"Nigeria","Sub-Saharan Africa","Lower middle income","Blend","Nigeria",41.2,9,183943676.88,"very high",0,0
-"NIC",NA,0,NA,NA,NA,NA,"Nicaragua",15.7,2,6287809.607,"medium",0,0
-"NLD","Netherlands",4,"Netherlands","Europe & Central Asia","High income","","Netherlands",11,65,17025763.116,"low",0,0
-"NLD","The Netherlands",1,"Netherlands","Europe & Central Asia","High income","","Netherlands",11,65,17025763.116,"low",0,0
-"NOR","Norway",3,"Norway","Europe & Central Asia","High income","","Norway",5.5,21,5187607.031,"very low",0,0
-"NPL","Nepal",2,"Nepal","South Asia","Lower middle income","IDA","Nepal",44.2,0,27586971.354,"very high",0,0
-"NRU",NA,0,NA,NA,NA,NA,"Nauru",4.3,0,11184.999964,"very low",0,0
-"NZL","New Zealand",2,"New Zealand","East Asia & Pacific","High income","","New Zealand",7.8,5,4590585.058,"very low",0,0
-"OMN","Oman",2,"Oman","Middle East & North Africa","High income","","Oman",34.7,0,4237809.064,"high",0,0
-"PAK","Pakistan",12,"Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4,2,210923972.87,"very high",0,0
-"PAN",NA,0,NA,NA,NA,NA,"Panama",16.5,0,3951603.2638,"medium",0,0
-"PER","Peru",1,"Peru","Latin America & Caribbean","Upper middle income","IBRD","Peru",18.6,2,30713140.732,"medium",0,0
-"PHL","Philippines",5,"Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2,6,103031365,"medium",0,0
-"PLW",NA,0,NA,NA,NA,NA,"Palau",4.9,0,17794.000018,"very low",0,0
-"PNG",NA,0,NA,NA,NA,NA,"Papua New Guinea",12.8,0,8676579.2521,"low",0,0
-"POL","Poland",11,"Poland","Europe & Central Asia","High income","IBRD","Poland",17.2,64,38527290.78,"medium",0,0
-"PRI",NA,NA,NA,NA,NA,NA,NA,NA,1,3497334.9998,NA,0,0
-"PRK",NA,0,NA,NA,NA,NA,"North Korea",24.9,0,25183141.62,"medium",0,0
-"PRT","Portugal",8,"Portugal","Europe & Central Asia","High income","","Portugal",8.7,62,10365900.406,"very low",0,0
-"PRY",NA,0,NA,NA,NA,NA,"Paraguay",15.4,0,6165043.994,"medium",0,0
-"PSE",NA,NA,NA,NA,NA,NA,NA,NA,2,4476781.9278,NA,0,0
-"QAT",NA,0,NA,NA,NA,NA,"Qatar",72,0,2415319.3258,"very high",0,0
-"ROU","Romania",3,"Romania","Europe & Central Asia","High income","IBRD","Romania",16.1,63,19913237.941,"medium",0,0
-"RUS","Russia",1,"Russian Federation","Europe & Central Asia","High income","IBRD","Russia",13.1,7,144497553.24,"low",0,0
-"RWA","Rwanda",2,"Rwanda","Sub-Saharan Africa","Low income","IDA","Rwanda",30.3,0,11617555.454,"high",0,0
-"SAU","Saudi Arabia",1,"Saudi Arabia","Middle East & North Africa","High income","","Saudi Arabia",57.3,0,32784619.5,"very high",0,0
-"SDN",NA,0,NA,NA,NA,NA,"Sudan",29.6,8,38211004.412,"high",0,0
-"SEN","Senegal",1,"Senegal","Sub-Saharan Africa","Lower middle income","IDA","Senegal",31.8,8,14371998.752,"high",0,0
-"SGP","Singapore",9,"Singapore","East Asia & Pacific","High income","","Singapore",23.3,2,5650073.984147,"medium",0,0
-"SLB",NA,0,NA,NA,NA,NA,"Solomon Islands",6.5,0,612660.00021,"very low",0,0
-"SLE",NA,0,NA,NA,NA,NA,"Sierra Leone",18.5,7,7310110.355,"medium",0,0
-"SLV",NA,0,NA,NA,NA,NA,"El Salvador",24.6,1,6228156.686,"medium",0,0
-"SMR",NA,0,NA,NA,NA,NA,"San Marino",11.7,0,31708.269159,"low",0,0
-"SOM",NA,0,NA,NA,NA,NA,"Somalia",12.1,0,13804335.713,"low",0,0
-"SRB","Serbia",4,"Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5,19,7574464.654,"medium",0,0
-"SSD",NA,0,NA,NA,NA,NA,"South Sudan",21.6,0,11156261.732,"medium",0,0
-"STP",NA,0,NA,NA,NA,NA,"São Tomé and Príncipe",14.6,7,201123.99994,"low",0,0
-"SUR",NA,0,NA,NA,NA,NA,"Suriname",15.4,0,581633.9297,"medium",0,0
-"SVK","Slovakia",1,"Slovak Republic","Europe & Central Asia","High income","","Slovakia",14.1,67,5424020.0425,"low",0,0
-"SVN","Slovenia",4,"Slovenia","Europe & Central Asia","High income","","Slovenia",13.3,66,2047926.18,"low",0,0
-"SWE","Sweden",12,"Sweden","Europe & Central Asia","High income","","Sweden",5.8,68,9850041.32,"very low",0,0
-"SWZ",NA,0,NA,NA,NA,NA,"Swaziland",14.9,7,1136672.32528,"low",0,0
-"SYC",NA,0,NA,NA,NA,NA,"Seychelles",5.6,7,99240.00012,"very low",0,0
-"SYR",NA,0,NA,NA,NA,NA,"Syria",26.2,0,19214802.745,"high",0,0
-"TCD",NA,0,NA,NA,NA,NA,"Chad",36.5,0,14125227.669,"very high",0,0
-"TGO",NA,0,NA,NA,NA,NA,"Togo",30,7,7430917.711,"high",0,0
-"THA","Thailand",11,"Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2,6,70317465.6,"high",0,0
-"TJK",NA,0,NA,NA,NA,NA,"Tajikistan",29.2,3,8535910.108,"high",0,0
-"TKM",NA,0,NA,NA,NA,NA,"Turkmenistan",21.3,2,5773821.721,"medium",0,0
-"TLS",NA,0,NA,NA,NA,NA,"Timor-Leste",12,0,1206734.0018,"low",0,0
-"TON",NA,0,NA,NA,NA,NA,"Tonga",4,0,106121.99996,"very low",0,0
-"TTO",NA,0,NA,NA,NA,NA,"Trinidad and Tobago",12.5,0,1460176.9998,"low",0,0
-"TUN",NA,0,NA,NA,NA,NA,"Tunisia",13.4,10,11558257.67,"low",0,0
-"TUR","Turkyie",1,"Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23,20,79644890.02,"medium",0,0
-"TUR","Turkey",6,"Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23,20,79644890.02,"medium",0,0
-"TUR","Türkiye",1,"Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23,20,79644890.02,"medium",0,0
-"TUV",NA,0,NA,NA,NA,NA,"Tuvalu",4.5,0,10876.999982,"very low",0,0
-"TWN",NA,NA,NA,NA,NA,NA,NA,NA,6,23511567.872,NA,0,0
-"TZA",NA,0,NA,NA,NA,NA,"Tanzania",18.5,8,52485977.58,"medium",0,0
-"UGA","Uganda",1,"Uganda","Sub-Saharan Africa","Low income","IDA","Uganda",27.2,8,37515804.307,"high",0,0
-"UKR",NA,0,NA,NA,NA,NA,"Ukraine",13.9,2,44980379.55,"low",0,0
-"URY",NA,0,NA,NA,NA,NA,"Uruguay",12.4,1,3403403.1367,"low",0,0
-"USA","USA",2,"United States","North America","High income","","United States",7.4,8,324648883.7,"very low",0,0
-"USA","United States",57,"United States","North America","High income","","United States",7.4,8,324648883.7,"very low",0,0
-"UZB",NA,0,NA,NA,NA,NA,"Uzbekistan",30.4,3,31080396.384,"high",0,0
-"VCT",NA,0,NA,NA,NA,NA,"Saint Vincent and the Grenadines",8.1,0,106482.00002,"very low",0,0
-"VEN","Venezuela",2,"Venezuela, RB","Latin America & Caribbean","Upper middle income","IBRD","Venezuela",18.5,2,30520815.685,"medium",0,0
-"VNM","Vietnam",9,"Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3,2,92182541.19,"high",0,0
-"VUT",NA,0,NA,NA,NA,NA,"Vanuatu",4.8,0,276434.9414,"very low",0,0
-"WSM",NA,0,NA,NA,NA,NA,"Samoa",3.9,0,203570.99992,"very low",0,0
-"YEM",NA,0,NA,NA,NA,NA,"Yemen",27.9,0,28489088.465,"high",0,0
-"ZAF","South Africa",6,"South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7,12,55875253.09,"high",0,0
-"ZMB",NA,0,NA,NA,NA,NA,"Zambia",16.3,7,16261845.298,"medium",0,0
-"ZWE",NA,0,NA,NA,NA,NA,"Zimbabwe",11.7,8,14157998.425,"low",0,0
+"iso3","n_papers","Economy","Region","Income.group","Lending.category","countryName","pm25Avg","n_surveys","population2015","categoryPollution","isChina","isIndia","continent","region_un"
+"AFG",0,NA,NA,NA,NA,"Afghanistan",32.6,0,33760563.728,"high",0,0,"Asia","Asia"
+"AGO",0,NA,NA,NA,NA,"Angola",19.7,7,28131377.368,"medium",0,0,"Africa","Africa"
+"ALB",0,NA,NA,NA,NA,"Albania",16,18,2882256.2209,"medium",0,0,"Europe","Europe"
+"AND",0,NA,NA,NA,NA,"Andorra",6.3,1,71599.20824,"very low",0,0,"Europe","Europe"
+"ARE",1,"United Arab Emirates","Middle East & North Africa","High income","","United Arab Emirates",46,0,8865812.0958,"very high",0,0,"Asia","Asia"
+"ARG",0,NA,NA,NA,NA,"Argentina",13.9,2,43243256.584,"low",0,0,"South America","Americas"
+"ARM",0,NA,NA,NA,NA,"Armenia",28.8,1,2881787.387,"high",0,0,"Asia","Asia"
+"ATG",0,NA,NA,NA,NA,"Antigua and Barbuda",10.4,0,89941.00002,"low",0,0,"North America","Americas"
+"AUS",9,"Australia","East Asia & Pacific","High income","","Australia",9.2,7,23819590.174,"very low",0,0,"Oceania","Oceania"
+"AUT",4,"Austria","Europe & Central Asia","High income","","Austria",10.6,66,8638698.04,"low",0,0,"Europe","Europe"
+"AZE",0,NA,NA,NA,NA,"Azerbaijan",17.7,0,9778662.034,"medium",0,0,"Asia","Asia"
+"BDI",0,NA,NA,NA,NA,"Burundi",27.4,0,10725013.726,"high",0,0,"Africa","Africa"
+"BEL",5,"Belgium","Europe & Central Asia","High income","","Belgium",10.6,63,11247664.394,"low",0,0,"Europe","Europe"
+"BEN",1,"Benin","Sub-Saharan Africa","Lower middle income","IDA","Benin",29.2,7,10919007.948,"high",0,0,"Africa","Africa"
+"BFA",0,NA,NA,NA,NA,"Burkina Faso",32.7,7,18677318.4,"high",0,0,"Africa","Africa"
+"BGD",4,"Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1,2,157540165.332,"very high",0,0,"Asia","Asia"
+"BGR",1,"Bulgaria","Europe & Central Asia","High income","IBRD","Bulgaria",17.2,62,7294496.561,"medium",0,0,"Europe","Europe"
+"BHR",1,"Bahrain","Middle East & North Africa","High income","","Bahrain",51.8,0,1362053.80928,"very high",0,0,"Asia","Asia"
+"BHS",0,NA,NA,NA,NA,"Bahamas",5.7,0,392696.9999,"very low",0,0,"North America","Americas"
+"BIH",1,"Bosnia and Herzegovina","Europe & Central Asia","Upper middle income","IBRD","Bosnia and Herzegovina",20.1,17,3519876.9959,"medium",0,0,"Europe","Europe"
+"BLR",0,NA,NA,NA,NA,"Belarus",12.9,0,9703914.493,"low",0,0,"Europe","Europe"
+"BLZ",0,NA,NA,NA,NA,"Belize",10.3,0,357670.60895,"low",0,0,"North America","Americas"
+"BOL",0,NA,NA,NA,NA,"Bolivia",23,1,11122028.826,"medium",0,0,"South America","Americas"
+"BRA",4,"Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3,3,205180111.37,"low",0,0,"South America","Americas"
+"BRB",0,NA,NA,NA,NA,"Barbados",13.7,0,278082.99991,"low",0,0,"North America","Americas"
+"BRN",1,"Brunei Darussalam","East Asia & Pacific","High income","","Brunei",15,0,421205.3389,"medium",0,0,"Asia","Asia"
+"BTN",0,NA,NA,NA,NA,"Bhutan",35.2,0,808200.6064,"very high",0,0,"Asia","Asia"
+"BWA",0,NA,NA,NA,NA,"Botswana",12.7,7,2305984.1766,"low",0,0,"Africa","Africa"
+"CAF",0,NA,NA,NA,NA,"Central African Republic",34.3,0,4832052.597,"high",0,0,"Africa","Africa"
+"CAN",8,"Canada","North America","High income","","Canada",6.4,3,35718888.85,"very low",0,0,"North America","Americas"
+"CHE",3,"Switzerland","Europe & Central Asia","High income","","Switzerland",8.8,21,8240652.067,"very low",0,0,"Europe","Europe"
+"CHL",6,"Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3,2,17870505.86,"medium",0,0,"South America","Americas"
+"CHN",168,"China","East Asia & Pacific","Upper middle income","IBRD","China",37.7,8,1401793873.9,"very high",1,0,"Asia","Asia"
+"CIV",0,NA,NA,NA,NA,"Côte d'Ivoire",21.9,7,23578198.716,"medium",0,0,"Africa","Africa"
+"CMR",0,NA,NA,NA,NA,"Cameroon",37,7,23038492.024,"very high",0,0,"Africa","Africa"
+"COD",0,NA,NA,NA,NA,"Democratic Republic of the Congo",29.8,0,78664750.16,"high",0,0,"Africa","Africa"
+"COG",0,NA,NA,NA,NA,"Republic of Congo",34.2,7,5082311.3174,"high",0,0,"Africa","Africa"
+"COL",5,"Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4,2,47128348.602,"medium",0,0,"South America","Americas"
+"COM",0,NA,NA,NA,NA,"Comoros",6.5,0,730216.0002,"very low",0,0,"Africa","Africa"
+"CPV",0,NA,NA,NA,NA,"Cape Verde",14.1,7,552166.0004,"low",0,0,"Africa","Africa"
+"CRI",0,NA,NA,NA,NA,"Costa Rica",18.1,0,4903346.81,"medium",0,0,"North America","Americas"
+"CUB",0,NA,NA,NA,NA,"Cuba",9.3,0,11339894,"very low",0,0,"North America","Americas"
+"CYP",1,"Cyprus","Europe & Central Asia","High income","","Cyprus",14.9,63,829545.2764,"low",0,0,"Asia","Asia"
+"CYP",1,"Cyprus","Europe & Central Asia","High income","","Northern Cyprus",14.4,63,829545.2764,"low",0,0,"Asia","Asia"
+"CZE",3,"Czechia","Europe & Central Asia","High income","","Czech Republic",13.3,64,10528713.864,"low",0,0,"Europe","Europe"
+"DEU",11,"Germany","Europe & Central Asia","High income","","Germany",9.6,69,82149541.57,"very low",0,0,"Europe","Europe"
+"DJI",0,NA,NA,NA,NA,"Djibouti",24.6,0,1012339.9909,"medium",0,0,"Africa","Africa"
+"DMA",0,NA,NA,NA,NA,"Dominica",9.1,0,70007.00001,"very low",0,0,"North America","Americas"
+"DNK",3,"Denmark","Europe & Central Asia","High income","","Denmark",8.9,67,5677894.974,"very low",0,0,"Europe","Europe"
+"DOM",0,NA,NA,NA,NA,"Dominican Republic",16.1,0,10391057.897,"medium",0,0,"North America","Americas"
+"DZA",0,NA,NA,NA,NA,"Algeria",13,1,39544078.244,"low",0,0,"Africa","Africa"
+"ECU",1,"Ecuador","Latin America & Caribbean","Upper middle income","IBRD","Ecuador",19.5,1,16196517.256,"medium",0,0,"South America","Americas"
+"EGY",1,"Egypt, Arab Rep.","Middle East & North Africa","Lower middle income","IBRD","Egypt",50.5,3,97730135.631,"very high",0,0,"Africa","Africa"
+"ERI",0,NA,NA,NA,NA,"Eritrea",22.2,0,3326554.6487,"medium",0,0,"Africa","Africa"
+"ESP",12,"Spain","Europe & Central Asia","High income","","Spain",10.1,68,46428809.67,"low",0,0,"Europe","Europe"
+"EST",3,"Estonia","Europe & Central Asia","High income","","Estonia",6.8,62,1311099.545,"very low",0,0,"Europe","Europe"
+"ETH",1,"Ethiopia","Sub-Saharan Africa","Low income","IDA","Ethiopia",25.5,8,102345078.66,"high",0,0,"Africa","Africa"
+"FIN",13,"Finland","Europe & Central Asia","High income","","Finland",5.1,66,5447090.285,"very low",0,0,"Europe","Europe"
+"FJI",0,NA,NA,NA,NA,"Fiji",5.4,0,917200,"very low",0,0,"Oceania","Oceania"
+"FRA",12,"France","Europe & Central Asia","High income","","France",9.4,68,63821694.19,"very low",0,0,"Europe","Europe"
+"FRA",12,"France","Europe & Central Asia","High income","","France",9.4,68,63821694.19,"very low",0,0,"Seven seas (open ocean)","Americas"
+"GAB",0,NA,NA,NA,NA,"Gabon",23.7,7,2045204.9733,"medium",0,0,"Africa","Africa"
+"GBR",26,"United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9,48,65224257.284,"very low",0,0,"Europe","Europe"
+"GEO",1,"Georgia","Europe & Central Asia","Upper middle income","IBRD","Georgia",15.7,0,3772078.135,"medium",0,0,"Asia","Asia"
+"GHA",3,"Ghana","Sub-Saharan Africa","Lower middle income","IDA","Ghana",26.9,8,28974454.991,"high",0,0,"Africa","Africa"
+"GIN",0,NA,NA,NA,NA,"Guinea",24.3,7,11627868.888,"medium",0,0,"Africa","Africa"
+"GMB",0,NA,NA,NA,NA,"Gambia",30.7,7,2256690.1121,"high",0,0,"Africa","Africa"
+"GNB",0,NA,NA,NA,NA,"Guinea-Bissau",26.3,0,1789591.5445,"high",0,0,"Africa","Africa"
+"GNQ",0,NA,NA,NA,NA,"Equatorial Guinea",16,0,1325245.7975,"medium",0,0,"Africa","Africa"
+"GRC",6,"Greece","Europe & Central Asia","High income","","Greece",14.8,63,10807782.015,"low",0,0,"Europe","Europe"
+"GRD",0,NA,NA,NA,NA,"Grenada",10.9,0,118979.99989,"low",0,0,"North America","Americas"
+"GTM",2,"Guatemala","Latin America & Caribbean","Upper middle income","IBRD","Guatemala",22,1,15997665.775,"medium",0,0,"North America","Americas"
+"GUY",0,NA,NA,NA,NA,"Guyana",13.2,0,750300.3958,"low",0,0,"South America","Americas"
+"HKG",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,0,0,"Asia","Asia"
+"HND",0,NA,NA,NA,NA,"Honduras",21.8,0,9305049.743,"medium",0,0,"North America","Americas"
+"HRV",2,"Croatia","Europe & Central Asia","High income","IBRD","Croatia",13.7,39,4254148.74,"low",0,0,"Europe","Europe"
+"HTI",0,NA,NA,NA,NA,"Haiti",13.4,0,10578531.102,"low",0,0,"North America","Americas"
+"HUN",1,"Hungary","Europe & Central Asia","High income","","Hungary",14,66,9845520.657,"low",0,0,"Europe","Europe"
+"IDN",8,"Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1,2,259083290.41,"medium",0,0,"Asia","Asia"
+"IND",25,"India","South Asia","Lower middle income","IBRD","India",51.4,8,1323107937.3,"very high",0,1,"Asia","Asia"
+"IRL",4,"Ireland","Europe & Central Asia","High income","","Ireland",8.9,46,4665866.723,"very low",0,0,"Europe","Europe"
+"IRN",14,"Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8,1,81764618.24,"high",0,0,"Asia","Asia"
+"IRQ",0,NA,NA,NA,NA,"Iraq",36.3,2,37758248.721,"very high",0,0,"Asia","Asia"
+"ISL",1,"Iceland","Europe & Central Asia","High income","","Iceland",4.7,21,331059.99998,"very low",0,0,"Europe","Europe"
+"ISR",0,NA,NA,NA,NA,"Israel",21.6,0,8006085.191,"medium",0,0,"Asia","Asia"
+"ITA",18,"Italy","Europe & Central Asia","High income","","Italy",14.4,68,60254972.26,"low",0,0,"Europe","Europe"
+"JAM",0,NA,NA,NA,NA,"Jamaica",15.4,0,2794445.0005,"medium",0,0,"North America","Americas"
+"JOR",2,"Jordan","Middle East & North Africa","Lower middle income","IBRD","Jordan",31.4,3,9493248.3607,"high",0,0,"Asia","Asia"
+"JPN",6,"Japan","East Asia & Pacific","High income","","Japan",13.6,7,127250931.89,"low",0,0,"Asia","Asia"
+"KAZ",1,"Kazakhstan","Europe & Central Asia","Upper middle income","IBRD","Kazakhstan",18.3,3,17837537.223,"medium",0,0,"Asia","Asia"
+"KEN",0,NA,NA,NA,NA,"Kenya",20.7,9,46966103.845,"medium",0,0,"Africa","Africa"
+"KGZ",1,"Kyrgyz Republic","Europe & Central Asia","Lower middle income","IDA","Kyrgyzstan",20.5,3,5784506.115,"medium",0,0,"Asia","Asia"
+"KHM",1,"Cambodia","East Asia & Pacific","Lower middle income","IDA","Cambodia",22.7,0,15409796.658,"medium",0,0,"Asia","Asia"
+"KIR",0,NA,NA,NA,NA,"Kiribati",3.6,0,116706.99998,"very low",0,0,"Oceania","Oceania"
+"KNA",0,NA,NA,NA,NA,"Saint Kitts and Nevis",7.8,0,47790.00006,"very low",0,0,"North America","Americas"
+"KOR",26,"Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3,7,50994550.335,"medium",0,0,"Asia","Asia"
+"KWT",0,NA,NA,NA,NA,"Kuwait",56.6,1,3908967.1646,"very high",0,0,"Asia","Asia"
+"LAO",0,NA,NA,NA,NA,"Laos",25.7,0,6811332.9584,"high",0,0,"Asia","Asia"
+"LBN",3,"Lebanon","Middle East & North Africa","Lower middle income","IBRD","Lebanon",30.8,3,6385091.402,"high",0,0,"Asia","Asia"
+"LBR",0,NA,NA,NA,NA,"Liberia",18,7,4615232.7046,"medium",0,0,"Africa","Africa"
+"LBY",0,NA,NA,NA,NA,"Libya",19.3,2,6191982.845,"medium",0,0,"Africa","Africa"
+"LCA",0,NA,NA,NA,NA,"Saint Lucia",12.6,0,175622.99988,"low",0,0,"North America","Americas"
+"LIE",0,NA,NA,NA,NA,"Liechtenstein",8.6,0,37173.459498,"very low",0,0,"Europe","Europe"
+"LKA",0,NA,NA,NA,NA,"Sri Lanka",20.6,0,21336697.003,"medium",0,0,"Asia","Asia"
+"LSO",0,NA,NA,NA,NA,"Lesotho",59.1,7,2117932.4656,"very high",0,0,"Africa","Africa"
+"LTU",1,"Lithuania","Europe & Central Asia","High income","","Lithuania",10.7,66,2965336.0678,"low",0,0,"Europe","Europe"
+"LUX",1,"Luxembourg","Europe & Central Asia","High income","","Luxembourg",8.7,62,564745.4612,"very low",0,0,"Europe","Europe"
+"LVA",2,"Latvia","Europe & Central Asia","High income","","Latvia",9.3,62,1992345.4992,"very low",0,0,"Europe","Europe"
+"MAC",NA,NA,NA,NA,NA,NA,NA,1,NA,NA,0,0,"Asia","Asia"
+"MAR",0,NA,NA,NA,NA,"Morocco",14.3,9,34682354.769,"low",0,0,"Africa","Africa"
+"MCO",0,NA,NA,NA,NA,"Monaco",10,0,36661.26966,"low",0,0,"Europe","Europe"
+"MDA",0,NA,NA,NA,NA,"Moldova",13.5,0,3282187.079,"low",0,0,"Europe","Europe"
+"MDG",0,NA,NA,NA,NA,"Madagascar",10.2,7,24850912.002,"low",0,0,"Africa","Africa"
+"MDV",0,NA,NA,NA,NA,"Maldives",11.9,1,435582.00007,"low",0,0,"Seven seas (open ocean)","Asia"
+"MEX",10,"Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4,2,120128231.05,"medium",0,0,"North America","Americas"
+"MHL",0,NA,NA,NA,NA,"Marshall Islands",3.2,0,49410.00001,"very low",0,0,"Oceania","Oceania"
+"MKD",2,"North Macedonia","Europe & Central Asia","Upper middle income","IBRD","Macedonia",20.3,18,2107669.836,"medium",0,0,"Europe","Europe"
+"MLI",0,NA,NA,NA,NA,"Mali",32.5,7,18114840.393,"high",0,0,"Africa","Africa"
+"MLT",1,"Malta","Middle East & North Africa","High income","","Malta",11.9,62,456578.99994,"low",0,0,"Europe","Europe"
+"MMR",1,"Myanmar","East Asia & Pacific","Lower middle income","IDA","Myanmar",32.7,1,51471274.35,"high",0,0,"Asia","Asia"
+"MNE",2,"Montenegro","Europe & Central Asia","Upper middle income","IBRD","Montenegro",13,18,633373.0467,"low",0,0,"Europe","Europe"
+"MNG",1,"Mongolia","East Asia & Pacific","Upper middle income","IBRD","Mongolia",26.3,1,2961148.2406,"high",0,0,"Asia","Asia"
+"MOZ",0,NA,NA,NA,NA,"Mozambique",11.5,7,26874712.887,"low",0,0,"Africa","Africa"
+"MRT",0,NA,NA,NA,NA,"Mauritania",38.2,8,3936260.9543,"very high",0,0,"Africa","Africa"
+"MUS",0,NA,NA,NA,NA,"Mauritius",12.5,7,1293152.9999,"low",0,0,"Seven seas (open ocean)","Africa"
+"MWI",0,NA,NA,NA,NA,"Malawi",14.5,7,16907389.578,"low",0,0,"Africa","Africa"
+"MYS",23,"Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9,3,31081433.179,"medium",0,0,"Asia","Asia"
+"NAM",0,NA,NA,NA,NA,"Namibia",12.7,7,2282695.4977,"low",0,0,"Africa","Africa"
+"NER",0,NA,NA,NA,NA,"Niger",42.7,7,20142084.567,"very high",0,0,"Africa","Africa"
+"NGA",1,"Nigeria","Sub-Saharan Africa","Lower middle income","Blend","Nigeria",41.2,9,183943676.88,"very high",0,0,"Africa","Africa"
+"NIC",0,NA,NA,NA,NA,"Nicaragua",15.7,2,6287809.607,"medium",0,0,"North America","Americas"
+"NLD",5,"Netherlands","Europe & Central Asia","High income","","Netherlands",11,65,17025763.116,"low",0,0,"Europe","Europe"
+"NOR",3,"Norway","Europe & Central Asia","High income","","Norway",5.5,21,5187607.031,"very low",0,0,"Europe","Europe"
+"NPL",2,"Nepal","South Asia","Lower middle income","IDA","Nepal",44.2,0,27586971.354,"very high",0,0,"Asia","Asia"
+"NRU",0,NA,NA,NA,NA,"Nauru",4.3,0,11184.999964,"very low",0,0,"Oceania","Oceania"
+"NZL",2,"New Zealand","East Asia & Pacific","High income","","New Zealand",7.8,5,4590585.058,"very low",0,0,"Oceania","Oceania"
+"OMN",2,"Oman","Middle East & North Africa","High income","","Oman",34.7,0,4237809.064,"high",0,0,"Asia","Asia"
+"PAK",12,"Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4,2,210923972.87,"very high",0,0,"Asia","Asia"
+"PAN",0,NA,NA,NA,NA,"Panama",16.5,0,3951603.2638,"medium",0,0,"North America","Americas"
+"PER",1,"Peru","Latin America & Caribbean","Upper middle income","IBRD","Peru",18.6,2,30713140.732,"medium",0,0,"South America","Americas"
+"PHL",5,"Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2,6,103031365,"medium",0,0,"Asia","Asia"
+"PLW",0,NA,NA,NA,NA,"Palau",4.9,0,17794.000018,"very low",0,0,"Oceania","Oceania"
+"PNG",0,NA,NA,NA,NA,"Papua New Guinea",12.8,0,8676579.2521,"low",0,0,"Oceania","Oceania"
+"POL",11,"Poland","Europe & Central Asia","High income","IBRD","Poland",17.2,64,38527290.78,"medium",0,0,"Europe","Europe"
+"PRI",NA,NA,NA,NA,NA,NA,NA,1,3497334.9998,NA,0,0,"North America","Americas"
+"PRK",0,NA,NA,NA,NA,"North Korea",24.9,0,25183141.62,"medium",0,0,"Asia","Asia"
+"PRT",8,"Portugal","Europe & Central Asia","High income","","Portugal",8.7,62,10365900.406,"very low",0,0,"Europe","Europe"
+"PRY",0,NA,NA,NA,NA,"Paraguay",15.4,0,6165043.994,"medium",0,0,"South America","Americas"
+"PSE",NA,NA,NA,NA,NA,NA,NA,2,4476781.9278,NA,0,0,"Asia","Asia"
+"QAT",0,NA,NA,NA,NA,"Qatar",72,0,2415319.3258,"very high",0,0,"Asia","Asia"
+"ROU",3,"Romania","Europe & Central Asia","High income","IBRD","Romania",16.1,63,19913237.941,"medium",0,0,"Europe","Europe"
+"RUS",1,"Russian Federation","Europe & Central Asia","High income","IBRD","Russia",13.1,7,144497553.24,"low",0,0,"Europe","Europe"
+"RWA",2,"Rwanda","Sub-Saharan Africa","Low income","IDA","Rwanda",30.3,0,11617555.454,"high",0,0,"Africa","Africa"
+"SAU",1,"Saudi Arabia","Middle East & North Africa","High income","","Saudi Arabia",57.3,0,32784619.5,"very high",0,0,"Asia","Asia"
+"SDN",0,NA,NA,NA,NA,"Sudan",29.6,8,38211004.412,"high",0,0,"Africa","Africa"
+"SEN",1,"Senegal","Sub-Saharan Africa","Lower middle income","IDA","Senegal",31.8,8,14371998.752,"high",0,0,"Africa","Africa"
+"SGP",9,"Singapore","East Asia & Pacific","High income","","Singapore",23.3,2,5650073.984147,"medium",0,0,"Asia","Asia"
+"SLB",0,NA,NA,NA,NA,"Solomon Islands",6.5,0,612660.00021,"very low",0,0,"Oceania","Oceania"
+"SLE",0,NA,NA,NA,NA,"Sierra Leone",18.5,7,7310110.355,"medium",0,0,"Africa","Africa"
+"SLV",0,NA,NA,NA,NA,"El Salvador",24.6,1,6228156.686,"medium",0,0,"North America","Americas"
+"SMR",0,NA,NA,NA,NA,"San Marino",11.7,0,31708.269159,"low",0,0,"Europe","Europe"
+"SOM",0,NA,NA,NA,NA,"Somalia",12.1,0,13804335.713,"low",0,0,"Africa","Africa"
+"SRB",4,"Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5,19,7574464.654,"medium",0,0,"Europe","Europe"
+"SSD",0,NA,NA,NA,NA,"South Sudan",21.6,0,11156261.732,"medium",0,0,"Africa","Africa"
+"STP",0,NA,NA,NA,NA,"São Tomé and Príncipe",14.6,7,201123.99994,"low",0,0,"Africa","Africa"
+"SUR",0,NA,NA,NA,NA,"Suriname",15.4,0,581633.9297,"medium",0,0,"South America","Americas"
+"SVK",1,"Slovak Republic","Europe & Central Asia","High income","","Slovakia",14.1,67,5424020.0425,"low",0,0,"Europe","Europe"
+"SVN",4,"Slovenia","Europe & Central Asia","High income","","Slovenia",13.3,66,2047926.18,"low",0,0,"Europe","Europe"
+"SWE",12,"Sweden","Europe & Central Asia","High income","","Sweden",5.8,68,9850041.32,"very low",0,0,"Europe","Europe"
+"SWZ",0,NA,NA,NA,NA,"Swaziland",14.9,7,1136672.32528,"low",0,0,"Africa","Africa"
+"SYC",0,NA,NA,NA,NA,"Seychelles",5.6,7,99240.00012,"very low",0,0,"Seven seas (open ocean)","Africa"
+"SYR",0,NA,NA,NA,NA,"Syria",26.2,0,19214802.745,"high",0,0,"Asia","Asia"
+"TCD",0,NA,NA,NA,NA,"Chad",36.5,0,14125227.669,"very high",0,0,"Africa","Africa"
+"TGO",0,NA,NA,NA,NA,"Togo",30,7,7430917.711,"high",0,0,"Africa","Africa"
+"THA",11,"Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2,6,70317465.6,"high",0,0,"Asia","Asia"
+"TJK",0,NA,NA,NA,NA,"Tajikistan",29.2,3,8535910.108,"high",0,0,"Asia","Asia"
+"TKM",0,NA,NA,NA,NA,"Turkmenistan",21.3,2,5773821.721,"medium",0,0,"Asia","Asia"
+"TLS",0,NA,NA,NA,NA,"Timor-Leste",12,0,1206734.0018,"low",0,0,"Asia","Asia"
+"TON",0,NA,NA,NA,NA,"Tonga",4,0,106121.99996,"very low",0,0,"Oceania","Oceania"
+"TTO",0,NA,NA,NA,NA,"Trinidad and Tobago",12.5,0,1460176.9998,"low",0,0,"North America","Americas"
+"TUN",0,NA,NA,NA,NA,"Tunisia",13.4,10,11558257.67,"low",0,0,"Africa","Africa"
+"TUR",8,"Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23,20,79644890.02,"medium",0,0,"Asia","Asia"
+"TUV",0,NA,NA,NA,NA,"Tuvalu",4.5,0,10876.999982,"very low",0,0,"Oceania","Oceania"
+"TWN",NA,NA,NA,NA,NA,NA,NA,6,23511567.872,NA,0,0,"Asia","Asia"
+"TZA",0,NA,NA,NA,NA,"Tanzania",18.5,8,52485977.58,"medium",0,0,"Africa","Africa"
+"UGA",1,"Uganda","Sub-Saharan Africa","Low income","IDA","Uganda",27.2,8,37515804.307,"high",0,0,"Africa","Africa"
+"UKR",0,NA,NA,NA,NA,"Ukraine",13.9,2,44980379.55,"low",0,0,"Europe","Europe"
+"URY",0,NA,NA,NA,NA,"Uruguay",12.4,1,3403403.1367,"low",0,0,"South America","Americas"
+"USA",59,"United States","North America","High income","","United States",7.4,8,324648883.7,"very low",0,0,"North America","Americas"
+"UZB",0,NA,NA,NA,NA,"Uzbekistan",30.4,3,31080396.384,"high",0,0,"Asia","Asia"
+"VCT",0,NA,NA,NA,NA,"Saint Vincent and the Grenadines",8.1,0,106482.00002,"very low",0,0,"North America","Americas"
+"VEN",2,"Venezuela, RB","Latin America & Caribbean","Upper middle income","IBRD","Venezuela",18.5,2,30520815.685,"medium",0,0,"South America","Americas"
+"VNM",9,"Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3,2,92182541.19,"high",0,0,"Asia","Asia"
+"VUT",0,NA,NA,NA,NA,"Vanuatu",4.8,0,276434.9414,"very low",0,0,"Oceania","Oceania"
+"WSM",0,NA,NA,NA,NA,"Samoa",3.9,0,203570.99992,"very low",0,0,"Oceania","Oceania"
+"YEM",0,NA,NA,NA,NA,"Yemen",27.9,0,28489088.465,"high",0,0,"Asia","Asia"
+"ZAF",6,"South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7,12,55875253.09,"high",0,0,"Africa","Africa"
+"ZMB",0,NA,NA,NA,NA,"Zambia",16.3,7,16261845.298,"medium",0,0,"Africa","Africa"
+"ZWE",0,NA,NA,NA,NA,"Zimbabwe",11.7,8,14157998.425,"low",0,0,"Africa","Africa"

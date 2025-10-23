@@ -359,7 +359,7 @@ datasetClassificationCountries_long_clean <- merge(datasetClassificationCountrie
 
 # 2) get total papers by country
 papers_by_country <- datasetClassificationCountries_long_clean %>%
-  group_by(country, iso3, .drop = F) %>% 
+  group_by(iso3, .drop = F) %>% 
   count(iso3, name = "n_papers") %>%
   arrange(desc(n_papers)) %>% 
   merge(., incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
@@ -477,12 +477,19 @@ summaryDataset$isIndia <- ifelse(summaryDataset$iso3 == "IND", 1, 0)
 # add region from natural earth
 
 library(rnaturalearth)
+library(terra)
 
-# .
-# .
-# .
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
 
-write.csv(summaryDataset, "output/datasetPlots.csv", row.names = F)
+world_countries_df <- as.data.frame(world_countries)
+
+world_countries_df$iso_a3 <- ifelse(world_countries_df$iso_a3_eh == "FRA", "FRA",
+                                    ifelse(world_countries_df$iso_a3_eh == "NOR", "NOR", world_countries_df$iso_a3))
+
+summaryDataset2 <- merge(summaryDataset, world_countries_df %>% 
+                          select(continent, region_un, iso_a3), by.x = "iso3", by.y = "iso_a3", all.x = T, all.y = F)
+
+write.csv(summaryDataset2, "output/datasetPlots.csv", row.names = F)
 
 ```
 
