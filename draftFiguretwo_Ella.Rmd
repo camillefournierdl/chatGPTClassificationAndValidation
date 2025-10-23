@@ -306,10 +306,10 @@ ggplot() +
     data = totals_data,
     aes(x = Income.group, y = "Total papers",
         label = paste0("n=", total),
-        color = ifelse(total > max(topics_data$total) * 0.4, "white", "black")), size = 4) +
+        color = ifelse(total > max(topics_data$total) * 0.4, "black", "black")), size = 4) +
   scale_fill_gradient(
     name = "Total papers",
-    low = "#EED8AE", high = "#8B864E",
+    low = "#F6DBA7", high = "#F7B32B",
     breaks = range(totals_data$total),         
   labels = range(totals_data$total)) +
   scale_color_identity() +
@@ -382,10 +382,10 @@ ggplot() +
     data = totals_data_s,
     aes(x = Income.group, y = "Total items",
         label = paste0("n=", total),
-        color = ifelse(total > max(topics_data_s$total) * 0.4, "white", "black")), size = 4) +
+        color = ifelse(total > max(topics_data_s$total) * 0.4, "black", "black")), size = 4) +
   scale_fill_gradient(
     name = "Total items",
-    low = "#EED8AE", high = "#8B864E",
+    low = "#F6DBA7", high = "#F7B32B",
     breaks = range(totals_data_s$total),         
   labels = range(totals_data_s$total)) +
   scale_color_identity() +
