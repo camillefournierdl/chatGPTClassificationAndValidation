@@ -467,8 +467,8 @@ popCtr <- population %>%
 
 summaryDataset <- merge(papers_by_country_pollution_survey, popCtr, by.x = "iso3", by.y = "GADM_ISO", all.x = T, all.y = F)
 
-summaryDataset$categoryPollution <- cut(summaryDataset$pm25Avg, breaks = c(0, 5, 10, 15, 25, 35, 100), 
-                  labels = c("no pol", "very low", "low", "medium", "high", "very high"), 
+summaryDataset$categoryPollution <- cut(summaryDataset$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                  labels = c("very low", "low", "medium", "high", "very high"), 
                   right = FALSE)
 
 summaryDataset$isChina <- ifelse(summaryDataset$iso3 == "CHN", 1, 0)
