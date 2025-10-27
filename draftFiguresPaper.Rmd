@@ -382,7 +382,7 @@ datasetPollution_ctr <- datasetPollution_avg %>%
                        destination = "iso3c")
   ) %>% 
   filter(!is.na(iso3)) %>% 
-  rename(countryName = Region)
+  rename(countryName = Region)  
 
 papers_by_country_pollution <- merge(papers_by_country, datasetPollution_ctr, by = "iso3", all.x = T, all.y = T)
 
@@ -569,10 +569,19 @@ papers_by_country <- datasetClassificationCountries_long_clean %>%
 datasetPollution <- read.csv("dataNew/GlobalPM25-V6GL0203-Annual-1998-2023-wThresFrac.csv")
 
 datasetPollution_avg <- datasetPollution %>% 
-  filter(Year == 2019) %>% 
+  filter(Year %in% 2019) %>%
   group_by(Region) %>% 
   summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
 
+datasetPollution2 <- read.csv("dataNew/GlobalPM25-V5GL0502-Annual-1998-2023-wThresFrac.csv")
+
+datasetPollution2_avg <- datasetPollution2 %>% 
+  filter(Year %in% 2019) %>%
+  filter(Region %in% c("Hong Kong", "Taiwan")) %>% 
+  group_by(Region) %>% 
+  summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
+
+datasetPollution_avg <- rbind(datasetPollution_avg, datasetPollution2_avg)
 
 datasetPollution_ctr <- datasetPollution_avg %>%
   mutate(
@@ -582,6 +591,13 @@ datasetPollution_ctr <- datasetPollution_avg %>%
   ) %>% 
   filter(!is.na(iso3))
 
+
+### get dataset figure 2 papers
+data_fig2_papers <- left_join(datasetClassificationCountries_long_clean, datasetPollution_ctr, by = "iso3")
+write.csv(data_fig2_papers,"dataNew/data_fig2_papers.csv", row.names = FALSE)
+
+
+### papers by country plus pollution
 papers_by_country_pollution <- merge(papers_by_country, datasetPollution_ctr, by = "iso3", all.x = T, all.y = T)
 
 fullCountrylist <- unique(countrycode::codelist$iso3c)
@@ -772,8 +788,11 @@ incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle in
 
 surveyCountries_long_clean <- merge(surveyCountries_long_clean, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
 
-## save this dataset for further analyses
-write.csv(surveyCountries_long_clean, "output/datasetSurveyCountries_long_clean.csv", row.names = F)
+
+### get dataset figure 2 suveys
+data_fig2_surveys <- left_join(surveyCountries_long_clean, datasetPollution_ctr, by = "iso3")
+write.csv(data_fig2_surveys,"dataNew/data_fig2_surveys.csv", row.names = FALSE)
+
 
 # 2) get total surveys by country
 surveys_by_country <- surveyCountries_long_clean %>%

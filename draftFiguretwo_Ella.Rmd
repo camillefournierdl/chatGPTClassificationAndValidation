@@ -50,10 +50,10 @@ session_info <- print(sessionInfo())
 #-------------------------------------------------------------------------------
 # Load the data
 #-------------------------------------------------------------------------------
-papers <- read.csv2("output/datasetClassificationCountries_long_clean.csv", 
+papers <- read.csv2("dataNew/data_fig2_papers.csv", 
                     header = T, sep = ",", dec = ".")
 
-surveys <- read.csv2("output/datasetSurveyCountries_long_clean.csv", 
+surveys <- read.csv2("dataNew/data_fig2_surveys.csv", 
                      header = T, sep = ",", dec = ".")
 
 ```
@@ -129,11 +129,18 @@ surveys <- surveys %>%
 # relevant columns
 #-------------------------------------------------------------------------------
 papers <- papers[,c("ID", "country_clean",
-                    "Income.group", "Region", 
-                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "None")]
+                    "Income.group", "Region.x", 
+                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "None", "pm25Avg")]
 
-surveys <- surveys[,c("id", "country_clean", "year", "Income.group", "Region", 
-                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "Inclusion")]
+surveys <- surveys[,c("id", "country_clean", "year", "Income.group", "Region.x", 
+                      "Perceptions", "Behavior", "Priority", "Policy", "Health", "Inclusion", "pm25Avg")]
+
+## surveys: drop items for which Inclusion == 0
+surveys <- surveys[which(surveys$Inclusion == 1),]
+
+
+## subset survey without Flashbarometer
+surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitudes of Europeans towards air quality"),]
 
 ```
 
@@ -256,9 +263,9 @@ dev.off()
 ```
 
 
-## Visualizations by subgroup
+## Visualizations by income group
 
-```{r subgroupies}
+```{r income group}
 
 #-------------------------------------------------------------------------------
 # papers
@@ -280,17 +287,16 @@ topics_data <- papers %>%
   group_by(Topic, Income.group) %>%
   summarise(n = n(), .groups = "drop") %>%
   group_by(Income.group) %>%
-  mutate(share = n / sum(n),
-         total = sum(n)) %>%
+  mutate(share = n / sum(n)) %>%
   ungroup() %>%
   mutate(Income.group = factor(
     Income.group,
     levels = c("Low income", "Lower middle income", "Upper middle income", "High income")))
 
 # 2. Prepare totals row data (absolute counts)
-totals_data <- topics_data %>%
-  distinct(Income.group, total) %>%
-  mutate(Topic = "Total papers")
+totals_data <- papers %>%
+  filter(!is.na(Income.group)) %>%
+  count(Income.group, name = "total")
 
 # 3. Define consistent factor levels for the y-axis
 topic_levels <- c("Total papers", unique(topics_data$Topic))
@@ -356,38 +362,37 @@ topics_data_s <- surveys %>%
   group_by(Topic, Income.group) %>%
   summarise(n = n(), .groups = "drop") %>%
   group_by(Income.group) %>%
-  mutate(share = n / sum(n),
-         total = sum(n)) %>%
+  mutate(share = n / sum(n)) %>%
   ungroup() %>%
   mutate(Income.group = factor(
     Income.group,
     levels = c("Low income", "Lower middle income", "Upper middle income", "High income")))
 
 # 2. Prepare totals row data (absolute counts)
-totals_data_s <- topics_data %>%
-  distinct(Income.group, total) %>%
-  mutate(Topic = "Total papers")
+totals_data_s <- surveys %>%
+  filter(!is.na(Income.group)) %>%
+  count(Income.group, name = "total_items")
 
 # 3. Define consistent factor levels for the y-axis
-topic_levels_s <- c("Total items", unique(topics_data$Topic))
+topic_levels_s <- c("Total items", unique(topics_data_s$Topic))
 
 # 4. Plot with two independent fill scales
 pdf("plots/Figure2_category_survey_by_income.pdf", width = 10)
 ggplot() +
   # --- top totals row ---
   geom_tile(data = totals_data_s,
-            aes(x = Income.group, y = "Total items", fill = total),
+            aes(x = Income.group, y = "Total items", fill = total_items),
             color = "white", linewidth = 0.8) +
   geom_text(
     data = totals_data_s,
     aes(x = Income.group, y = "Total items",
-        label = paste0("n=", total),
-        color = ifelse(total > max(topics_data_s$total) * 0.4, "black", "black")), size = 4) +
+        label = paste0("n=", total_items),
+        color = ifelse(total_items > max(totals_data_s$total_items) * 0.4, "black", "black")), size = 4) +
   scale_fill_gradient(
     name = "Total items",
     low = "#F6DBA7", high = "#F7B32B",
-    breaks = range(totals_data_s$total),         
-  labels = range(totals_data_s$total)) +
+    breaks = range(totals_data_s$total_items),         
+  labels = range(totals_data_s$total_items)) +
   scale_color_identity() +
 
   ggnewscale::new_scale_fill() +  # reset fill scale
@@ -420,3 +425,171 @@ dev.off()
 
 ```
 
+
+## Visualizations by exposure group
+
+```{r exposure group}
+
+#-------------------------------------------------------------------------------
+# get exposure groups for papers and surveys
+#-------------------------------------------------------------------------------
+papers$categoryPollution <- cut(papers$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                                labels = c("Very low", "Low", "Medium", "High", "Very high"), 
+                                right = FALSE)
+
+surveys$categoryPollution <- cut(surveys$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                                labels = c("Very low", "Low", "Medium", "High", "Very high"), 
+                                right = FALSE)
+
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+# 1. Prepare topic-level data (shares within exposure group)
+topics_data_poll <- papers %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health, None),
+    names_to = "Topic",
+    values_to = "Value") %>%
+  filter(Value == 1, !is.na(categoryPollution)) %>%
+  group_by(Topic, categoryPollution) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(categoryPollution) %>%
+  mutate(share = n / sum(n)) %>%
+  ungroup() %>%
+  mutate(categoryPollution = factor(
+    categoryPollution,
+    levels = c("Very low", "Low", "Medium", "High", "Very high")))
+
+# 2. Prepare totals row data (absolute counts)
+totals_data_poll <- papers %>%
+  filter(!is.na(categoryPollution)) %>%
+  count(categoryPollution, name = "total")
+
+# 3. Define consistent factor levels for the y-axis
+topic_levels <- c("Total papers", unique(topics_data$Topic))
+
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_paper_by_exposure.pdf", width = 10)
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data_poll,
+            aes(x = categoryPollution, y = "Total papers", fill = total),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data_poll,
+    aes(x = categoryPollution, y = "Total papers",
+        label = paste0("n=", total),
+        color = ifelse(total > max(topics_data_poll$total) * 0.4, "black", "black")), size = 4) +
+  scale_fill_gradient(
+    name = "Total papers",
+    low = "#F6DBA7", high = "#F7B32B",
+    breaks = range(totals_data_poll$total),         
+  labels = range(totals_data_poll$total)) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data_poll,
+            aes(x = categoryPollution, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data_poll,
+    aes(x = categoryPollution, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 4) +
+  scale_fill_gradient(
+    name = "Share within\nexposure group",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data_poll$share), max(topics_data_poll$share))) +
+  scale_color_identity() +
+labs(x = "Exposure group", y = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 13),
+    axis.text.y = element_text(size = 13),
+    legend.position = "top")
+
+dev.off()
+
+#-------------------------------------------------------------------------------
+# surveys
+#-------------------------------------------------------------------------------
+
+# 1. Prepare topic-level data (shares within exposure group)
+topics_data_poll_s <- surveys %>%
+  pivot_longer(
+    cols = c(Perceptions, Behavior, Priority, Policy, Health),
+    names_to = "Topic",
+    values_to = "Value") %>%
+  filter(Value == 1, !is.na(categoryPollution)) %>%
+  group_by(Topic, categoryPollution) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(categoryPollution) %>%
+  mutate(share = n / sum(n)) %>%
+  ungroup() %>%
+  mutate(categoryPollution = factor(
+    categoryPollution,
+    levels = c("Very low", "Low", "Medium", "High", "Very high")))
+
+# 2. Prepare totals row data (absolute counts)
+totals_data_poll_s <- surveys %>%
+  filter(!is.na(categoryPollution)) %>%
+  count(categoryPollution, name = "total_items")
+
+# 3. Define consistent factor levels for the y-axis
+topic_levels_s <- c("Total items", unique(topics_data_s$Topic))
+
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_survey_by_exposure.pdf", width = 10)
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data_poll_s,
+            aes(x = categoryPollution, y = "Total items", fill = total_items),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data_poll_s,
+    aes(x = categoryPollution, y = "Total items",
+        label = paste0("n=", total_items),
+        color = ifelse(total_items > max(totals_data_poll_s$total_items) * 0.4, "black", "black")), size = 4) +
+  scale_fill_gradient(
+    name = "Total items",
+    low = "#F6DBA7", high = "#F7B32B",
+    breaks = range(totals_data_poll_s$total_items),         
+  labels = range(totals_data_poll_s$total_items)) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data_poll_s,
+            aes(x = categoryPollution, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data_poll_s,
+    aes(x = categoryPollution, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 4) +
+  scale_fill_gradient(
+    name = "Share within\nexposure group",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data_poll_s$share), max(topics_data_poll_s$share))) +
+  scale_color_identity() +
+labs(x = "Exposure group", y = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 13),
+    axis.text.y = element_text(size = 13),
+    legend.position = "top")
+
+dev.off()
+
+```

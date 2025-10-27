@@ -1,0 +1,688 @@
+"iso3","ID","Perceptions","Priority","Policy","Health","Behavior","None","country","countries","Economy","Region.x","Income.group","Lending.category","Region.y","pm25Avg"
+"ARE",581,1,0,0,1,0,0,"United Arab Emirates","United Arab Emirates","United Arab Emirates","Middle East & North Africa","High income","","United Arab Emirates",46
+"AUS",189,1,0,0,1,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",353,1,0,0,1,1,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",704,1,0,0,1,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",64,1,0,0,0,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",106,1,0,0,0,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",258,1,0,0,0,1,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",86,1,0,0,1,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",646,1,0,0,0,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUS",265,1,0,0,0,0,0,"Australia","Australia","Australia","East Asia & Pacific","High income","","Australia",9.2
+"AUT",70,1,0,0,1,1,0,"Austria","Austria","Austria","Europe & Central Asia","High income","","Austria",10.6
+"AUT",56,1,0,0,1,0,0,"Austria","Austria","Austria","Europe & Central Asia","High income","","Austria",10.6
+"AUT",63,1,0,0,0,0,0,"Austria","Austria","Austria","Europe & Central Asia","High income","","Austria",10.6
+"AUT",235,0,0,0,1,0,0,"Austria","Austria","Austria","Europe & Central Asia","High income","","Austria",10.6
+"BEL",235,0,0,0,1,0,0,"Belgium","Belgium","Belgium","Europe & Central Asia","High income","","Belgium",10.6
+"BEL",487,1,0,1,0,1,0,"Belgium","Belgium","Belgium","Europe & Central Asia","High income","","Belgium",10.6
+"BEL",56,1,0,0,1,0,0,"Belgium","Belgium","Belgium","Europe & Central Asia","High income","","Belgium",10.6
+"BEL",63,1,0,0,0,0,0,"Belgium","Belgium","Belgium","Europe & Central Asia","High income","","Belgium",10.6
+"BEL",690,1,0,0,1,0,0,"Belgium","Belgium","Belgium","Europe & Central Asia","High income","","Belgium",10.6
+"BEN",599,1,0,0,1,0,0,"Benin","Benin","Benin","Sub-Saharan Africa","Lower middle income","IDA","Benin",29.2
+"BGD",360,0,0,0,0,1,0,"Bangladesh","Bangladesh","Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1
+"BGD",321,1,0,0,0,1,0,"Bangladesh","Bangladesh","Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1
+"BGD",419,1,0,0,1,1,0,"Bangladesh","Bangladesh","Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1
+"BGD",401,1,0,0,0,1,0,"Bangladesh","Bangladesh","Bangladesh","South Asia","Lower middle income","IDA","Bangladesh",77.1
+"BGR",235,0,0,0,1,0,0,"Bulgaria","Bulgaria","Bulgaria","Europe & Central Asia","High income","IBRD","Bulgaria",17.2
+"BHR",627,1,0,1,1,1,0,"Bahrain","Bahrain","Bahrain","Middle East & North Africa","High income","","Bahrain",51.8
+"BIH",111,1,0,0,0,0,0,"Bosnia and Herzegovina","Bosnia and Herzegovina","Bosnia and Herzegovina","Europe & Central Asia","Upper middle income","IBRD","Bosnia and Herzegovina",20.1
+"BRA",64,1,0,0,0,0,0,"Brazil","Brazil","Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3
+"BRA",567,1,0,0,0,0,0,"Brazil","Brazil","Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3
+"BRA",106,1,0,0,0,0,0,"Brazil","Brazil","Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3
+"BRA",117,1,0,0,0,0,0,"Brazil","Brazil","Brazil","Latin America & Caribbean","Upper middle income","IBRD","Brazil",13.3
+"BRN",367,0,0,1,0,0,0,"Brunei","Brunei","Brunei Darussalam","East Asia & Pacific","High income","","Brunei",15
+"CAN",7,1,1,1,0,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",37,1,0,0,0,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",254,1,1,0,0,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",334,1,0,0,0,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",406,0,0,0,1,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",340,1,0,0,1,0,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",562,1,0,0,0,1,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CAN",349,1,0,0,0,1,0,"Canada","Canada","Canada","North America","High income","","Canada",6.4
+"CHE",56,1,0,0,1,0,0,"Switzerland","Switzerland","Switzerland","Europe & Central Asia","High income","","Switzerland",8.8
+"CHE",78,1,0,0,0,0,0,"Switzerland","Switzerland","Switzerland","Europe & Central Asia","High income","","Switzerland",8.8
+"CHE",92,0,0,0,1,1,0,"Switzerland","Switzerland","Switzerland","Europe & Central Asia","High income","","Switzerland",8.8
+"CHL",260,1,0,0,0,0,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHL",30,1,0,0,0,0,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHL",124,1,0,0,1,1,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHL",381,1,0,0,1,1,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHL",154,1,0,1,0,0,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHL",62,1,0,0,1,0,0,"Chile","Chile","Chile","Latin America & Caribbean","High income","IBRD","Chile",18.3
+"CHN",183,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",176,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",178,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",28,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",52,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",20,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",25,0,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",22,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",285,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",103,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",529,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",142,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",46,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",511,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",24,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",184,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",181,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",229,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",570,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",27,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",42,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",200,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",44,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",265,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",307,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",262,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",50,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",230,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",385,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",49,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",101,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",186,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",108,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",504,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",219,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",362,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",221,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",278,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",226,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",326,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",116,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",131,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",283,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",170,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",603,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",333,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",550,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",135,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",137,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",336,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",106,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",252,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",64,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",499,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",255,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",23,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",241,1,0,1,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",369,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",39,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",151,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",348,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",202,0,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",304,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",484,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",394,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",575,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",163,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",531,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",564,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",55,1,0,1,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",616,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",270,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",217,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",666,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",123,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",173,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",629,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",277,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",541,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",279,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",280,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",61,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",282,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",548,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",100,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",502,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",301,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",334,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",136,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",592,1,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",593,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",556,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",610,0,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",194,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",296,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",382,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",518,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",198,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",432,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",122,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",389,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",480,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",404,0,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",264,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",205,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",594,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",207,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",115,1,0,1,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",663,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",212,0,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",169,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",269,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",602,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",216,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",172,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",104,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",493,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",589,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",527,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",325,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",19,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",412,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",239,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",232,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",368,1,1,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",118,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",149,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",372,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",479,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",287,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",391,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",571,1,1,1,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",528,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",144,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",530,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",690,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",692,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",477,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",547,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",171,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",121,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",664,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",373,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",537,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",590,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",555,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",486,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",649,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",128,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",211,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",54,1,0,1,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",225,0,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",519,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",534,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",268,0,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",240,1,1,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",591,1,0,1,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",167,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",204,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",312,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",464,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",182,0,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",516,1,0,1,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",414,1,0,0,1,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",476,0,0,1,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",544,1,0,0,0,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",311,1,0,0,0,0,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"CHN",632,1,0,0,1,1,0,"China","China","China","East Asia & Pacific","Upper middle income","IBRD","China",37.7
+"COL",488,1,0,0,1,1,0,"Colombia","Colombia","Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4
+"COL",429,1,0,0,1,1,0,"Colombia","Colombia","Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4
+"COL",440,0,0,1,0,0,0,"Colombia","Colombia","Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4
+"COL",560,1,0,0,0,1,0,"Colombia","Colombia","Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4
+"COL",438,1,0,1,1,0,0,"Colombia","Colombia","Colombia","Latin America & Caribbean","Upper middle income","IBRD","Colombia",18.4
+"CYP",235,0,0,0,1,0,0,"Cyprus","Cyprus","Cyprus","Europe & Central Asia","High income","","Cyprus",14.9
+"CYP",235,0,0,0,1,0,0,"Cyprus","Cyprus","Cyprus","Europe & Central Asia","High income","","Northern Cyprus",14.4
+"CZE",235,0,0,0,1,0,0,"Czechia","Czechia","Czechia","Europe & Central Asia","High income","","Czech Republic",13.3
+"CZE",78,1,0,0,0,0,0,"Czech Republic","Czech Republic","Czechia","Europe & Central Asia","High income","","Czech Republic",13.3
+"CZE",395,0,0,0,1,0,0,"Czech Republic","Czech Republic","Czechia","Europe & Central Asia","High income","","Czech Republic",13.3
+"DEU",63,1,0,0,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",354,1,0,0,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",306,0,0,1,0,1,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",572,0,0,1,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",704,1,0,0,1,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",218,1,0,0,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",193,1,0,0,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",426,1,0,0,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",235,0,0,0,1,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",14,0,0,1,0,0,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DEU",364,1,0,0,0,1,0,"Germany","Germany","Germany","Europe & Central Asia","High income","","Germany",9.6
+"DNK",235,0,0,0,1,0,0,"Denmark","Denmark","Denmark","Europe & Central Asia","High income","","Denmark",8.9
+"DNK",126,1,0,0,0,0,0,"Denmark","Denmark","Denmark","Europe & Central Asia","High income","","Denmark",8.9
+"DNK",73,1,0,0,1,1,0,"Denmark","Denmark","Denmark","Europe & Central Asia","High income","","Denmark",8.9
+"ECU",510,1,0,0,1,0,0,"Ecuador","Ecuador","Ecuador","Latin America & Caribbean","Upper middle income","IBRD","Ecuador",19.5
+"EGY",237,0,0,1,0,0,0,"Egypt","Egypt","Egypt, Arab Rep.","Middle East & North Africa","Lower middle income","IBRD","Egypt",50.5
+"ESP",628,1,0,0,1,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",492,1,0,0,0,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",175,0,0,1,0,1,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",56,1,0,0,1,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",409,0,0,0,1,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",147,0,0,0,1,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",458,0,0,1,0,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",576,0,0,1,0,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",59,1,0,0,1,1,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",196,1,0,0,0,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",286,1,0,0,0,1,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"ESP",235,0,0,0,1,0,0,"Spain","Spain","Spain","Europe & Central Asia","High income","","Spain",10.1
+"EST",17,1,0,0,1,0,0,"Estonia","Estonia","Estonia","Europe & Central Asia","High income","","Estonia",6.8
+"EST",580,1,0,0,1,0,0,"Estonia","Estonia","Estonia","Europe & Central Asia","High income","","Estonia",6.8
+"EST",235,0,0,0,1,0,0,"Estonia","Estonia","Estonia","Europe & Central Asia","High income","","Estonia",6.8
+"ETH",399,1,0,0,1,0,0,"Ethiopia","Ethiopia","Ethiopia","Sub-Saharan Africa","Low income","IDA","Ethiopia",25.5
+"FIN",466,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",700,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",331,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",235,0,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",580,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",524,1,0,0,0,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",343,0,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",410,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",525,1,0,0,0,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",402,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",78,1,0,0,0,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",506,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FIN",526,1,0,0,1,0,0,"Finland","Finland","Finland","Europe & Central Asia","High income","","Finland",5.1
+"FRA",330,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",672,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",522,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",235,0,0,0,1,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",113,0,0,1,0,1,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",434,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",690,1,0,0,1,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",671,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",701,1,0,0,0,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",375,1,0,0,0,1,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",695,1,0,1,1,1,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"FRA",435,1,0,0,1,0,0,"France","France","France","Europe & Central Asia","High income","","France",9.4
+"GBR",487,1,0,1,0,1,0,"UK","UK","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",56,1,0,0,1,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",324,1,0,0,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",332,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",78,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",192,1,1,1,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",701,1,0,0,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",256,1,0,1,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",588,1,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",258,1,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",545,1,0,0,1,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",192,1,1,1,0,0,0,"Wales","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",533,0,0,0,1,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",63,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",190,1,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",132,0,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",261,0,0,1,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",295,1,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",75,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",334,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",0,1,0,0,0,1,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",400,1,0,0,1,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",77,0,0,1,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",77,0,0,1,0,0,0,"England","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",290,1,0,0,1,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GBR",646,1,0,0,0,0,0,"United Kingdom","United Kingdom","United Kingdom","Europe & Central Asia","High income","","United Kingdom",9.9
+"GEO",668,1,0,0,1,0,0,"Georgia","Georgia","Georgia","Europe & Central Asia","Upper middle income","IBRD","Georgia",15.7
+"GHA",64,1,0,0,0,0,0,"Ghana","Ghana","Ghana","Sub-Saharan Africa","Lower middle income","IDA","Ghana",26.9
+"GHA",106,1,0,0,0,0,0,"Ghana","Ghana","Ghana","Sub-Saharan Africa","Lower middle income","IDA","Ghana",26.9
+"GHA",363,1,0,0,1,0,0,"Ghana","Ghana","Ghana","Sub-Saharan Africa","Lower middle income","IDA","Ghana",26.9
+"GRC",494,1,0,0,1,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GRC",78,1,0,0,0,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GRC",235,0,0,0,1,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GRC",213,1,0,0,0,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GRC",615,0,0,1,0,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GRC",18,1,0,0,0,0,0,"Greece","Greece","Greece","Europe & Central Asia","High income","","Greece",14.8
+"GTM",453,1,0,0,0,1,0,"Guatemala","Guatemala","Guatemala","Latin America & Caribbean","Upper middle income","IBRD","Guatemala",22
+"GTM",356,0,0,0,0,1,0,"Guatemala","Guatemala","Guatemala","Latin America & Caribbean","Upper middle income","IBRD","Guatemala",22
+"HKG",396,0,0,0,0,1,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HKG",418,1,0,0,0,0,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HKG",646,1,0,0,0,0,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HKG",660,0,0,1,0,0,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HKG",258,1,0,0,0,1,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HKG",228,0,0,1,0,0,0,"Hong Kong","Hong Kong","Hong Kong SAR, China","East Asia & Pacific","High income","","Hong Kong",20.2
+"HRV",235,0,0,0,1,0,0,"Croatia","Croatia","Croatia","Europe & Central Asia","High income","IBRD","Croatia",13.7
+"HRV",702,0,0,0,1,0,0,"Croatia","Croatia","Croatia","Europe & Central Asia","High income","IBRD","Croatia",13.7
+"HUN",235,0,0,0,1,0,0,"Hungary","Hungary","Hungary","Europe & Central Asia","High income","","Hungary",14
+"IDN",450,1,0,0,1,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",271,0,0,0,0,1,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",463,0,0,1,0,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",4,0,0,0,0,1,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",589,0,0,1,0,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",305,0,0,1,0,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",367,0,0,1,0,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IDN",386,1,0,0,1,0,0,"Indonesia","Indonesia","Indonesia","East Asia & Pacific","Upper middle income","IBRD","Indonesia",21.1
+"IND",685,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",607,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",651,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",135,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",608,1,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",191,1,0,0,0,1,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",609,0,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",65,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",201,0,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",693,1,1,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",637,1,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",643,1,0,0,0,1,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",160,1,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",158,1,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",589,0,0,1,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",596,1,0,0,0,1,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",64,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",636,1,0,0,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",125,1,0,1,1,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",475,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",356,0,0,0,0,1,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",630,1,0,0,1,1,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",684,0,0,1,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",239,0,0,1,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IND",106,1,0,0,0,0,0,"India","India","India","South Asia","Lower middle income","IBRD","India",51.4
+"IRL",595,1,0,0,1,1,0,"Ireland","Ireland","Ireland","Europe & Central Asia","High income","","Ireland",8.9
+"IRL",487,1,0,1,0,1,0,"Ireland","Ireland","Ireland","Europe & Central Asia","High income","","Ireland",8.9
+"IRL",235,0,0,0,1,0,0,"Ireland","Ireland","Ireland","Europe & Central Asia","High income","","Ireland",8.9
+"IRL",288,1,0,1,0,0,0,"Ireland","Ireland","Ireland","Europe & Central Asia","High income","","Ireland",8.9
+"IRN",58,0,0,0,1,0,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",388,0,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",694,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",233,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",442,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",405,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",670,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",266,1,0,0,1,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",457,1,0,0,0,0,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",43,1,0,0,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",106,1,0,0,0,0,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",64,1,0,0,0,0,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",646,1,0,0,0,0,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"IRN",68,1,0,1,0,1,0,"Iran","Iran","Iran, Islamic Rep.","Middle East & North Africa","Upper middle income","IBRD","Iran",32.8
+"ISL",235,0,0,0,1,0,0,"Iceland","Iceland","Iceland","Europe & Central Asia","High income","","Iceland",4.7
+"ITA",114,1,0,0,0,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",188,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",683,0,0,1,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",595,1,0,0,1,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",681,0,0,0,1,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",106,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",634,1,0,0,0,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",469,1,0,0,0,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",235,0,0,0,1,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",63,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",64,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",650,0,0,0,1,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",56,1,0,0,1,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",514,1,1,0,0,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",148,0,0,1,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",238,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",78,1,0,0,0,0,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"ITA",462,1,0,0,0,1,0,"Italy","Italy","Italy","Europe & Central Asia","High income","","Italy",14.4
+"JOR",377,1,0,0,1,1,0,"Jordan","Jordan","Jordan","Middle East & North Africa","Lower middle income","IBRD","Jordan",31.4
+"JOR",443,1,0,0,0,0,0,"Jordan","Jordan","Jordan","Middle East & North Africa","Lower middle income","IBRD","Jordan",31.4
+"JPN",314,0,0,0,1,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"JPN",589,0,0,1,0,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"JPN",638,0,0,0,1,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"JPN",392,0,0,0,1,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"JPN",127,0,0,0,1,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"JPN",600,0,0,0,1,0,0,"Japan","Japan","Japan","East Asia & Pacific","High income","","Japan",13.6
+"KAZ",495,1,0,0,1,0,0,"Kazakhstan","Kazakhstan","Kazakhstan","Europe & Central Asia","Upper middle income","IBRD","Kazakhstan",18.3
+"KGZ",246,1,0,0,0,1,0,"Kyrgyzstan","Kyrgyzstan","Kyrgyz Republic","Europe & Central Asia","Lower middle income","IDA","Kyrgyzstan",20.5
+"KHM",195,1,0,0,0,1,0,"Cambodia","Cambodia","Cambodia","East Asia & Pacific","Lower middle income","IDA","Cambodia",22.7
+"KOR",604,1,0,0,1,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",552,1,0,1,0,1,0,"Korea","Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",365,0,0,0,1,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",605,1,0,0,1,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",284,1,0,0,0,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",586,0,0,1,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",102,1,0,0,1,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",573,1,0,1,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",568,0,0,1,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",209,1,0,0,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",532,1,0,0,1,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",297,0,0,0,0,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",96,1,0,0,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",319,1,0,0,0,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",589,0,0,1,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",569,0,0,1,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",123,1,0,1,0,0,0,"Korea","Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",538,1,0,0,1,1,0,"Korea","Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",542,1,0,0,0,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",91,1,0,0,1,0,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",496,1,1,0,1,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",357,0,0,0,0,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",133,0,0,0,0,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",632,1,0,0,1,1,0,"Korea","Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",145,0,0,0,1,1,0,"South Korea","South Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"KOR",393,1,0,0,1,0,0,"Korea","Korea","Korea, Rep.","East Asia & Pacific","High income","","South Korea",24.3
+"LBN",549,1,0,0,0,1,0,"Lebanon","Lebanon","Lebanon","Middle East & North Africa","Lower middle income","IBRD","Lebanon",30.8
+"LBN",436,1,1,0,1,1,0,"Lebanon","Lebanon","Lebanon","Middle East & North Africa","Lower middle income","IBRD","Lebanon",30.8
+"LBN",601,1,1,0,0,0,0,"Lebanon","Lebanon","Lebanon","Middle East & North Africa","Lower middle income","IBRD","Lebanon",30.8
+"LTU",235,0,0,0,1,0,0,"Lithuania","Lithuania","Lithuania","Europe & Central Asia","High income","","Lithuania",10.7
+"LUX",235,0,0,0,1,0,0,"Luxembourg","Luxembourg","Luxembourg","Europe & Central Asia","High income","","Luxembourg",8.7
+"LVA",465,1,0,0,0,1,0,"Latvia","Latvia","Latvia","Europe & Central Asia","High income","","Latvia",9.3
+"LVA",235,0,0,0,1,0,0,"Latvia","Latvia","Latvia","Europe & Central Asia","High income","","Latvia",9.3
+"MEX",640,1,1,1,0,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",641,1,0,0,1,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",679,1,1,0,1,1,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",446,1,0,0,1,1,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",536,1,0,0,0,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",680,1,0,0,1,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",431,1,0,0,1,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",500,1,0,0,1,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",390,1,0,0,0,1,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MEX",515,1,0,0,0,0,0,"Mexico","Mexico","Mexico","Latin America & Caribbean","Upper middle income","IBRD","Mexico",17.4
+"MKD",111,1,0,0,0,0,0,"Macedonia","Macedonia","North Macedonia","Europe & Central Asia","Upper middle income","IBRD","Macedonia",20.3
+"MKD",235,0,0,0,1,0,0,"Macedonia","Macedonia","North Macedonia","Europe & Central Asia","Upper middle income","IBRD","Macedonia",20.3
+"MLT",235,0,0,0,1,0,0,"Malta","Malta","Malta","Middle East & North Africa","High income","","Malta",11.9
+"MMR",687,1,0,0,0,1,0,"Myanmar","Myanmar","Myanmar","East Asia & Pacific","Lower middle income","IDA","Myanmar",32.7
+"MNE",111,1,0,0,0,0,0,"Montenegro","Montenegro","Montenegro","Europe & Central Asia","Upper middle income","IBRD","Montenegro",13
+"MNE",235,0,0,0,1,0,0,"Montenegro","Montenegro","Montenegro","Europe & Central Asia","Upper middle income","IBRD","Montenegro",13
+"MNG",424,1,0,1,0,1,0,"Mongolia","Mongolia","Mongolia","East Asia & Pacific","Upper middle income","IBRD","Mongolia",26.3
+"MYS",624,1,0,0,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",612,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",253,0,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",699,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",309,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",463,0,0,1,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",47,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",323,0,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",451,0,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",703,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",657,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",665,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",589,0,0,1,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",427,1,0,0,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",351,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",322,0,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",665,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",413,1,0,0,1,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",367,0,0,1,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",98,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",351,1,0,0,1,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",656,1,0,0,0,1,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"MYS",661,1,0,0,0,0,0,"Malaysia","Malaysia","Malaysia","East Asia & Pacific","Upper middle income","IBRD","Malaysia",20.9
+"NGA",652,1,0,0,0,1,0,"Nigeria","Nigeria","Nigeria","Sub-Saharan Africa","Lower middle income","Blend","Nigeria",41.2
+"NLD",215,1,0,0,1,0,0,"Netherlands","Netherlands","Netherlands","Europe & Central Asia","High income","","Netherlands",11
+"NLD",235,0,0,0,1,0,0,"Netherlands","Netherlands","Netherlands","Europe & Central Asia","High income","","Netherlands",11
+"NLD",139,0,0,0,1,0,0,"Netherlands","Netherlands","Netherlands","Europe & Central Asia","High income","","Netherlands",11
+"NLD",416,1,0,0,1,0,0,"Netherlands","Netherlands","Netherlands","Europe & Central Asia","High income","","Netherlands",11
+"NLD",276,1,0,0,0,0,0,"The Netherlands","The Netherlands","Netherlands","Europe & Central Asia","High income","","Netherlands",11
+"NOR",106,1,0,0,0,0,0,"Norway","Norway","Norway","Europe & Central Asia","High income","","Norway",5.5
+"NOR",64,1,0,0,0,0,0,"Norway","Norway","Norway","Europe & Central Asia","High income","","Norway",5.5
+"NOR",8,0,0,1,0,0,0,"Norway","Norway","Norway","Europe & Central Asia","High income","","Norway",5.5
+"NPL",33,0,0,0,1,0,0,"Nepal","Nepal","Nepal","South Asia","Lower middle income","IDA","Nepal",44.2
+"NPL",300,1,0,0,1,1,0,"Nepal","Nepal","Nepal","South Asia","Lower middle income","IDA","Nepal",44.2
+"NZL",704,1,0,0,1,0,0,"New Zealand","New Zealand","New Zealand","East Asia & Pacific","High income","","New Zealand",7.8
+"NZL",159,1,0,0,1,0,0,"New Zealand","New Zealand","New Zealand","East Asia & Pacific","High income","","New Zealand",7.8
+"OMN",283,1,0,0,1,1,0,"Oman","Oman","Oman","Middle East & North Africa","High income","","Oman",34.7
+"OMN",471,1,0,0,1,0,0,"Oman","Oman","Oman","Middle East & North Africa","High income","","Oman",34.7
+"PAK",673,1,0,0,1,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",669,1,0,0,0,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",45,0,0,0,0,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",192,1,1,1,0,0,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",579,1,0,0,0,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",48,0,0,1,1,0,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",291,1,0,0,0,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",675,1,0,0,1,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",317,1,0,0,0,1,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",456,0,0,1,0,0,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",234,1,0,0,0,0,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PAK",26,0,0,1,0,0,0,"Pakistan","Pakistan","Pakistan","South Asia","Lower middle income","Blend","Pakistan",46.4
+"PER",356,0,0,0,0,1,0,"Peru","Peru","Peru","Latin America & Caribbean","Upper middle income","IBRD","Peru",18.6
+"PHL",589,0,0,1,0,0,0,"Philippines","Philippines","Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2
+"PHL",463,0,0,1,0,0,0,"Philippines","Philippines","Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2
+"PHL",423,1,0,0,1,0,0,"Philippines","Philippines","Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2
+"PHL",361,0,0,1,0,0,0,"Philippines","Philippines","Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2
+"PHL",29,1,0,0,0,0,0,"Philippines","Philippines","Philippines","East Asia & Pacific","Lower middle income","IBRD","Philippines",19.2
+"POL",642,1,0,1,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",578,1,0,0,1,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",63,1,0,0,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",425,0,0,1,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",551,1,0,0,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",235,0,0,0,1,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",247,0,0,0,0,1,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",574,1,0,0,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",119,0,0,1,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",299,1,0,0,1,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"POL",383,1,0,0,0,0,0,"Poland","Poland","Poland","Europe & Central Asia","High income","IBRD","Poland",17.2
+"PRT",273,1,0,0,0,1,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",505,1,0,0,0,0,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",66,1,0,0,0,0,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",554,1,1,0,0,0,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",2,1,0,0,1,1,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",364,1,0,0,0,1,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",667,1,0,0,1,0,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"PRT",235,0,0,0,1,0,0,"Portugal","Portugal","Portugal","Europe & Central Asia","High income","","Portugal",8.7
+"ROU",235,0,0,0,1,0,0,"Romania","Romania","Romania","Europe & Central Asia","High income","IBRD","Romania",16.1
+"ROU",584,1,0,0,1,0,0,"Romania","Romania","Romania","Europe & Central Asia","High income","IBRD","Romania",16.1
+"ROU",688,1,0,0,0,1,0,"Romania","Romania","Romania","Europe & Central Asia","High income","IBRD","Romania",16.1
+"RUS",448,1,0,0,1,0,0,"Russia","Russia","Russian Federation","Europe & Central Asia","High income","IBRD","Russia",13.1
+"RWA",540,1,0,0,1,1,0,"Rwanda","Rwanda","Rwanda","Sub-Saharan Africa","Low income","IDA","Rwanda",30.3
+"RWA",356,0,0,0,0,1,0,"Rwanda","Rwanda","Rwanda","Sub-Saharan Africa","Low income","IDA","Rwanda",30.3
+"SAU",635,1,0,0,1,1,0,"Saudi Arabia","Saudi Arabia","Saudi Arabia","Middle East & North Africa","High income","","Saudi Arabia",57.3
+"SEN",582,0,0,1,0,0,0,"Senegal","Senegal","Senegal","Sub-Saharan Africa","Lower middle income","IDA","Senegal",31.8
+"SGP",613,1,0,0,0,1,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",267,1,0,0,0,1,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",367,0,0,1,0,0,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",704,1,0,0,1,0,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",281,1,0,0,0,1,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",334,1,0,0,0,0,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",305,0,0,1,0,0,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",589,0,0,1,0,0,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SGP",152,1,0,0,0,1,0,"Singapore","Singapore","Singapore","East Asia & Pacific","High income","","Singapore",23.3
+"SRB",587,1,0,0,0,1,0,"Serbia","Serbia","Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5
+"SRB",111,1,0,0,0,0,0,"Serbia","Serbia","Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5
+"SRB",60,1,0,0,0,1,0,"Serbia","Serbia","Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5
+"SRB",235,0,0,0,1,0,0,"Serbia","Serbia","Serbia","Europe & Central Asia","Upper middle income","IBRD","Serbia",18.5
+"SVK",235,0,0,0,1,0,0,"Slovakia","Slovakia","Slovak Republic","Europe & Central Asia","High income","","Slovakia",14.1
+"SVN",503,1,0,0,0,1,0,"Slovenia","Slovenia","Slovenia","Europe & Central Asia","High income","","Slovenia",13.3
+"SVN",487,1,0,1,0,1,0,"Slovenia","Slovenia","Slovenia","Europe & Central Asia","High income","","Slovenia",13.3
+"SVN",611,1,1,0,0,0,0,"Slovenia","Slovenia","Slovenia","Europe & Central Asia","High income","","Slovenia",13.3
+"SVN",235,0,0,0,1,0,0,"Slovenia","Slovenia","Slovenia","Europe & Central Asia","High income","","Slovenia",13.3
+"SWE",654,1,0,0,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",655,1,0,0,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",345,1,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",238,1,0,0,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",56,1,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",344,1,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",16,1,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",235,0,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",513,1,0,0,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",63,1,0,0,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",359,0,0,0,1,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"SWE",13,0,0,1,0,0,0,"Sweden","Sweden","Sweden","Europe & Central Asia","High income","","Sweden",5.8
+"THA",421,1,0,0,0,1,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",497,1,0,1,0,1,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",467,0,0,1,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",441,1,0,0,1,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",449,1,0,0,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",420,1,0,0,1,1,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",473,1,0,0,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",303,1,0,0,1,1,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",589,0,0,1,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",463,0,0,1,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"THA",36,1,0,1,0,0,0,"Thailand","Thailand","Thailand","East Asia & Pacific","Upper middle income","IBRD","Thailand",25.2
+"TUR",644,1,0,0,0,0,0,"Turkyie","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",206,1,0,1,0,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",422,1,0,0,0,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",625,1,0,0,0,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",686,1,0,0,0,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",235,0,0,0,1,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",501,1,0,0,1,0,0,"Türkiye","Türkiye","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TUR",678,1,0,0,0,0,0,"Turkey","Turkey","Türkiye","Europe & Central Asia","Upper middle income","IBRD","Turkey",23
+"TWN",461,0,0,1,1,0,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",631,1,0,1,1,0,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",553,1,0,0,1,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",308,1,0,0,0,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",174,1,0,1,0,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",315,1,0,0,0,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",248,1,0,0,0,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",481,1,0,1,0,1,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"TWN",134,1,0,0,0,0,0,"Taiwan","Taiwan","Taiwan, China","East Asia & Pacific","High income","","Taiwan",17.8
+"UGA",246,1,0,0,0,1,0,"Uganda","Uganda","Uganda","Sub-Saharan Africa","Low income","IDA","Uganda",27.2
+"USA",164,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",341,1,0,1,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",376,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",561,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",483,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",265,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",408,0,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",328,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",32,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",259,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",559,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",64,1,0,0,0,0,0,"USA","USA","United States","North America","High income","","United States",7.4
+"USA",81,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",220,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",437,1,0,0,1,0,0,"USA","USA","United States","North America","High income","","United States",7.4
+"USA",80,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",337,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",166,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",177,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",141,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",347,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",521,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",403,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",135,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",79,1,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",537,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",645,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",407,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",31,0,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",677,0,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",130,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",338,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",244,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",371,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",106,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",245,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",489,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",185,1,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",156,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",536,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",71,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",490,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",298,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",517,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",35,1,0,0,1,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",272,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",197,0,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",275,0,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",346,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",397,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",460,0,0,1,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",662,0,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",454,1,0,0,0,1,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",535,0,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",34,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",97,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",498,1,0,0,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",29,1,0,0,0,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"USA",461,0,0,1,1,0,0,"United States","United States","United States","North America","High income","","United States",7.4
+"VEN",676,1,0,0,1,0,0,"Venezuela","Venezuela","Venezuela, RB","Latin America & Caribbean","Upper middle income","IBRD","Venezuela",18.5
+"VEN",428,0,0,1,0,0,0,"Venezuela","Venezuela","Venezuela, RB","Latin America & Caribbean","Upper middle income","IBRD","Venezuela",18.5
+"VNM",320,0,0,1,0,0,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",374,1,0,1,0,0,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",146,1,0,0,1,1,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",350,1,0,0,1,1,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",423,1,0,0,1,0,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",589,0,0,1,0,0,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",203,1,0,0,1,1,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",246,1,0,0,0,1,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"VNM",107,1,0,0,0,1,0,"Vietnam","Vietnam","Vietnam","East Asia & Pacific","Lower middle income","IBRD","Vietnam",26.3
+"ZAF",439,1,0,1,1,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+"ZAF",478,0,0,1,0,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+"ZAF",659,1,0,0,1,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+"ZAF",64,1,0,0,0,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+"ZAF",106,1,0,0,0,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+"ZAF",378,1,0,0,1,0,0,"South Africa","South Africa","South Africa","Sub-Saharan Africa","Upper middle income","IBRD","South Africa",27.7
+NA,614,1,0,0,0,0,0,"exclude","exclude",NA,NA,NA,NA,NA,NA
+NA,648,1,0,0,0,0,0,"no access","no access",NA,NA,NA,NA,NA,NA
+NA,508,0,0,0,0,1,0,"exclude","exclude",NA,NA,NA,NA,NA,NA
+NA,470,1,0,0,1,0,0,"exclude","exclude",NA,NA,NA,NA,NA,NA
+NA,472,1,0,0,0,0,0,"exclude","exclude",NA,NA,NA,NA,NA,NA
+NA,292,1,0,0,0,0,0,"exclude","exclude",NA,NA,NA,NA,NA,NA
+NA,485,1,0,0,0,1,0,"no info","no info",NA,NA,NA,NA,NA,NA
