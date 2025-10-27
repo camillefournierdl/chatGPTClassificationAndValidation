@@ -22,7 +22,10 @@ p_needed <-
     "modelsummary",
     "tidyr",
     "data.table",
-    "scales")
+    "scales",
+    "tidyverse",
+    "treemapify",
+    "ggnewscale")
 
 # Check which packages are already installed on your computer
 packages <- rownames(installed.packages())
@@ -82,86 +85,16 @@ surveys <- merge(surveys, dataSummary, by = "iso3", all.x = T, all.y = F)
 
 ```
 
-## Clean the data (would skip this?)
+## Filter (only Inclusion = 1 items)
 
 ```{r clean}
 
 #-------------------------------------------------------------------------------
-# consistent country names 
+# Inclusion = 1 for survey items 
 #-------------------------------------------------------------------------------
-
-## paper
-papers <- papers %>%
-  mutate(country_clean = recode(country,
-    # Turkey variants
-    "Turkey" = "Turkyie",
-    "Türkiye" = "Turkyie",
-    
-    # UK variants
-    "UK" = "United Kingdom",
-    "England" = "United Kingdom",
-    "Wales" = "United Kingdom",
-    
-    # Korea variants
-    "Korea" = "South Korea",
-    
-    # Netherlands variants
-    "The Netherlands" = "Netherlands",
-    
-    # Czechia variants
-    "Czech Republic" = "Czechia",
-    
-    # US variants
-    "USA" = "United States",
-    
-    .default = country  # keep as is otherwise
-  ))
-
-papers <- papers[which(papers$country_clean != "exclude"),]
-papers <- papers[which(papers$country_clean != "no info"),]
-
-
-## survey
-surveys <- surveys %>%
-  mutate(country_clean = recode(countries,
-    # Turkey variants
-    "Turkey" = "Turkyie",
-    "Türkiye" = "Turkyie",
-    
-    # UK variants
-    "UK" = "United Kingdom",
-    "England" = "United Kingdom",
-    "Wales" = "United Kingdom",
-    
-    # Korea variants
-    "Korea" = "South Korea",
-    
-    # Netherlands variants
-    "The Netherlands" = "Netherlands",
-    
-    # Czechia variants
-    "Czech Republic" = "Czechia",
-    
-    # US variants
-    "USA" = "United States",
-    
-    .default = countries  # keep as is otherwise
-  ))
-
-
-#-------------------------------------------------------------------------------
-# relevant columns
-#-------------------------------------------------------------------------------
-papers <- papers[,c("ID", "country_clean",
-                    "Income.group", "Region.x", 
-                    "Perceptions", "Behavior", "Priority", "Policy", "Health", "None", "pm25Avg")]
-
-surveys <- surveys[,c("id", "country_clean", "year", "Income.group", "Region.x", 
-                      "Perceptions", "Behavior", "Priority", "Policy", "Health", "Inclusion", "pm25Avg")]
 
 ## surveys: drop items for which Inclusion == 0
 surveys <- surveys[which(surveys$Inclusion == 1),]
-
 
 ## subset survey without Flashbarometer
 surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitudes of Europeans towards air quality"),]
@@ -171,11 +104,6 @@ surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitud
 ## Visualizations full data
 
 ```{r visualise}
-
-# install.packages("treemapify")
-library(tidyverse)
-library(scales)
-library(treemapify)
 
 #-------------------------------------------------------------------------------
 # papers
@@ -231,7 +159,6 @@ dev.off()
 #-------------------------------------------------------------------------------
 # surveys
 #-------------------------------------------------------------------------------
-
 surveys_long <- surveys %>%
   count(category, name = "n") %>%   # counts per category
   mutate(share = n / sum(n)) %>%    # sum(n) is the grand total here
@@ -284,11 +211,6 @@ dev.off()
 #-------------------------------------------------------------------------------
 # papers
 #-------------------------------------------------------------------------------
-
-# install.packages("ggnewscale")
-library(tidyverse)
-library(scales)
-library(ggnewscale)
 
 # 1. Prepare topic-level data (shares within income group)
 topics_data <- papers %>%
@@ -430,27 +352,12 @@ labs(x = "Income group", y = NULL) +
 
 dev.off()
 
-#"#F3EBF8", "#D4ABEF", "#541F78"
-
 ```
 
 
 ## Visualizations by exposure group
 
 ```{r exposure group}
-
-#-------------------------------------------------------------------------------
-# get exposure groups for papers and surveys
-#-------------------------------------------------------------------------------
-
-## now is already in the papers dataset, could change values based on pollution value (pm25$categoryPollution <- cut(papers$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
-#                                 labels = c("Very low", "Low", "Medium", "High", "Very high"), 
-#                                 right = FALSE)
-
-# surveys$categoryPollution <- cut(surveys$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
-#                                 labels = c("Very low", "Low", "Medium", "High", "Very high"), 
-#                                 right = FALSE)
-
 
 #-------------------------------------------------------------------------------
 # papers
@@ -574,7 +481,7 @@ ggplot() +
     size = 4) +
   scale_fill_gradient(
     name = "Share within\nexposure group",
-    low = "#f7f4f9", high = "#8B475D",
+    low = "#F3EBF8", high = "#541F78",
     labels = scales::percent,
     breaks = c(min(topics_data_poll_s$share), max(topics_data_poll_s$share))) +
   scale_color_identity() +
