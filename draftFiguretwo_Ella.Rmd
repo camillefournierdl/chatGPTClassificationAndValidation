@@ -409,7 +409,7 @@ ggplot() +
     size = 4) +
   scale_fill_gradient(
     name = "Share within\nincome group",
-    low = "#f7f4f9", high = "#8B475D",
+    low = "#F3EBF8", high = "#541F78",
     labels = scales::percent,
     breaks = c(min(topics_data_s$share), max(topics_data_s$share))) +
   scale_color_identity() +
@@ -422,6 +422,8 @@ labs(x = "Income group", y = NULL) +
     legend.position = "top")
 
 dev.off()
+
+#"#F3EBF8", "#D4ABEF", "#541F78"
 
 ```
 
