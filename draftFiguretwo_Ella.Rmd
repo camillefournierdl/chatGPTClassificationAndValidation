@@ -5,6 +5,10 @@ date: "2025-10-17"
 output: html_document
 ---
 
+Redo figure 2 with the 'share of papers mentioning a topic' instead, so the percentages would go above 100% which is ok. Also for the other panels, calculate the percentages per subgroups that mention,
+which will also make each 'column' going above 100%
+
+
 ```{r setup, include=FALSE}
 
 ## clean environment
@@ -203,6 +207,81 @@ dev.off()
 
 ```
 
+## Visualization counting the share of papers & survey items instead of the raw count for each category
+
+
+```{r}
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+papers_long <- papers %>%
+  group_by(category) %>%
+  summarise(n = n_distinct(ID)) %>%
+  rename(Topic = category) %>% 
+  mutate(share = n / length(unique(papers$ID)))
+
+# bar plot with counts and percentage labels
+pdf("plots/Figure2_category_paper_barplot_share.pdf", width = 12, height = 10)
+ggplot(papers_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = percent(share, accuracy = 1)),
+            hjust = -0.3, size = 9) +
+  labs(y = NULL, x = "Number of papers covering each category") +
+  scale_fill_manual(values = c(
+    "Perceptions" = "#8B7B8B",
+    "Behavior"    = "#EED8AE",
+    "Priority"    = "#CDB5CD",
+    "Policy"      = "#CD919E",
+    "Health"      = "#8B475D",
+    "None"        = "#F4A460")) +
+  theme_minimal() +
+  xlim(0, 450) +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 22),
+    axis.text.x = element_text(size = 22),
+    axis.title = element_text(size = 23)
+    )
+dev.off()
+
+#-------------------------------------------------------------------------------
+# surveys
+#-------------------------------------------------------------------------------
+
+surveys_long <- surveys %>%
+  mutate(item_id = paste0(iso3, id)) %>% 
+  distinct(item_id, category) %>%     # collapse multiple rows for same ID–category pair
+  count(category, name = "n") %>% 
+  mutate(share = n / length(unique(paste0(surveys$iso3, surveys$id)))) %>%
+  rename(Topic = category)
+
+# bar plot with counts and percentage labels
+pdf("plots/Figure2_category_survey_barplot_share.pdf", width = 12, height = 10)
+ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = percent(share, accuracy = 1)),
+            hjust = -0.3, size = 9) +
+  labs(y = NULL, x = "Number of survey items covering each category") +
+  scale_fill_manual(values = c(
+    "Perceptions" = "#8B7B8B",
+    "Behavior"    = "#EED8AE",
+    "Priority"    = "#CDB5CD",
+    "Policy"      = "#CD919E",
+    "Health"      = "#8B475D",
+    "None"        = "#F4A460")) +
+  xlim(0, 1250) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(size = 22),
+    axis.text.x = element_text(size = 22),
+    axis.title = element_text(size = 23)
+    )
+dev.off()
+
+```
 
 ## Visualizations by income group
 
@@ -354,6 +433,7 @@ dev.off()
 
 ```
 
+## Visualizations by income group, using share
 
 ## Visualizations by exposure group
 
