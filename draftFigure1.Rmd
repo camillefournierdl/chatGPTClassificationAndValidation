@@ -17,7 +17,6 @@ summaryPaperInc <- dataset %>%
   summarize(nTotal = sum(n_papers, na.rm = T)) %>% 
   filter(!is.na(Income.group))
 
-
 summaryPaperInc$Income.group <- factor(
   summaryPaperInc$Income.group,
   levels = rev(c(
@@ -281,7 +280,7 @@ dev.off()
 ## then for surveys
 world_countries_merged$n_surveys <- ifelse(is.na(world_countries_merged$n_surveys), 0, world_countries_merged$n_surveys)
 
-my_breaks = c(1, 5, 10, 20)
+my_breaks = c(1, 5, 10, 20, 80)
 
 # 1) Filter out Antarctica from your data:
 world_no_antarctica <- 

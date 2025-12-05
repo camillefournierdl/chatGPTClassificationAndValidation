@@ -138,7 +138,8 @@ ggplot(papers_long, aes(x = reorder(Topic, -n), y = n, fill = Topic)) +
     legend.position = "none",
     axis.text.x = element_text(angle = 30, hjust = 1, size = 15),
     axis.text.y = element_text(size = 15),
-    axis.title = element_text(size = 16))
+    axis.title = element_text(size = 16)
+    )
 dev.off()
 
 
@@ -251,7 +252,7 @@ dev.off()
 #-------------------------------------------------------------------------------
 
 surveys_long <- surveys %>%
-  mutate(item_id = paste0(iso3, id)) %>% 
+  mutate(item_id = paste0(iso3, id, year)) %>% 
   distinct(item_id, category) %>%     # collapse multiple rows for same ID–category pair
   count(category, name = "n") %>% 
   mutate(share = n / length(unique(paste0(surveys$iso3, surveys$id)))) %>%
@@ -271,7 +272,7 @@ ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
     "Policy"      = "#CD919E",
     "Health"      = "#8B475D",
     "None"        = "#F4A460")) +
-  xlim(0, 1250) +
+  xlim(0, 1850) +
   theme_minimal() +
   theme(
     legend.position = "none",
@@ -546,7 +547,7 @@ dev.off()
 # 1. Prepare topic-level data (shares within income group, based on unique survey items)
 surveys_topics <- surveys %>%
   filter(!is.na(Income.group)) %>%
-  mutate(item_id = paste0(iso3, id)) %>%              # unique survey-level ID
+  mutate(item_id = paste0(iso3, id, year)) %>%              # unique survey-level ID
   distinct(item_id, Income.group, category) %>%       # each item counts once per (Income.group, category)
   count(Income.group, category, name = "n_items") %>% # number of items mentioning category
   rename(Topic = category) %>%
@@ -564,7 +565,7 @@ surveys_topics <- surveys %>%
 # 2. Totals per income group (unique items)
 surveys_totals <- surveys %>%
   filter(!is.na(Income.group)) %>%
-  mutate(item_id = paste0(iso3, id)) %>%
+  mutate(item_id = paste0(iso3, id, year)) %>%
   group_by(Income.group) %>%
   summarise(
     total = n_distinct(item_id),
@@ -640,7 +641,6 @@ ggplot() +
     legend.position = "top"
   )
 dev.off()
-
 
 ```
 
@@ -906,7 +906,7 @@ dev.off()
 # 1. Prepare topic-level data (shares within exposure group, based on unique survey items)
 topics_data_survey_poll <- surveys %>%
   filter(!is.na(categoryPollution)) %>%
-  mutate(item_id = paste0(iso3, id)) %>%                      # unique survey item ID
+  mutate(item_id = paste0(iso3, id, year)) %>%                      # unique survey item ID
   distinct(item_id, categoryPollution, category) %>%          # each item counts once per (exposure, topic)
   count(categoryPollution, category, name = "n_items") %>%    # number of items mentioning category
   rename(Topic = category) %>%
@@ -926,7 +926,7 @@ topics_data_survey_poll <- surveys %>%
 # 2. Prepare totals row data (absolute counts of unique items per exposure group)
 totals_data_survey_poll <- surveys %>%
   filter(!is.na(categoryPollution)) %>%
-  mutate(item_id = paste0(iso3, id)) %>%
+  mutate(item_id = paste0(iso3, id, year)) %>%
   group_by(categoryPollution) %>%
   summarise(
     total = n_distinct(item_id),

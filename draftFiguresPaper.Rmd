@@ -427,6 +427,7 @@ surveyCountries_long <- surveyClassification %>%
   separate_rows(surveyedCountries, sep = ";\\s*") %>%
   mutate(countries = str_trim(surveyedCountries))
 
+
 # fix country names first manual then with iso3
 
 surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
@@ -449,8 +450,27 @@ surveyCountries_long_clean <- surveyCountries_long %>%
   ) %>% 
   filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
 
+surveyCountries_long_clean$year <- ifelse(surveyCountries_long_clean$year == "2017 - 2021", 2019, surveyCountries_long_clean$year)
+surveyCountries_long_clean$year <- ifelse(surveyCountries_long_clean$year == "2021 - 2022", 2021, surveyCountries_long_clean$year)
+
+surveyCountries_long_clean_t <- surveyCountries_long_clean %>%
+  # 1. build a single “years” string
+  mutate(
+    all_years = if_else(
+      is.na(repeatedMeasure) | repeatedMeasure == "",
+      as.character(year),
+      paste(year, repeatedMeasure, sep = ";")
+    ),
+    # drop every space character
+    all_years = str_remove_all(all_years, "\\s+")
+  ) %>%
+  separate_rows(all_years, sep = ";") %>%
+  mutate(year = as.integer(all_years)) # %>%
+  # dplyr::select(-all_years, -repeatedMeasure)
+
+
 # 2) get total surveys by country
-surveys_by_country <- surveyCountries_long_clean %>%
+surveys_by_country <- surveyCountries_long_clean_t %>%
   filter(Inclusion == 1) %>% 
   group_by(iso3, .drop = F) %>% 
   count(iso3, name = "n_surveys") %>%
@@ -609,7 +629,26 @@ surveyCountries_long_clean <- surveyCountries_long %>%
   ) %>% 
   filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
 
-df_cat_long <- surveyCountries_long_clean %>%
+surveyCountries_long_clean_yearly <- surveyCountries_long_clean
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2017 - 2021", 2019, surveyCountries_long_clean_yearly$year)
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2021 - 2022", 2021, surveyCountries_long_clean_yearly$year)
+
+surveyCountries_long_clean_yearly_t <- surveyCountries_long_clean_yearly %>%
+  # 1. build a single “years” string
+  mutate(
+    all_years = if_else(
+      is.na(repeatedMeasure) | repeatedMeasure == "",
+      as.character(year),
+      paste(year, repeatedMeasure, sep = ";")
+    ),
+    # drop every space character
+    all_years = str_remove_all(all_years, "\\s+")
+  ) %>%
+  separate_rows(all_years, sep = ";") %>%
+  mutate(year = as.integer(all_years)) %>%
+  dplyr::select(-all_years, -repeatedMeasure)
+
+df_cat_long <- surveyCountries_long_clean_yearly_t %>%
   pivot_longer(
     cols = c(Perceptions, Priority, Policy, Health, Behavior),
     names_to  = "category",
@@ -622,9 +661,6 @@ df_cat_long <- surveyCountries_long_clean %>%
 write.csv(df_cat_long, "output/surveyClassifYear.csv", row.names = F)
 
 ```
-
-
-
 
 
 ```{r linking nb of papers with pollution levels over space and time?}
