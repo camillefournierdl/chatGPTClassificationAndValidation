@@ -65,6 +65,15 @@ surveys <- read.csv2("output/surveyClassifYear.csv",
 
 dataSummary <- read.csv("output/datasetPlots.csv")
 
+papers <- papers %>% 
+  filter(!is.na(iso3))
+
+surveys <- surveys %>% 
+  filter(!is.na(iso3))
+
+dataSummary <- dataSummary %>% 
+  filter(!is.na(iso3))
+
 dataSummary$categoryPollution <- ifelse(
   !is.na(dataSummary$categoryPollution),
   paste0(toupper(substr(dataSummary$categoryPollution, 1, 1)),
