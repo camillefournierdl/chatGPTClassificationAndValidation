@@ -1,0 +1,342 @@
+---
+title: "dataPrep"
+output: html_document
+---
+
+```{r long classification dataset - paper}
+
+library(tidyverse)
+library(countrycode)
+
+"%ni%" = Negate("%in%")
+
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
+
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
+
+datasetCountries <- datasetCountries %>% 
+  dplyr::select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
+                                        by = "ID") %>% 
+  dplyr::select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ",\\s*") %>%
+  mutate(countries = str_trim(country))
+
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
+# fix country names 
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia")) # virtually filtering for papers that would not have a matching country
+
+# add the year
+datasetYear <- read.csv("dataNew/datasetToClassifyGPT.csv") %>% 
+  dplyr::select(ID, Year)
+
+datasetClassificationCountries_long_clean <- merge(datasetClassificationCountries_long_clean,
+                                                   datasetYear,
+                                                   by = "ID", all.x = T, all.y = F)
+
+df_cat_long <- datasetClassificationCountries_long_clean %>%
+  pivot_longer(
+    cols = c(Perceptions, Priority, Policy, Health, Behavior),
+    names_to  = "category",
+    values_to = "flag"
+  ) %>%
+  # keep only “paper belongs to this category”
+  filter(flag == 1) %>%
+  dplyr::select(-flag, -None)
+
+write.csv(df_cat_long, "output/paperClassifYear.csv", row.names = F)
+
+```
+
+```{r long classification dataset - survey}
+
+library(tidyverse)
+library(countrycode)
+
+"%ni%" = Negate("%in%")
+
+surveyClassification <- read.csv("dataNew/surveyClassif.csv", sep = ";")
+
+surveyClassification <- surveyClassification %>% 
+  filter(Inclusion == 1)
+
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Kazakhstan; Kyrgyzstan, Tajikistan, Uzbekistan, Turkmenistan",
+                                                 "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
+                                                 surveyClassification$surveyedCountries)
+
+# 1) split into one row per country
+surveyCountries_long <- surveyClassification %>%
+  separate_rows(surveyedCountries, sep = ";\\s*") %>%
+  mutate(countries = str_trim(surveyedCountries))
+
+# fix country names first manual then with iso3
+
+surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
+                                         ifelse(surveyCountries_long$countries %in% c("Northern Ireland"), "Ireland",
+                                                ifelse(surveyCountries_long$countries %in% c("Czech"), "Czechia",
+                                                       ifelse(surveyCountries_long$countries %in% c("Uruguah"), "Uruguay",
+                                                              ifelse(surveyCountries_long$countries %in% c("Natherlands"), "Netherlands",
+                                                                     ifelse(surveyCountries_long$countries %in% c("Croaatia"), "Croatia",
+                                                                            ifelse(surveyCountries_long$countries %in% c("Kyrgysztan"), "Kyrgyzstan",
+                                                                                   ifelse(surveyCountries_long$countries %in% c("El Savador"), "El Salvador", surveyCountries_long$countries))))))))
+
+
+# 1. Direct mapping
+surveyCountries_long_clean <- surveyCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+surveyCountries_long_clean_yearly <- surveyCountries_long_clean
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2017 - 2021", 2019, surveyCountries_long_clean_yearly$year)
+surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2021 - 2022", 2021, surveyCountries_long_clean_yearly$year)
+
+surveyCountries_long_clean_yearly_t <- surveyCountries_long_clean_yearly %>%
+  # 1. build a single “years” string
+  mutate(
+    all_years = if_else(
+      is.na(repeatedMeasure) | repeatedMeasure == "",
+      as.character(year),
+      paste(year, repeatedMeasure, sep = ";")
+    ),
+    # drop every space character
+    all_years = str_remove_all(all_years, "\\s+")
+  ) %>%
+  separate_rows(all_years, sep = ";") %>%
+  mutate(year = as.integer(all_years)) %>%
+  dplyr::select(-all_years, -repeatedMeasure)
+
+df_cat_long <- surveyCountries_long_clean_yearly_t %>%
+  pivot_longer(
+    cols = c(Perceptions, Priority, Policy, Health, Behavior),
+    names_to  = "category",
+    values_to = "flag"
+  ) %>%
+  # keep only “paper belongs to this category”
+  filter(flag == 1) %>%
+  dplyr::select(-flag)
+
+write.csv(df_cat_long, "output/surveyClassifYear.csv", row.names = F)
+
+```
+
+```{r putting data together}
+
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
+
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
+
+datasetCountries <- datasetCountries %>% 
+  select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
+                                        by = "ID") %>% 
+  select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ",\\s*") %>%
+  mutate(countries = str_trim(country))
+
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
+# fix country names 
+library(countrycode)
+
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+df_cat_long <- datasetClassificationCountries_long_clean %>%
+  # keep only “paper belongs to this category”
+  filter(sum(Perceptions, Priority, Policy, Health, Behavior) >= 1,
+         None != 1)
+
+# 2) get total papers by country
+papers_by_country <- df_cat_long %>%
+  group_by(iso3, .drop = F) %>% 
+  count(iso3, name = "n_papers") %>%
+  arrange(desc(n_papers))
+
+datasetPollution <- read.csv("dataNew/GlobalPM25-V6GL0203-Annual-1998-2023-wThresFrac.csv")
+
+datasetPollution_avg <- datasetPollution %>% 
+  filter(Year %in% 2019) %>%
+  group_by(Region) %>% 
+  summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
+
+datasetPollution2 <- read.csv("dataNew/GlobalPM25-V5GL0502-Annual-1998-2023-wThresFrac.csv")
+
+datasetPollution2_avg <- datasetPollution2 %>% 
+  filter(Year %in% 2019) %>%
+  filter(Region %in% c("Hong Kong", "Taiwan")) %>% 
+  group_by(Region) %>% 
+  summarize(pm25Avg = mean(Population.Weighted.PM2.5..ug.m3., na.rm=T))
+
+datasetPollution_avg <- rbind(datasetPollution_avg, datasetPollution2_avg)
+
+datasetPollution_ctr <- datasetPollution_avg %>%
+  mutate(
+    iso3 = countrycode(Region,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(!is.na(iso3)) %>% 
+  rename(countryName = Region)  
+
+papers_by_country_pollution <- merge(papers_by_country, datasetPollution_ctr, by = "iso3", all.x = T, all.y = T)
+
+fullCountrylist <- unique(countrycode::codelist$iso3c)
+
+papers_by_country_pollution$n_papers <- ifelse(!is.na(papers_by_country_pollution$n_papers), papers_by_country_pollution$n_papers, 0)
+
+## adding survey nb 
+
+surveyClassification <- read.csv("dataNew/surveyClassif.csv", sep = ";")
+
+surveyClassification <- surveyClassification %>% 
+  filter(Inclusion == 1)
+
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Kazakhstan; Kyrgyzstan, Tajikistan, Uzbekistan, Turkmenistan",
+                                                 "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
+                                                 surveyClassification$surveyedCountries)
+
+# 1) split into one row per country
+surveyCountries_long <- surveyClassification %>%
+  separate_rows(surveyedCountries, sep = ";\\s*") %>%
+  mutate(countries = str_trim(surveyedCountries))
+
+
+# fix country names first manual then with iso3
+
+surveyCountries_long$countries <- ifelse(surveyCountries_long$countries %in% c("Phillipines", "Philliphines", "Phillippines"), "Philippines",
+                                         ifelse(surveyCountries_long$countries %in% c("Northern Ireland"), "Ireland",
+                                                ifelse(surveyCountries_long$countries %in% c("Czech"), "Czechia",
+                                                       ifelse(surveyCountries_long$countries %in% c("Uruguah"), "Uruguay",
+                                                              ifelse(surveyCountries_long$countries %in% c("Natherlands"), "Netherlands",
+                                                                     ifelse(surveyCountries_long$countries %in% c("Croaatia"), "Croatia",
+                                                                            ifelse(surveyCountries_long$countries %in% c("Kyrgysztan"), "Kyrgyzstan",
+                                                                                   ifelse(surveyCountries_long$countries %in% c("El Savador"), "El Salvador", surveyCountries_long$countries))))))))
+
+
+
+# 1. Direct mapping
+surveyCountries_long_clean <- surveyCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+surveyCountries_long_clean$year <- ifelse(surveyCountries_long_clean$year == "2017 - 2021", 2019, surveyCountries_long_clean$year)
+surveyCountries_long_clean$year <- ifelse(surveyCountries_long_clean$year == "2021 - 2022", 2021, surveyCountries_long_clean$year)
+
+surveyCountries_long_clean_t <- surveyCountries_long_clean %>%
+  # 1. build a single “years” string
+  mutate(
+    all_years = if_else(
+      is.na(repeatedMeasure) | repeatedMeasure == "",
+      as.character(year),
+      paste(year, repeatedMeasure, sep = ";")
+    ),
+    # drop every space character
+    all_years = str_remove_all(all_years, "\\s+")
+  ) %>%
+  separate_rows(all_years, sep = ";") %>%
+  mutate(year = as.integer(all_years)) # %>%
+  # dplyr::select(-all_years, -repeatedMeasure)
+
+# 2) get total surveys by country
+surveys_by_country <- surveyCountries_long_clean_t %>%
+  filter(Inclusion == 1) %>% 
+  group_by(iso3, .drop = F) %>% 
+  count(iso3, name = "n_surveys") %>%
+  arrange(desc(n_surveys))
+
+papers_by_country_pollution_survey <- merge(papers_by_country_pollution, surveys_by_country, by = "iso3", all.x = T, all.y = T)
+
+papers_by_country_pollution_survey$n_surveys <- ifelse(is.na(papers_by_country_pollution_survey$n_surveys), 0, papers_by_country_pollution_survey$n_surveys)
+
+population <- read.csv("dataNew/GHS_pop.csv", sep = ";")
+
+popCtr <- population %>%
+  group_by(GADM_ISO) %>% 
+  summarize(population2015 = sum(X2015))
+
+summaryDataset <- merge(papers_by_country_pollution_survey, popCtr, by.x = "iso3", by.y = "GADM_ISO", all.x = T, all.y = F)
+
+summaryDataset$categoryPollution <- cut(summaryDataset$pm25Avg, breaks = c(0, 10, 15, 25, 35, 100), 
+                  labels = c("very low", "low", "medium", "high", "very high"), 
+                  right = FALSE)
+
+summaryDataset$isChina <- ifelse(summaryDataset$iso3 == "CHN", 1, 0)
+summaryDataset$isIndia <- ifelse(summaryDataset$iso3 == "IND", 1, 0)
+
+### add income groups to the dataset
+
+incomeGroups <- read.csv("dataNew/worldBankIncomeGroups.csv", sep = ";")
+incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle income", incomeGroups$Income.group)
+
+summaryDataset <- merge(summaryDataset, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
+
+plot(summaryDataset %>% 
+       select(Income.group, pm25Avg, n_papers, n_surveys, population2015, categoryPollution))
+
+## add region from natural earth
+
+library(rnaturalearth)
+library(terra)
+
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+
+world_countries_df <- as.data.frame(world_countries)
+
+world_countries_df$iso_a3 <- ifelse(world_countries_df$iso_a3_eh == "FRA", "FRA",
+                                    ifelse(world_countries_df$iso_a3_eh == "NOR", "NOR", world_countries_df$iso_a3))
+
+summaryDataset2 <- merge(summaryDataset, world_countries_df %>% 
+                          select(continent, region_un, iso_a3), by.x = "iso3", by.y = "iso_a3", all.x = T, all.y = F)
+
+summaryDataset2 <- summaryDataset2 %>% 
+  filter(!(iso3 == "FRA" & continent == "Seven seas (open ocean)")) %>% 
+  filter(!(iso3 == "CYP" & countryName == "Northern Cyprus"))
+
+write.csv(summaryDataset2, "output/datasetPlots.csv", row.names = F)
+
+```

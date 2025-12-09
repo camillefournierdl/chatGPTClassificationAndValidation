@@ -5,9 +5,6 @@ date: "2025-10-17"
 output: html_document
 ---
 
-Redo figure 2 with the 'share of papers mentioning a topic' instead, so the percentages would go above 100% which is ok. Also for the other panels, calculate the percentages per subgroups that mention,
-which will also make each 'column' going above 100%
-
 
 ```{r setup, include=FALSE}
 
@@ -107,7 +104,7 @@ surveys <- merge(surveys, dataSummary, by = "iso3", all.x = T, all.y = F)
 #-------------------------------------------------------------------------------
 
 ## surveys: drop items for which Inclusion == 0
-surveys <- surveys[which(surveys$Inclusion == 1),]
+surveys <- surveys[which(surveys$Inclusion == 1),] # done in the data prep section
 
 ## subset survey without Flashbarometer
 surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitudes of Europeans towards air quality"),]
@@ -264,7 +261,7 @@ surveys_long <- surveys %>%
   mutate(item_id = paste0(iso3, id, year)) %>% 
   distinct(item_id, category) %>%     # collapse multiple rows for same ID–category pair
   count(category, name = "n") %>% 
-  mutate(share = n / length(unique(paste0(surveys$iso3, surveys$id)))) %>%
+  mutate(share = n / length(unique(paste0(surveys$iso3, surveys$id, surveys$year)))) %>%
   rename(Topic = category)
 
 # bar plot with counts and percentage labels
@@ -653,6 +650,131 @@ dev.off()
 
 ```
 
+# Visualizations by income group, with proportional weighting
+
+```{r visualisation income weighting}
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+## 1. Compute country-weights per paper x income group -----------------------
+
+# For each paper, how many distinct countries are there in total,
+# and how many of those are in each income group?
+paper_country_weights <- papers %>%
+  distinct(ID, country, Income.group) %>%  # ignore category here
+  group_by(ID) %>%
+  mutate(n_countries_total = n_distinct(country)) %>%
+  group_by(ID, Income.group, n_countries_total) %>%
+  summarise(n_countries_group = n_distinct(country), .groups = "drop") %>%
+  mutate(country_weight = n_countries_group / n_countries_total)
+# Example: if a paper has 2 countries (1 low, 1 high) then
+# country_weight = 0.5 for low income and 0.5 for high income.
+
+## 2. Attach weights back to the (paper x income group x category) rows ------
+
+papers_weighted <- papers %>%
+  left_join(
+    paper_country_weights %>%
+      dplyr::select(ID, Income.group, country_weight),
+    by = c("ID", "Income.group")
+  )
+
+## 3. Compute weighted category shares within each income group --------------
+
+topics_data <- papers_weighted %>%
+  filter(!is.na(Income.group), !is.na(category)) %>%
+  group_by(Income.group, category) %>%
+  summarise(
+    weighted_n = sum(country_weight, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  rename(Topic = category) %>%
+  mutate(
+    Income.group = factor(
+      Income.group,
+      levels = c("Low income", "Lower middle income", "Upper middle income", "High income")
+    ),
+    Topic = factor(
+      Topic,
+      levels = rev(c("Perceptions", "Behavior", "Priority", "Policy", "Health"))
+    )
+  ) %>%
+  group_by(Income.group) %>%
+  mutate(
+    share = weighted_n / sum(weighted_n),
+    total = sum(weighted_n)        # weighted total "papers" per income group
+  ) %>%
+  ungroup()
+
+## 4. Data for the top "total papers" row -----------------------------------
+
+totals_data <- topics_data %>%
+  group_by(Income.group) %>%
+  summarise(total = round(first(total)), .groups = "drop") %>%
+  mutate(Topic = "Total papers")   # so it can align in the same plot if needed
+
+## 5. Plot (heatmap) --------------------------------------------------------
+
+pdf("plots/Figure2_category_paper_by_income_weight.pdf", width = 12, height = 10)
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data,
+            aes(x = Income.group, y = "Total papers", fill = total),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data,
+    aes(x = Income.group, y = "Total papers",
+        label = paste0("n=", total),
+        color = "black"),
+    size = 7
+  ) +
+  scale_fill_gradient(
+    name = "Total papers",
+    low = "#F6DBA7", high = "#F7B32B",
+    breaks = range(totals_data$total),
+    labels = range(totals_data$total)
+  ) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data,
+            aes(x = Income.group, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data,
+    aes(x = Income.group, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        # label = paste0(
+        #     scales::percent(share, accuracy = 1), 
+        #     "\n(", n_papers, ")"
+        #   ),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 7
+  ) +
+  scale_fill_gradient(
+    name = "Share of papers\nwithin income group ",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data$share), max(topics_data$share))
+  ) +
+  scale_color_identity() +
+  labs(x = "Income group", y = NULL) +
+  theme_minimal(base_size = 19) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.y = element_text(size = 22),
+    axis.title = element_text(size = 22),
+    legend.position = "top"
+  )
+dev.off()
+
+
+```
 
 
 
@@ -1032,12 +1154,129 @@ ggplot() +
 dev.off()
 
 
-
-
-
 ```
 
 
 
+# Visualizations by exposure group, with proportional weighting
 
+```{r visualisation categoryPollution weighting}
+
+#-------------------------------------------------------------------------------
+# papers
+#-------------------------------------------------------------------------------
+
+## 1. Compute country-weights per paper x categoryPollution -----------------------
+
+# For each paper, how many distinct countries are there in total,
+# and how many of those are in each income group?
+paper_country_weights <- papers %>%
+  distinct(ID, country, categoryPollution) %>%  # ignore category here
+  group_by(ID) %>%
+  mutate(n_countries_total = n_distinct(country)) %>%
+  group_by(ID, categoryPollution, n_countries_total) %>%
+  summarise(n_countries_group = n_distinct(country), .groups = "drop") %>%
+  mutate(country_weight = n_countries_group / n_countries_total)
+# Example: if a paper has 2 countries (1 low, 1 high) then
+# country_weight = 0.5 for low income and 0.5 for high income.
+
+## 2. Attach weights back to the (paper x categoryPollution x category) rows ------
+
+papers_weighted <- papers %>%
+  left_join(
+    paper_country_weights %>%
+      dplyr::select(ID, categoryPollution, country_weight),
+    by = c("ID", "categoryPollution")
+  )
+
+## 3. Compute weighted category shares within each categoryPollution --------------
+
+topics_data <- papers_weighted %>%
+  filter(!is.na(categoryPollution), !is.na(category)) %>%
+  group_by(categoryPollution, category) %>%
+  summarise(
+    weighted_n = sum(country_weight, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  rename(Topic = category) %>%
+  mutate(
+    Topic = factor(
+      Topic,
+      levels = rev(c("Perceptions", "Behavior", "Priority", "Policy", "Health"))
+    )
+  ) %>%
+  group_by(categoryPollution) %>%
+  mutate(
+    share = weighted_n / sum(weighted_n),
+    total = sum(weighted_n)        # weighted total "papers" per categoryPollution
+  ) %>%
+  ungroup()
+
+## 4. Data for the top "total papers" row -----------------------------------
+
+totals_data <- topics_data %>%
+  group_by(categoryPollution) %>%
+  summarise(total = round(first(total)), .groups = "drop") %>%
+  mutate(Topic = "Total papers")   # so it can align in the same plot if needed
+
+## 5. Plot (heatmap) --------------------------------------------------------
+
+pdf("plots/Figure2_category_paper_by_exposure_weight.pdf", width = 12, height = 10)
+ggplot() +
+  # --- top totals row ---
+  geom_tile(data = totals_data,
+            aes(x = categoryPollution, y = "Total papers", fill = total),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = totals_data,
+    aes(x = categoryPollution, y = "Total papers",
+        label = paste0("n=", total),
+        color = "black"),
+    size = 7
+  ) +
+  scale_fill_gradient(
+    name = "Total papers",
+    low = "#F6DBA7", high = "#F7B32B",
+    breaks = range(totals_data$total),
+    labels = range(totals_data$total)
+  ) +
+  scale_color_identity() +
+
+  ggnewscale::new_scale_fill() +  # reset fill scale
+
+  # --- main topic rows ---
+  geom_tile(data = topics_data,
+            aes(x = categoryPollution, y = Topic, fill = share),
+            color = "white", linewidth = 0.8) +
+  geom_text(
+    data = topics_data,
+    aes(x = categoryPollution, y = Topic,
+        label = scales::percent(share, accuracy = 1),
+        # label = paste0(
+        #     scales::percent(share, accuracy = 1), 
+        #     "\n(", n_papers, ")"
+        #   ),
+        color = ifelse(share > 0.25, "white", "black")),
+    size = 7
+  ) +
+  scale_fill_gradient(
+    name = "Share of papers\nwithin exposure group ",
+    low = "#f7f4f9", high = "#8B475D",
+    labels = scales::percent,
+    breaks = c(min(topics_data$share), max(topics_data$share))
+  ) +
+  scale_color_identity() +
+  labs(x = "Exposure group", y = NULL) +
+  theme_minimal(base_size = 19) +
+  theme(
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.y = element_text(size = 22),
+    axis.title = element_text(size = 22),
+    legend.position = "top"
+  )
+dev.off()
+
+
+```
 
