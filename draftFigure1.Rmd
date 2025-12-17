@@ -206,6 +206,13 @@ dev.off()
 ```
 
 
+```{r panels with eurobarometer highlight}
+library(tidyverse)
+dataset <- read.csv("output/datasetPlots.csv")
+
+
+```
+
 
 ```{r maps}
 
@@ -276,11 +283,10 @@ pdf("plots/Figure1_mapPapersCount.pdf", width = 10)
 map_plot_clean
 dev.off()
 
-
 ## then for surveys
 world_countries_merged$n_surveys <- ifelse(is.na(world_countries_merged$n_surveys), 0, world_countries_merged$n_surveys)
 
-my_breaks = c(1, 5, 10, 20, 60)
+my_breaks = c(1, 5, 10, 30, 110)
 
 # 1) Filter out Antarctica from your data:
 world_no_antarctica <- 
@@ -297,7 +303,7 @@ map_plot_clean_survey <- ggplot() +
   ) +
   scale_fill_gradientn(
     colours = c("#F3EBF8", "#D4ABEF", "#541F78"),
-    name    = "Papers",
+    name    = "Survey items",
     trans   = "log10",
     breaks  = my_breaks,
     labels  = label_number(

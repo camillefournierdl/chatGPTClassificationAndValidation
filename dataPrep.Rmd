@@ -82,6 +82,11 @@ surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCo
                                                  "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
                                                  surveyClassification$surveyedCountries)
 
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Belgium; Denmark; Germany; Spain, Greece; France; Ireland; Italy; Luxembourg; Netherlands; Portugal; United Kingdom",
+                                                 "Belgium; Denmark; Germany; Spain; Greece; France; Ireland; Italy; Luxembourg; Netherlands; Portugal; United Kingdom",
+                                                 surveyClassification$surveyedCountries)
+
+
 # 1) split into one row per country
 surveyCountries_long <- surveyClassification %>%
   separate_rows(surveyedCountries, sep = ";\\s*") %>%
@@ -109,6 +114,9 @@ surveyCountries_long_clean <- surveyCountries_long %>%
   filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
 
 surveyCountries_long_clean_yearly <- surveyCountries_long_clean
+
+table(surveyCountries_long_clean_yearly$year)
+
 surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2017 - 2021", 2019, surveyCountries_long_clean_yearly$year)
 surveyCountries_long_clean_yearly$year <- ifelse(surveyCountries_long_clean_yearly$year == "2021 - 2022", 2021, surveyCountries_long_clean_yearly$year)
 
@@ -236,6 +244,10 @@ surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCo
                                                  "Kazakhstan; Kyrgyzstan; Tajikistan; Uzbekistan; Turkmenistan",
                                                  surveyClassification$surveyedCountries)
 
+surveyClassification$surveyedCountries <- ifelse(surveyClassification$surveyedCountries == "Belgium; Denmark; Germany; Spain, Greece; France; Ireland; Italy; Luxembourg; Netherlands; Portugal; United Kingdom",
+                                                 "Belgium; Denmark; Germany; Spain; Greece; France; Ireland; Italy; Luxembourg; Netherlands; Portugal; United Kingdom",
+                                                 surveyClassification$surveyedCountries)
+
 # 1) split into one row per country
 surveyCountries_long <- surveyClassification %>%
   separate_rows(surveyedCountries, sep = ";\\s*") %>%
@@ -340,3 +352,31 @@ summaryDataset2 <- summaryDataset2 %>%
 write.csv(summaryDataset2, "output/datasetPlots.csv", row.names = F)
 
 ```
+
+```{r count eurobarometer}
+
+library(tidyverse)
+surveys <- read.csv("output/surveyClassifYear.csv")
+
+surveys <- surveys %>% 
+  filter(Inclusion == 1)
+
+surveys <- surveys %>% 
+  filter(!is.na(iso3))
+
+surveys <- surveys %>% 
+  filter(!(iso3 == "FRA" & continent == "Seven seas (open ocean)")) %>% 
+  mutate(item_id = paste0(iso3, id, year)) %>%                      # unique survey item ID
+  distinct(item_id, categoryPollution, category) %>%          # each item counts once per (exposure, topic)
+  count(categoryPollution, category, name = "n_items") %>%    # number of items mentioning category
+  
+eurobarometer_surveys <- surveyClassification %>%
+  filter(grepl("Eurobarometer", SurveyName, ignore.case = TRUE))
+
+nrow(eurobarometer_surveys)
+
+```
+
+
+
+
