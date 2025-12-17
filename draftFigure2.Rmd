@@ -107,7 +107,7 @@ surveys <- merge(surveys, dataSummary, by = "iso3", all.x = T, all.y = F)
 surveys <- surveys[which(surveys$Inclusion == 1),] # done in the data prep section
 
 ## subset survey without Flashbarometer
-surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitudes of Europeans towards air quality"),]
+# surveys_sub <- surveys[which(surveys$source != "Flash Eurobarometer 360: Attitudes of Europeans towards air quality"),]
 
 ```
 
@@ -278,7 +278,7 @@ ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
     "Policy"      = "#CD919E",
     "Health"      = "#8B475D",
     "None"        = "#F4A460")) +
-  xlim(0, 1850) +
+  xlim(0, 2100) +
   theme_minimal() +
   theme(
     legend.position = "none",
@@ -660,37 +660,35 @@ dev.off()
 
 ## 1. Compute country-weights per paper x income group -----------------------
 
-# For each paper, how many distinct countries are there in total,
-# and how many of those are in each income group?
+## Alternative approach: also account for multiple categories per paper -----
 paper_country_weights <- papers %>%
-  distinct(ID, country, Income.group) %>%  # ignore category here
+  distinct(ID, country, Income.group) %>%
   group_by(ID) %>%
   mutate(n_countries_total = n_distinct(country)) %>%
   group_by(ID, Income.group, n_countries_total) %>%
   summarise(n_countries_group = n_distinct(country), .groups = "drop") %>%
-  mutate(country_weight = n_countries_group / n_countries_total)
-# Example: if a paper has 2 countries (1 low, 1 high) then
-# country_weight = 0.5 for low income and 0.5 for high income.
+  mutate(country_weight = n_countries_group / n_countries_total) %>%
+  dplyr::select(ID, Income.group, country_weight)
 
-## 2. Attach weights back to the (paper x income group x category) rows ------
-
-papers_weighted <- papers %>%
-  left_join(
-    paper_country_weights %>%
-      dplyr::select(ID, Income.group, country_weight),
-    by = c("ID", "Income.group")
-  )
-
-## 3. Compute weighted category shares within each income group --------------
-
-topics_data <- papers_weighted %>%
+papers_pic <- papers %>%
   filter(!is.na(Income.group), !is.na(category)) %>%
+  distinct(ID, Income.group, category) %>%
+  group_by(ID) %>%
+  mutate(n_cat = n_distinct(category)) %>%
+  ungroup() %>%
+  left_join(paper_country_weights, by = c("ID", "Income.group")) %>%
+  mutate(weight = country_weight / n_cat)
+
+topics_data <- papers_pic %>%
   group_by(Income.group, category) %>%
-  summarise(
-    weighted_n = sum(country_weight, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
+  summarise(weighted_n = sum(weight, na.rm = TRUE), .groups = "drop") %>%
   rename(Topic = category) %>%
+  group_by(Income.group) %>%
+  mutate(
+    share = weighted_n / sum(weighted_n),
+    total = sum(weighted_n)
+  ) %>%
+  ungroup() %>%
   mutate(
     Income.group = factor(
       Income.group,
@@ -700,13 +698,34 @@ topics_data <- papers_weighted %>%
       Topic,
       levels = rev(c("Perceptions", "Behavior", "Priority", "Policy", "Health"))
     )
-  ) %>%
-  group_by(Income.group) %>%
-  mutate(
-    share = weighted_n / sum(weighted_n),
-    total = sum(weighted_n)        # weighted total "papers" per income group
-  ) %>%
-  ungroup()
+  )
+
+## 3. Compute weighted category shares within each income group --------------
+
+# topics_data <- papers_weighted %>%
+#   filter(!is.na(Income.group), !is.na(category)) %>%
+#   group_by(Income.group, category) %>%
+#   summarise(
+#     weighted_n = sum(country_weight, na.rm = TRUE),
+#     .groups = "drop"
+#   ) %>%
+#   rename(Topic = category) %>%
+#   mutate(
+#     Income.group = factor(
+#       Income.group,
+#       levels = c("Low income", "Lower middle income", "Upper middle income", "High income")
+#     ),
+#     Topic = factor(
+#       Topic,
+#       levels = rev(c("Perceptions", "Behavior", "Priority", "Policy", "Health"))
+#     )
+#   ) %>%
+#   group_by(Income.group) %>%
+#   mutate(
+#     share = weighted_n / sum(weighted_n),
+#     total = sum(weighted_n)        # weighted total "papers" per income group
+#   ) %>%
+#   ungroup()
 
 ## 4. Data for the top "total papers" row -----------------------------------
 

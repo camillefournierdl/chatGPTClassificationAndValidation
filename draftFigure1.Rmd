@@ -92,7 +92,7 @@ p2 <- summarySurveysInc %>%
   ) +
   scale_fill_manual(values = c("#E6D0F4", "#E6D0F4", "#B873E7")) +
   theme_minimal() +
-  labs(y = "Total number of survey items", x = "income Group") +
+  labs(y = "Total number of survey items", x = "Income group") +
   theme(legend.position = "none") +
   expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
 
@@ -207,9 +207,103 @@ dev.off()
 
 
 ```{r panels with eurobarometer highlight}
-library(tidyverse)
-dataset <- read.csv("output/datasetPlots.csv")
+# globally there are 2390 survey items from eurobarometer out of 3140 total
 
+library(tidyverse)
+dataset <- read.csv("output/datasetPlots_eurobarometer.csv")
+
+dataset <- dataset %>% 
+  mutate(isDiff = ifelse(eurobarometerSource == 1, "Eurobarometer", "Rest"))
+
+summarySurveysInc <- dataset %>% 
+  group_by(Income.group, isDiff) %>% 
+  summarize(nTotal = sum(n_surveys, na.rm = T)) %>% 
+  filter(!is.na(Income.group))
+
+summarySurveysInc$Income.group <- factor(
+  summarySurveysInc$Income.group,
+  levels = rev(c(
+    "High income",
+    "Upper middle income",
+    "Lower middle income",
+    "Low income"
+  )),
+  ordered = TRUE
+)
+
+totals <- summarySurveysInc %>%
+  group_by(Income.group) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p2 <- summarySurveysInc %>%
+  ggplot(aes(x = Income.group, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = Income.group, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#E6D0F4", "#B873E7")) +
+  theme_minimal() +
+  labs(y = "Total number of survey items", x = "Income group") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p2
+
+pdf("plots/Figure1_surveys_by_income_eurob.pdf", width = 10)
+p2
+dev.off()
+
+## then surveys per exposure
+
+summarySurveysExp <- dataset %>% 
+  group_by(categoryPollution, isDiff) %>% 
+  summarize(nTotal = sum(n_surveys, na.rm = T)) %>% 
+  filter(!is.na(categoryPollution))
+
+summarySurveysExp$categoryPollution <- ifelse(
+  !is.na(summarySurveysExp$categoryPollution),
+  paste0(toupper(substr(summarySurveysExp$categoryPollution, 1, 1)),
+         substr(summarySurveysExp$categoryPollution, 2, nchar(summarySurveysExp$categoryPollution))),
+  NA
+)
+
+summarySurveysExp$categoryPollution <- factor(
+  summarySurveysExp$categoryPollution,
+  levels = rev(c(
+    "Very high",
+    "High",
+    "Medium",
+    "Low",
+    "Very low"
+  )),
+  ordered = TRUE
+)
+
+totals <- summarySurveysExp %>%
+  group_by(categoryPollution) %>%
+  summarise(total = sum(nTotal), .groups = "drop")
+
+p4 <- summarySurveysExp %>%
+  ggplot(aes(x = categoryPollution, y = nTotal)) +
+  geom_bar(stat = "identity", aes(fill = isDiff)) +
+  geom_text(
+    data = totals,
+    aes(x = categoryPollution, y = total, label = total),
+    vjust = -0.3, fontface = "bold"
+  ) +
+  scale_fill_manual(values = c("#E6D0F4", "#B873E7")) +
+  theme_minimal() +
+  labs(y = "Total number of survey items", x = "Pollution exposure") +
+  theme(legend.position = "none") +
+  expand_limits(y = max(totals$total) * 1.05)  # avoid clipping
+
+p4
+
+pdf("plots/Figure1_surveys_by_exposure_eurob.pdf", width = 10)
+p4
+dev.off()
 
 ```
 
@@ -335,7 +429,6 @@ ggsave(plot = map_plot_clean_survey, filename = paste("plots/mapSurveyCount.png"
 pdf("plots/Figure1_mapSurveyCount.pdf", width = 10)
 map_plot_clean_survey
 dev.off()
-
 
 ```
 
