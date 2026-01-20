@@ -1,6 +1,6 @@
 ---
 title: "Figure two"
-author: "Ella Henninger"
+author: "Ella Henninger & Camille Fournier"
 date: "2025-10-17"
 output: html_document
 ---
@@ -214,7 +214,7 @@ dev.off()
 
 ```
 
-## Visualization counting the share of papers & survey items instead of the raw count for each category
+## Visualization counting the share of papers & survey items mentioned instead of the raw count for each category
 
 
 ```{r}
@@ -229,13 +229,11 @@ papers_long <- papers %>%
   rename(Topic = category) %>% 
   mutate(share = n / length(unique(papers$ID)))
 
-# bar plot with counts and percentage labels
-pdf("plots/Figure2_category_paper_barplot_share.pdf", width = 12, height = 10)
-ggplot(papers_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
+p1 <- ggplot(papers_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
   geom_col(color = "black") +
   geom_text(aes(label = percent(share, accuracy = 1)),
-            hjust = -0.3, size = 9) +
-  labs(y = NULL, x = "Number of papers covering each category") +
+            hjust = -0.3, size = 5) +
+  labs(y = NULL, x = "Percentage of topics covered in papers") +
   scale_fill_manual(values = c(
     "Perceptions" = "#8B7B8B",
     "Behavior"    = "#EED8AE",
@@ -251,7 +249,22 @@ ggplot(papers_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
     axis.text.x = element_text(size = 22),
     axis.title = element_text(size = 23)
     )
+
+
+# bar plot with counts and percentage labels
+pdf("plots/Figure2_category_paper_barplot_share.pdf", width = 12, height = 10)
+p1
 dev.off()
+
+ggsave(plot = p1 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 14),
+           axis.text.x = element_text(size = 14),
+           axis.title = element_text(size = 14)
+         ),
+       filename = paste("plots/Figure2_category_paper_barplot_share.png", sep = ""),
+       dpi=600, width = 14, height = 10, units='cm')
 
 #-------------------------------------------------------------------------------
 # surveys
@@ -265,12 +278,11 @@ surveys_long <- surveys %>%
   rename(Topic = category)
 
 # bar plot with counts and percentage labels
-pdf("plots/Figure2_category_survey_barplot_share.pdf", width = 12, height = 10)
-ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
+p2 <- ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
   geom_col(color = "black") +
   geom_text(aes(label = percent(share, accuracy = 1)),
-            hjust = -0.3, size = 9) +
-  labs(y = NULL, x = "Number of survey items covering each category") +
+            hjust = -0.3, size = 5) +
+  labs(y = NULL, x = "Percentage of topics covered in survey items") +
   scale_fill_manual(values = c(
     "Perceptions" = "#8B7B8B",
     "Behavior"    = "#EED8AE",
@@ -286,7 +298,22 @@ ggplot(surveys_long, aes(y = reorder(Topic, n), x = n, fill = Topic)) +
     axis.text.x = element_text(size = 22),
     axis.title = element_text(size = 23)
     )
+
+
+pdf("plots/Figure2_category_survey_barplot_share.pdf", width = 12, height = 10)
+p2
 dev.off()
+
+ggsave(plot = p2 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 14),
+           axis.text.x = element_text(size = 14),
+           axis.title = element_text(size = 14)
+         ),
+       filename = paste("plots/Figure2_category_survey_barplot_share.png", sep = ""),
+       dpi=600, width = 14, height = 10, units='cm')
+
 
 ```
 
@@ -486,12 +513,48 @@ topics_data <- topics_data %>%
   )
   )
 
+topics_data <- topics_data %>%
+  mutate(
+    Income.group = factor(
+      Income.group,
+      levels = c(
+        "Low income",
+        "Lower middle income",
+        "Upper middle income",
+        "High income"
+      ),
+      labels = c(
+        "Low income",
+        "Lower\nmiddle income",
+        "Upper\nmiddle income",
+        "High income"
+      )
+    )
+  )
     
+totals_data <- totals_data %>%
+  mutate(
+    Income.group = factor(
+      Income.group,
+      levels = c(
+        "Low income",
+        "Lower middle income",
+        "Upper middle income",
+        "High income"
+      ),
+      labels = c(
+        "Low income",
+        "Lower\nmiddle income",
+        "Upper\nmiddle income",
+        "High income"
+      )
+    )
+  )
+
+
 # 3. Define consistent factor levels for the y-axis
 # topic_levels <- c("Total papers", unique(topics_data$Topic))
-
-pdf("plots/Figure2_category_paper_by_income_share.pdf", width = 12, height = 10)
-ggplot() +
+p3 <- ggplot() +
   # --- top totals row ---
   geom_tile(data = totals_data,
             aes(x = Income.group, y = "Total papers", fill = total),
@@ -501,7 +564,7 @@ ggplot() +
     aes(x = Income.group, y = "Total papers",
         label = paste0("n=", total),
         color = "black"),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name = "Total papers",
@@ -526,7 +589,7 @@ ggplot() +
         #     "\n(", n_papers, ")"
         #   ),
         color = ifelse(share > 0.25, "white", "black")),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name = "Share of papers\nwithin income group ",
@@ -539,12 +602,25 @@ ggplot() +
   theme_minimal(base_size = 19) +
   theme(
     panel.grid = element_blank(),
-    axis.text.x = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.x = element_text(size = 22),
     axis.text.y = element_text(size = 22),
     axis.title = element_text(size = 22),
     legend.position = "top"
   )
+
+pdf("plots/Figure2_category_paper_by_income_share.pdf", width = 12, height = 10)
+p3
 dev.off()
+
+ggsave(plot = p3 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 12),
+           axis.text.x = element_text(size = 12),
+           axis.title = element_text(size = 12)
+         ),
+       filename = paste("plots/Figure2_category_paper_by_income_share.png", sep = ""),
+       dpi=600, width = 16, height = 10, units='cm')
 
 #-------------------------------------------------------------------------------
 # surveys
@@ -592,8 +668,46 @@ surveys_topics <- surveys_topics %>%
   ) %>%
   ungroup()
 
-pdf("plots/Figure2_category_survey_by_income_share.pdf", width = 12, height = 10)
-ggplot() +
+surveys_topics <- surveys_topics %>%
+  mutate(
+    Income.group = factor(
+      Income.group,
+      levels = c(
+        "Low income",
+        "Lower middle income",
+        "Upper middle income",
+        "High income"
+      ),
+      labels = c(
+        "Low income",
+        "Lower\nmiddle income",
+        "Upper\nmiddle income",
+        "High income"
+      )
+    )
+  )
+
+surveys_totals <- surveys_totals %>%
+  mutate(
+    Income.group = factor(
+      Income.group,
+      levels = c(
+        "Low income",
+        "Lower middle income",
+        "Upper middle income",
+        "High income"
+      ),
+      labels = c(
+        "Low income",
+        "Lower\nmiddle income",
+        "Upper\nmiddle income",
+        "High income"
+      )
+    )
+  )
+
+
+p4 <- ggplot() +
   # --- top totals row ---
   geom_tile(data = surveys_totals,
             aes(x = Income.group, y = "Total items", fill = total),
@@ -603,7 +717,7 @@ ggplot() +
     aes(x = Income.group, y = "Total items",
         label = paste0("n=", total),
         color = "black"),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name = "Total items",
@@ -628,7 +742,7 @@ ggplot() +
         #     "\n(", n_papers, ")"
         #   ),
         color = ifelse(share > 0.25, "white", "black")),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name = "Share of items\nwithin income group ",
@@ -641,12 +755,26 @@ ggplot() +
   theme_minimal(base_size = 19) +
   theme(
     panel.grid = element_blank(),
-    axis.text.x = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.x = element_text(size = 22),
     axis.text.y = element_text(size = 22),
     axis.title = element_text(size = 22),
     legend.position = "top"
   )
+
+pdf("plots/Figure2_category_survey_by_income_share.pdf", width = 12, height = 10)
+p4
 dev.off()
+
+ggsave(plot = p4 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 12),
+           axis.text.x = element_text(size = 12),
+           axis.title = element_text(size = 12)
+         ),
+       filename = paste("plots/Figure2_category_survey_by_income_share.png", sep = ""),
+       dpi=600, width = 16, height = 10, units='cm')
+
 
 ```
 
@@ -977,9 +1105,7 @@ topics_data_poll <- topics_data_poll %>%
   ) %>%
   ungroup()
 
-# 4. Plot with two independent fill scales
-pdf("plots/Figure2_category_paper_by_exposure_share.pdf", width = 12, height = 10)
-ggplot() +
+p5 <- ggplot() +
   # --- top totals row ---
   geom_tile(
     data = totals_data_poll,
@@ -994,7 +1120,7 @@ ggplot() +
       label = paste0("n=", total),
       color = "black"
     ),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name  = "Total papers",
@@ -1027,7 +1153,7 @@ ggplot() +
       # ),
       color = ifelse(share > 0.25, "white", "black")
     ),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name   = "Share of papers\nwithin exposure group ",
@@ -1041,12 +1167,26 @@ ggplot() +
   theme_minimal(base_size = 19) +
   theme(
     panel.grid   = element_blank(),
-    axis.text.x  = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.x  = element_text(size = 22),
     axis.text.y  = element_text(size = 22),
     axis.title   = element_text(size = 22),
     legend.position = "top"
   )
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_paper_by_exposure_share.pdf", width = 12, height = 10)
+p5
 dev.off()
+
+ggsave(plot = p5 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 12),
+           axis.text.x = element_text(size = 12),
+           axis.title = element_text(size = 12)
+         ),
+       filename = paste("plots/Figure2_category_paper_by_exposure_share.png", sep = ""),
+       dpi=600, width = 16, height = 10, units='cm')
+
 
 #-------------------------------------------------------------------------------
 # surveys
@@ -1099,9 +1239,7 @@ topics_data_survey_poll <- topics_data_survey_poll %>%
   ) %>%
   ungroup()
 
-# 4. Plot with two independent fill scales
-pdf("plots/Figure2_category_item_by_exposure_share.pdf", width = 12, height = 10)
-ggplot() +
+p6 <- ggplot() +
   # --- top totals row ---
   geom_tile(
     data = totals_data_survey_poll,
@@ -1116,7 +1254,7 @@ ggplot() +
       label = paste0("n=", total),
       color = "black"
     ),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name   = "Total items",
@@ -1149,7 +1287,7 @@ ggplot() +
       # ),
       color = ifelse(share > 0.25, "white", "black")
     ),
-    size = 7
+    size = 5
   ) +
   scale_fill_gradient(
     name   = "Share of items\nwithin exposure group ",
@@ -1163,14 +1301,27 @@ ggplot() +
   theme_minimal(base_size = 19) +
   theme(
     panel.grid    = element_blank(),
-    axis.text.x   = element_text(angle = 30, hjust = 1, size = 22),
+    axis.text.x   = element_text(size = 22),
     axis.text.y   = element_text(size = 22),
     axis.title    = element_text(size = 22),
     legend.position = "top"
   )
 
+
+# 4. Plot with two independent fill scales
+pdf("plots/Figure2_category_item_by_exposure_share.pdf", width = 12, height = 10)
+p6
 dev.off()
 
+ggsave(plot = p6 + 
+         theme(
+           legend.position = "none",
+           axis.text.y = element_text(size = 12),
+           axis.text.x = element_text(size = 12),
+           axis.title = element_text(size = 12)
+         ),
+       filename = paste("plots/Figure2_category_item_by_exposure_share.png", sep = ""),
+       dpi=600, width = 16, height = 10, units='cm')
 
 ```
 

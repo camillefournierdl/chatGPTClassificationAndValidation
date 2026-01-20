@@ -17,16 +17,20 @@ summaryPaperInc <- dataset %>%
   summarize(nTotal = sum(n_papers, na.rm = T)) %>% 
   filter(!is.na(Income.group))
 
+summaryPaperInc$Income.group <- ifelse(summaryPaperInc$Income.group == "Upper middle income", "Upper\nmiddle income",
+                                        ifelse(summaryPaperInc$Income.group == "Lower middle income", "Lower\nmiddle income", summaryPaperInc$Income.group))
+
 summaryPaperInc$Income.group <- factor(
   summaryPaperInc$Income.group,
   levels = rev(c(
     "High income",
-    "Upper middle income",
-    "Lower middle income",
+    "Upper\nmiddle income",
+    "Lower\nmiddle income",
     "Low income"
   )),
   ordered = TRUE
 )
+
 
 # simple version of the plot
 # summaryPaperInc %>% ggplot(aes(x = Income.group, y = nTotal))+
@@ -60,6 +64,8 @@ pdf("plots/Figure1_papers_by_income.pdf", width = 10)
 p1
 dev.off()
 
+ggsave(plot = p1, filename = paste("plots/Figure1_papers_by_income.png", sep = ""),
+       dpi=600, width = 11, height = 8, units='cm')
 
 ## then surveys
 summarySurveysInc <- dataset %>% 
@@ -153,6 +159,9 @@ pdf("plots/Figure1_papers_by_exposure.pdf", width = 10)
 p3
 dev.off()
 
+ggsave(plot = p3, filename = paste("plots/Figure1_papers_by_exposure.png", sep = ""),
+       dpi=600, width = 10, height = 8, units='cm')
+
 ## then surveys per exposure
 
 summarySurveysExp <- dataset %>% 
@@ -203,6 +212,10 @@ pdf("plots/Figure1_surveys_by_exposure.pdf", width = 10)
 p4
 dev.off()
 
+ggsave(plot = p4, filename = paste("plots/Figure1_surveys_by_exposure.png", sep = ""),
+       dpi=600, width = 10, height = 8, units='cm')
+
+
 ```
 
 
@@ -220,12 +233,15 @@ summarySurveysInc <- dataset %>%
   summarize(nTotal = sum(n_surveys, na.rm = T)) %>% 
   filter(!is.na(Income.group))
 
+summarySurveysInc$Income.group <- ifelse(summarySurveysInc$Income.group == "Upper middle income", "Upper\nmiddle income",
+                                        ifelse(summarySurveysInc$Income.group == "Lower middle income", "Lower\nmiddle income", summarySurveysInc$Income.group))
+
 summarySurveysInc$Income.group <- factor(
   summarySurveysInc$Income.group,
   levels = rev(c(
     "High income",
-    "Upper middle income",
-    "Lower middle income",
+    "Upper\nmiddle income",
+    "Lower\nmiddle income",
     "Low income"
   )),
   ordered = TRUE
@@ -254,6 +270,11 @@ p2
 pdf("plots/Figure1_surveys_by_income_eurob.pdf", width = 10)
 p2
 dev.off()
+
+# p2 <- p2 + theme(axis.text.x=element_text(angle = 30, hjust = 1, vjust = 1))
+
+ggsave(plot = p2, filename = paste("plots/Figure1_surveys_by_income_eurob.png", sep = ""),
+       dpi=600, width = 11, height = 8, units='cm')
 
 ## then surveys per exposure
 
@@ -304,6 +325,10 @@ p4
 pdf("plots/Figure1_surveys_by_exposure_eurob.pdf", width = 10)
 p4
 dev.off()
+
+ggsave(plot = p4, filename = paste("plots/Figure1_surveys_by_exposure_eurob.png", sep = ""),
+       dpi=600, width = 10, height = 8, units='cm')
+
 
 ```
 
