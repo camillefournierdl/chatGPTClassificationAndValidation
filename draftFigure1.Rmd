@@ -123,14 +123,22 @@ summaryPaperExp$categoryPollution <- ifelse(
   NA
 )
 
+summaryPaperExp$categoryPollution <- recode(summaryPaperExp$categoryPollution,
+  "Very high" = "Very high\n(35+ \u00b5g/m\u00b3)",
+  "High" = "High\n(25-35 \u00b5g/m\u00b3)",
+  "Medium" = "Medium\n(15-25 \u00b5g/m\u00b3)",
+  "Low" = "Low\n(10-15 \u00b5g/m\u00b3)",
+  "Very low" = "Very low\n(<10 \u00b5g/m\u00b3)"
+)
+
 summaryPaperExp$categoryPollution <- factor(
   summaryPaperExp$categoryPollution,
   levels = rev(c(
-    "Very high",
-    "High",
-    "Medium",
-    "Low",
-    "Very low"
+    "Very high\n(35+ \u00b5g/m\u00b3)",
+    "High\n(25-35 \u00b5g/m\u00b3)",
+    "Medium\n(15-25 \u00b5g/m\u00b3)",
+    "Low\n(10-15 \u00b5g/m\u00b3)",
+    "Very low\n(<10 \u00b5g/m\u00b3)"
   )),
   ordered = TRUE
 )
@@ -176,14 +184,22 @@ summarySurveysExp$categoryPollution <- ifelse(
   NA
 )
 
+summarySurveysExp$categoryPollution <- recode(summarySurveysExp$categoryPollution,
+  "Very high" = "Very high\n(35+ \u00b5g/m\u00b3)",
+  "High" = "High\n(25-35 \u00b5g/m\u00b3)",
+  "Medium" = "Medium\n(15-25 \u00b5g/m\u00b3)",
+  "Low" = "Low\n(10-15 \u00b5g/m\u00b3)",
+  "Very low" = "Very low\n(<10 \u00b5g/m\u00b3)"
+)
+
 summarySurveysExp$categoryPollution <- factor(
   summarySurveysExp$categoryPollution,
   levels = rev(c(
-    "Very high",
-    "High",
-    "Medium",
-    "Low",
-    "Very low"
+    "Very high\n(35+ \u00b5g/m\u00b3)",
+    "High\n(25-35 \u00b5g/m\u00b3)",
+    "Medium\n(15-25 \u00b5g/m\u00b3)",
+    "Low\n(10-15 \u00b5g/m\u00b3)",
+    "Very low\n(<10 \u00b5g/m\u00b3)"
   )),
   ordered = TRUE
 )
@@ -290,14 +306,22 @@ summarySurveysExp$categoryPollution <- ifelse(
   NA
 )
 
+summarySurveysExp$categoryPollution <- recode(summarySurveysExp$categoryPollution,
+  "Very high" = "Very high\n(35+ \u00b5g/m\u00b3)",
+  "High" = "High\n(25-35 \u00b5g/m\u00b3)",
+  "Medium" = "Medium\n(15-25 \u00b5g/m\u00b3)",
+  "Low" = "Low\n(10-15 \u00b5g/m\u00b3)",
+  "Very low" = "Very low\n(<10 \u00b5g/m\u00b3)"
+)
+
 summarySurveysExp$categoryPollution <- factor(
   summarySurveysExp$categoryPollution,
   levels = rev(c(
-    "Very high",
-    "High",
-    "Medium",
-    "Low",
-    "Very low"
+    "Very high\n(35+ \u00b5g/m\u00b3)",
+    "High\n(25-35 \u00b5g/m\u00b3)",
+    "Medium\n(15-25 \u00b5g/m\u00b3)",
+    "Low\n(10-15 \u00b5g/m\u00b3)",
+    "Very low\n(<10 \u00b5g/m\u00b3)"
   )),
   ordered = TRUE
 )
