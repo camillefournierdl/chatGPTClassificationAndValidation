@@ -159,12 +159,12 @@ datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
 datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
 
 datasetCountries <- datasetCountries %>% 
-  select(ID, countryPartialF) %>% 
+  dplyr::select(ID, countryPartialF) %>% 
   rename(country = countryPartialF)
 
 datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
                                         by = "ID") %>% 
-  select(-reader)
+  dplyr::select(-reader)
 
 datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
 
@@ -295,7 +295,7 @@ surveyCountries_long_clean_t <- surveyCountries_long_clean %>%
 
 # count separately for eurobarometer and non-eurobarometer
 surveyCountries_long_clean_t_euro <- surveyCountries_long_clean_t %>% 
-  mutate(eurobarometerSource = ifelse(grepl("Eurobarometer", source, ignore.case = TRUE), 1, 0))
+  mutate(eurobarometerSource = ifelse(grepl("Eurobarometer", source, ignore.case = TRUE) | source == "Flash 123", 1, 0))
 
 # 2) get total surveys by country
 surveys_by_country <- surveyCountries_long_clean_t %>%
@@ -331,7 +331,7 @@ incomeGroups$Income.group <- ifelse(incomeGroups$Code == "VEN", "Upper middle in
 summaryDataset <- merge(summaryDataset, incomeGroups, by.x = "iso3", by.y = "Code", all.x = T, all.y = F)
 
 plot(summaryDataset %>% 
-       select(Income.group, pm25Avg, n_papers, n_surveys, population2015, categoryPollution))
+      dplyr::select(Income.group, pm25Avg, n_papers, n_surveys, population2015, categoryPollution))
 
 ## add region from natural earth
 
@@ -346,7 +346,7 @@ world_countries_df$iso_a3 <- ifelse(world_countries_df$iso_a3_eh == "FRA", "FRA"
                                     ifelse(world_countries_df$iso_a3_eh == "NOR", "NOR", world_countries_df$iso_a3))
 
 summaryDataset2 <- merge(summaryDataset, world_countries_df %>% 
-                          select(continent, region_un, iso_a3), by.x = "iso3", by.y = "iso_a3", all.x = T, all.y = F)
+                          dplyr::select(continent, region_un, iso_a3), by.x = "iso3", by.y = "iso_a3", all.x = T, all.y = F)
 
 summaryDataset2 <- summaryDataset2 %>% 
   filter(!(iso3 == "FRA" & continent == "Seven seas (open ocean)")) %>% 
@@ -365,7 +365,7 @@ surveys_by_country_euro <- surveyCountries_long_clean_t_euro %>%
   arrange(desc(n_surveys))
 
 summaryDataset_euro <- merge(summaryDataset2 %>% 
-                               select(-n_surveys) %>% 
+                               dplyr::select(-n_surveys) %>% 
                                crossing(eurobarometerSource = c(0, 1)),
                              surveys_by_country_euro,
                              by = c("iso3", "eurobarometerSource"), all.x = T, all.y = T)
