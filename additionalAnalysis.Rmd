@@ -9,8 +9,6 @@ library(tidyverse)
 library(stringi)
 library(fuzzyjoin)
 
-### !!!!! ihi something weird about papers that have a translation
-
 litReviewSub <- read.csv("dataNew/combined_lit-socialscience.csv")
 
 clean_title <- function(x) {
@@ -49,20 +47,6 @@ litReviewMerged2 <- stringdist_left_join(
 write.csv(litReviewMerged2, "output/robustnessSocialScience.csv", row.names = F)
 
 ```
-
-# ```{r wasting time matching something that should not be compliated}
-# 
-# datasetClassification <- read.csv("output/dataClassifToPlot.csv")
-# 
-# test <- read.csv("dataNew/allgpt-lit_w_countries.csv") %>% 
-#   select(X , Title) %>% 
-#   rename(ID = X)
-# 
-# datasetClassificationMerged <- merge(datasetClassification, test, by = "ID")
-# 
-# write.csv(datasetClassificationMerged, "output/dataClassifToPlotTemporaryRobust.csv", row.names = F)
-# 
-# ```
 
 ```{r}
 library(tidyverse)
@@ -363,5 +347,109 @@ ggsave(plot = ppapersYear, filename = paste("robustness/plots/countryPapersYear.
        dpi=600, width = 16, height = 8, units='cm')
 
 
+```
+
+```{r maps for exposure and income groups}
+
+### getting the data together
+library(tidyverse)
+library(rnaturalearth)
+library(terra)
+library(tidyterra)
+
+datasetPlot <- read.csv("output/datasetPlots.csv")
+
+# world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+world_countries <- vect(ne_countries(scale = "small", returnclass = "sf"))
+
+world_countries$iso_a3 <- ifelse(world_countries$sovereignt == "Somaliland", "SOM", world_countries$iso_a3)
+
+world_countries_merged <- merge(world_countries, datasetPlot, by.x = "adm0_a3", by.y = "iso3", all.x = T)
+
+world_countries_merged <- world_countries_merged %>%
+  filter(name != "Antarctica")
+
+table(world_countries_merged$Income.group)
+
+table(world_countries_merged$categoryPollution)
+
+world_countries_merged$categoryPollution <- ifelse(
+  !is.na(world_countries_merged$categoryPollution),
+  paste0(toupper(substr(world_countries_merged$categoryPollution, 1, 1)),
+         substr(world_countries_merged$categoryPollution, 2, nchar(world_countries_merged$categoryPollution))),
+  NA
+)
+
+
+world_countries_merged$categoryPollutionF <- recode(world_countries_merged$categoryPollution,
+  "Very high" = "Very high\n35+ \u00b5g/m\u00b3",
+  "High" = "High\n25-35 \u00b5g/m\u00b3",
+  "Medium" = "Medium\n15-25 \u00b5g/m\u00b3",
+  "Low" = "Low\n10-15 \u00b5g/m\u00b3",
+  "Very low" = "Very low\n<10 \u00b5g/m\u00b3"
+)
+
+world_countries_merged$categoryPollutionF <- factor(
+  world_countries_merged$categoryPollutionF,
+  levels = rev(c(
+    "Very high\n35+ \u00b5g/m\u00b3",
+    "High\n25-35 \u00b5g/m\u00b3",
+    "Medium\n15-25 \u00b5g/m\u00b3",
+    "Low\n10-15 \u00b5g/m\u00b3",
+    "Very low\n<10 \u00b5g/m\u00b3"
+  )),
+  ordered = TRUE
+)
+
+map_plot_reference <- ggplot() +
+  geom_spatvector(data = world_countries_merged, aes(fill = categoryPollutionF)) +
+  scale_fill_manual(
+  values = c("Very low\n<10 \u00b5g/m\u00b3" = "#2166ac",
+             "Low\n10-15 \u00b5g/m\u00b3"      = "#67a9cf",
+             "Medium\n15-25 \u00b5g/m\u00b3"   = "#fddbc7",
+             "High\n25-35 \u00b5g/m\u00b3"     = "#ef8a62",
+             "Very high\n35+ \u00b5g/m\u00b3" = "#b2182b"),
+  na.value = "grey90",
+  name = "Pollution Level"
+) + 
+  theme_void()
+
+plot(map_plot_reference)
+
+# save the plot
+ggsave(plot = map_plot_reference, filename = paste("robustness/plots/mapExposureGroups.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
+
+world_countries_merged$Income.group <- ifelse(world_countries_merged$Income.group == "Upper middle income", "Upper\nmiddle income",
+                                        ifelse(world_countries_merged$Income.group == "Lower middle income", "Lower\nmiddle income", world_countries_merged$Income.group))
+
+world_countries_merged$Income.groupF <- factor(
+  world_countries_merged$Income.group,
+  levels = rev(c(
+    "High income",
+    "Upper\nmiddle income",
+    "Lower\nmiddle income",
+    "Low income"
+  )),
+  ordered = TRUE
+)
+
+map_plot_reference <- ggplot() +
+  geom_spatvector(data = world_countries_merged, aes(fill = Income.groupF)) +
+  scale_fill_manual(
+  values = c("High income" = "#58508d",
+             "Upper\nmiddle income"      = "#bc5090",
+             "Lower\nmiddle income"   = "#ff6361",
+             "Low income"     = "#ffa600"),
+  na.value = "grey90",
+  name = "Income Group"
+  ) +
+  theme_void()
+
+plot(map_plot_reference)
+
+# save the plot
+ggsave(plot = map_plot_reference, filename = paste("robustness/plots/mapIncomeGroup.png", sep = ""),
+       dpi=600, width = 16, height = 12, units='cm')
 ```
 

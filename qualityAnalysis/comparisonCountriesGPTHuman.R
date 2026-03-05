@@ -1,6 +1,6 @@
 library(tidyverse)
 
-classificationGPT <- read.csv("LLMclassif/countriesChatGPT_5mini_final.csv")
+# classificationGPT <- read.csv("LLMclassif/countriesChatGPT_5mini_final.csv")
 classificationGPT <- read.csv("LLMclassif/countriesChatGPT_o4mini_final.csv")
 
 classificationResearcher <- read.csv("dataNew/manualCodingCountry.csv")
@@ -50,3 +50,45 @@ QAcountry <- mergedClassifs %>%
 
 table(QAcountry$similarity) # almost perfect match
 
+classificationGPT$countriesChatGPTClean <- ifelse(classificationGPT$countriesChatGPTClean %in% c("None", ""), "Unknown", classificationGPT$countriesChatGPTClean)
+
+agreement_id_country <- classificationGPT %>%
+  filter(countriesChatGPTClean != "Unknown") %>% 
+  rename(ID = custom_id) %>%
+  filter(!is.na(countriesChatGPTClean)) %>%
+  mutate(rep_id = row_number()) %>%  # unique replicate row id
+  separate_rows(countriesChatGPTClean, sep = "\\s*[,;|]\\s*") %>%  # adjust if needed
+  mutate(country = str_trim(countriesChatGPTClean)) %>%
+  filter(country != "") %>%
+  distinct(ID, rep_id, country) %>%   # avoid double counting same country in a replicate
+  count(ID, country, name = "n_included") %>%
+  left_join(
+    classificationGPT %>%
+      rename(ID = custom_id) %>%
+      group_by(ID) %>%
+      summarise(n_reps = n_distinct(row_number()), .groups = "drop"),
+    by = "ID"
+  ) %>%
+  mutate(agreement_rate = n_included / 3) %>%  # if it is truly always 3
+  arrange(ID, desc(agreement_rate), country)
+
+agreement_id_country
+
+table(agreement_id_country$agreement_rate)
+
+paper_agreement <- classificationGPT %>%
+  filter(countriesChatGPTClean != "Unknown") %>% 
+  rename(ID = custom_id) %>%
+  filter(!is.na(countriesChatGPTClean)) %>%
+  group_by(ID) %>%
+  summarise(
+    n_reps = n(),
+    modal_agreement = max(table(countriesChatGPTClean)) / n_reps,
+    full_agreement = n_distinct(countriesChatGPTClean) == 1,
+    .groups = "drop"
+  )
+
+paper_agreement
+
+table(paper_agreement$full_agreement)
+table(paper_agreement$modal_agreement)

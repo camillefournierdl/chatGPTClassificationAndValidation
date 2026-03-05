@@ -7,7 +7,7 @@ modelName <- "o4mini"
 datasetGPT <- read.csv(paste("LLMClassif/classificationChatGPT_", modelName, "_final.csv", sep = ""))
 
 #### exclude papers that are excluded from the first script ####
-datasetGPTinclusion <- read.csv("LLMClassif/inclusionChatGPT_5mini_final.csv")
+datasetGPTinclusion <- read.csv(paste("LLMClassif/inclusionChatGPT_", modelName, "_final.csv", sep = ""))
 
 getmode <- function(v) {
   v <- na.omit(v)
@@ -94,6 +94,55 @@ datasetGPTsimple_wide <- datasetGPTsimple %>%
 #IDs to check manually for inclusion from classification data
 IDmanual <- unique(subset(datasetGPTsimple_wide, Blank_count > 1)$ID)
 save(IDmanual, file = "output/checkIDmanualClassif.RData")
+
+# calculate uncertainty
+
+mode_cols <- datasetGPTsimple_wide %>%
+  select(ends_with("_count"), -None_count)
+
+overall_counts <- mode_cols %>%
+  summarise(
+    total_0 = sum(. == 0, na.rm = TRUE),
+    total_5 = sum(. == 5, na.rm = TRUE)
+  )
+
+overall_counts
+
+total_classifications <- sum(!is.na(as.matrix(mode_cols)))
+total_classifications
+
+###
+summary_counts <- datasetGPTsimple_wide %>%
+  select(ends_with("_count"), -None_count) %>%
+  pivot_longer(everything(), values_to = "value") %>%
+  summarise(
+    n_0_5 = sum(value %in% c(0, 5), na.rm = TRUE),
+    n_1_4 = sum(value %in% c(1, 4), na.rm = TRUE),
+    n_2_3 = sum(value %in% c(2, 3), na.rm = TRUE)
+  )
+
+summary_counts
+
+per_category_summary <- datasetGPTsimple_wide %>%
+  select(ends_with("_count"), -None_count) %>%
+  pivot_longer(
+    everything(),
+    names_to = "category",
+    values_to = "value"
+  ) %>%
+  group_by(category) %>%
+  summarise(
+    total = sum(!is.na(value)),
+    n_0_5 = sum(value %in% c(0, 5), na.rm = TRUE),
+    n_1_4 = sum(value %in% c(1, 4), na.rm = TRUE),
+    n_2_3 = sum(value %in% c(2, 3), na.rm = TRUE),
+    prop_0_5 = n_0_5 / total,
+    prop_1_4 = n_1_4 / total,
+    prop_2_3 = n_2_3 / total,
+    .groups = "drop"
+  )
+
+per_category_summary
 
 datasetGPTsimple_wide_certain <- subset(datasetGPTsimple_wide, Blank_count < 2)
 

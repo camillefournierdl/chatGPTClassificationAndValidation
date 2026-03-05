@@ -378,4 +378,79 @@ write.csv(summaryDataset_euro, "output/datasetPlots_eurobarometer.csv", row.name
 
 
 
+```{r count papers in europe}
+library(tidyverse)
+"%ni%" = Negate("%in%")
+
+datasetClassification <- read.csv("output/dataClassifToPloto4mini.csv")
+
+datasetCountries <- read.csv("output/fullClassifCountryo4mini.csv")
+
+datasetCountries <- datasetCountries %>% 
+  dplyr::select(ID, countryPartialF) %>% 
+  rename(country = countryPartialF)
+
+datasetClassificationCountries <- merge(datasetClassification, datasetCountries,
+                                        by = "ID") %>% 
+  dplyr::select(-reader)
+
+datasetClassificationCountries$country <- ifelse(datasetClassificationCountries$country == "None", "Unknown", datasetClassificationCountries$country)
+
+table(datasetClassificationCountries$country)
+
+# 1) split into one row per country
+datasetClassificationCountries_long <- datasetClassificationCountries %>%
+  separate_rows(country, sep = ",\\s*") %>%
+  mutate(countries = str_trim(country))
+
+datasetClassificationCountries_long$countries <- ifelse(datasetClassificationCountries_long$countries == "Turkyie", "Turkey",
+                                                        ifelse(datasetClassificationCountries_long$countries %in% c("Wales", "England"), "United Kingdom",
+                                                               datasetClassificationCountries_long$countries))
+# fix country names 
+library(countrycode)
+
+# 1. Direct mapping
+datasetClassificationCountries_long_clean <- datasetClassificationCountries_long %>%
+  mutate(
+    iso3 = countrycode(countries,
+                       origin      = "country.name",
+                       destination = "iso3c")
+  ) %>% 
+  filter(countries %ni% c("", " ", "Kosovo", "Southeast Asia"))
+
+df_cat_long <- datasetClassificationCountries_long_clean %>%
+  # keep only “paper belongs to this category”
+  filter(sum(Perceptions, Priority, Policy, Health, Behavior) >= 1,
+         None != 1)
+
+
+## add region from natural earth
+
+library(rnaturalearth)
+library(terra)
+
+world_countries <- vect(ne_countries(scale = "large", returnclass = "sf"))
+
+world_countries_df <- as.data.frame(world_countries)
+
+world_countries_df$iso_a3 <- ifelse(world_countries_df$iso_a3_eh == "FRA", "FRA",
+                                    ifelse(world_countries_df$iso_a3_eh == "NOR", "NOR", world_countries_df$iso_a3))
+
+summaryDataset2 <- merge(df_cat_long, world_countries_df %>% 
+                          dplyr::select(continent, region_un, iso_a3), by.x = "iso3", by.y = "iso_a3", all.x = T, all.y = F)
+
+summaryDataset2 <- summaryDataset2 %>% 
+  filter(!(iso3 == "FRA" & continent == "Seven seas (open ocean)")) %>% 
+  filter(!(iso3 == "CYP" & countryName == "Northern Cyprus"))
+
+# count the number of single IDs in Europe
+summaryDataset2 %>% 
+  filter(continent == "Europe") %>% 
+  group_by(ID) %>%
+  summarize(presence = first(continent)) %>% 
+  nrow(.)
+  
+  
+
+```
 
