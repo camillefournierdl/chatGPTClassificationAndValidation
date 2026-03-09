@@ -8,9 +8,9 @@
 - Raeesa Moolla
 - E. Keith Smith
 
-# Henninger, E., Fournier de Lauriere, C., Nabilla, A., Moolla, R., & Smith, K. (202X).
-# Public Views on Air Pollution: Mapping Global Patterns in Research and Survey Coverage.
-# *Journal Name*, *Volume*(Issue), pages. https://doi.org/10.
+Henninger, E., Fournier de Lauriere, C., Nabilla, A., Moolla, R., & Smith, K. (202X).
+Public Views on Air Pollution: Mapping Global Patterns in Research and Survey Coverage.
+*Journal Name*, *Volume*(Issue), pages. https://doi.org/10.
 
 ## Overview
 
@@ -36,7 +36,7 @@ All LLM outputs are validated against human researcher annotations (n = 59).
 ├── 02_data_preparation/             # Merge and clean data for analysis
 ├── 03_figures/                      # Generate main paper figures
 ├── 04_robustness/                   # Summary statistics and robustness checks
-├── 09_llm_classifications/          # Example code with prompts for the use of the llm
+├── 09_llm_classifications/          # Example code with prompts for the use of the llm (jupyter notebooks)
 ├── output/                          # Intermediate CSVs (produced by pipeline)
 └── figures/
     ├── main/                        # Publication-ready figures (PDF and PNG)
